@@ -1,0 +1,41 @@
+name: Compile
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  compile_and_commit:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Download flatc binary
+      run: |
+        $url = "https://github.com/google/flatbuffers/releases/download/v24.3.25/Windows.flatc.binary.zip"
+        Invoke-WebRequest -Uri $url -OutFile "flatc.zip"
+        Expand-Archive -Path "flatc.zip" -DestinationPath "."
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.8.x'
+
+    - name: Run Compile
+      run: python Compile.py
+
+    - name: Configure Git
+      run: |
+        git config --global user.name "CompilerBot-v0"
+        git config --global user.email "CompilerBot-v0@example.com"
+
+    - name: Commit and push
+      run: |
+        git add .
+        git commit -m "Add generated files"
+        git push origin HEAD:main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
