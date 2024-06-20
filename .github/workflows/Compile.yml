@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  compile_and_commit:
+  cn_compile:
     runs-on: windows-latest
 
     steps:
@@ -34,8 +34,10 @@ jobs:
 
     - name: Commit and push
       run: |
+        git pull origin dist
+        git checkout dist --merge
         git add .
-        git commit -m "Add generated files"
-        git push origin HEAD:main
+        git commit -m "upd(cn): auto update compiled files"
+        git push origin dist
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

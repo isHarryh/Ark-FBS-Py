@@ -57,4 +57,4 @@ def get_root_type_name(fbs_file):
                 return match.group(1)
 
 if __name__ == '__main__':
-    main('flatc', 'FBS', 'compiled')
+    main('flatc', 'FBS', 'CN')
