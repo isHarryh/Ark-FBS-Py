@@ -34,9 +34,11 @@ jobs:
 
     - name: Commit and push
       run: |
-        git pull origin dist
-        git checkout dist --merge
         git add .
+        git commit -m "temp: transfer only"
+        git fetch
+        git checkout dist
+        git checkout main -- CN
         git commit -m "upd(cn): auto update compiled files"
         git push origin dist
       env:
