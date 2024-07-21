@@ -60,6 +60,12 @@ class enum__Torappu_ActivityDisplayType(object):
     MINISTORY = 3
 
 
+class enum__Torappu_ActivityCompleteType(object):
+    SPECIAL = 0
+    CAN_COMPLETE = 1
+    CANNOT_COMPLETE = 2
+
+
 class enum__Torappu_MissionType(object):
     UNKNOWN = 0
     MAIN = 1
@@ -119,45 +125,50 @@ class enum__Torappu_ItemType(object):
     REP_COIN = 37
     ROGUELIKE = 38
     LINKAGE_TKT_GACHA_10 = 39
-    VOUCHER_ELITE_II_5 = 40
-    VOUCHER_ELITE_II_6 = 41
-    VOUCHER_SKIN = 42
-    RETRO_COIN = 43
-    PLAYER_AVATAR = 44
-    UNI_COLLECTION = 45
-    VOUCHER_FULL_POTENTIAL = 46
-    RL_COIN = 47
-    RETURN_CREDIT = 48
-    MEDAL = 49
-    CHARM = 50
-    HOME_BACKGROUND = 51
-    EXTERMINATION_AGENT = 52
-    OPTIONAL_VOUCHER_PICK = 53
-    ACT_CART_COMPONENT = 54
-    VOUCHER_LEVELMAX_6 = 55
-    VOUCHER_LEVELMAX_5 = 56
-    ACTIVITY_POTENTIAL = 57
-    ITEM_PACK = 58
-    SANDBOX = 59
-    FAVOR_ADD_ITEM = 60
-    CLASSIC_SHD = 61
-    CLASSIC_TKT_GACHA = 62
-    CLASSIC_TKT_GACHA_10 = 63
-    LIMITED_BUFF = 64
-    CLASSIC_FES_PICK_TIER_5 = 65
-    CLASSIC_FES_PICK_TIER_6 = 66
-    RETURN_PROGRESS = 67
-    NEW_PROGRESS = 68
-    MCARD_VOUCHER = 69
-    MATERIAL_ISSUE_VOUCHER = 70
-    CRS_SHOP_COIN_V2 = 71
-    HOME_THEME = 72
-    SANDBOX_PERM = 73
-    SANDBOX_TOKEN = 74
-    TEMPLATE_TRAP = 75
-    NAME_CARD_SKIN = 76
-    EXCLUSIVE_TKT_GACHA = 77
-    EXCLUSIVE_TKT_GACHA_10 = 78
+    VOUCHER_ELITE_II_4 = 40
+    VOUCHER_ELITE_II_5 = 41
+    VOUCHER_ELITE_II_6 = 42
+    VOUCHER_SKIN = 43
+    RETRO_COIN = 44
+    PLAYER_AVATAR = 45
+    UNI_COLLECTION = 46
+    VOUCHER_FULL_POTENTIAL = 47
+    RL_COIN = 48
+    RETURN_CREDIT = 49
+    MEDAL = 50
+    CHARM = 51
+    HOME_BACKGROUND = 52
+    EXTERMINATION_AGENT = 53
+    OPTIONAL_VOUCHER_PICK = 54
+    ACT_CART_COMPONENT = 55
+    VOUCHER_LEVELMAX_6 = 56
+    VOUCHER_LEVELMAX_5 = 57
+    VOUCHER_LEVELMAX_4 = 58
+    VOUCHER_SKILL_SPECIALLEVELMAX_6 = 59
+    VOUCHER_SKILL_SPECIALLEVELMAX_5 = 60
+    VOUCHER_SKILL_SPECIALLEVELMAX_4 = 61
+    ACTIVITY_POTENTIAL = 62
+    ITEM_PACK = 63
+    SANDBOX = 64
+    FAVOR_ADD_ITEM = 65
+    CLASSIC_SHD = 66
+    CLASSIC_TKT_GACHA = 67
+    CLASSIC_TKT_GACHA_10 = 68
+    LIMITED_BUFF = 69
+    CLASSIC_FES_PICK_TIER_5 = 70
+    CLASSIC_FES_PICK_TIER_6 = 71
+    RETURN_PROGRESS = 72
+    NEW_PROGRESS = 73
+    MCARD_VOUCHER = 74
+    MATERIAL_ISSUE_VOUCHER = 75
+    CRS_SHOP_COIN_V2 = 76
+    HOME_THEME = 77
+    SANDBOX_PERM = 78
+    SANDBOX_TOKEN = 79
+    TEMPLATE_TRAP = 80
+    NAME_CARD_SKIN = 81
+    EXCLUSIVE_TKT_GACHA = 82
+    EXCLUSIVE_TKT_GACHA_10 = 83
 
 
 class enum__Torappu_VersusCheckInData_TasteType(object):
@@ -274,6 +285,8 @@ class enum__Torappu_ActArchiveType(object):
     CHALLENGE_BOOK = 21
     ACHIEVEMENT = 22
     QUEST = 23
+    FRAGMENT = 24
+    DISASTER = 25
 
 
 class enum__Torappu_Act13SideData_UnlockCondition(object):
@@ -610,6 +623,24 @@ class enum__Torappu_FifthAnnivExploreValueType(object):
     TEAMVALUE_3 = 2
 
 
+class enum__Torappu_TemplateMissionBigRewardType(object):
+    NONE = 0
+    ILLUST_CHAR_REWARD = 1
+    CUSTOM = 2
+
+
+class enum__Torappu_TemplateMissionTitleType(object):
+    NONE = 0
+    COMMON = 1
+    CUSTOM = 2
+
+
+class enum__Torappu_TemplateMissionCoinInfoType(object):
+    NONE = 0
+    COMMON = 1
+    CUSTOM = 2
+
+
 class clz_Torappu_ActivityTable_BasicData(object):
     __slots__ = ['_tab']
 
@@ -747,14 +778,21 @@ class clz_Torappu_ActivityTable_BasicData(object):
         return None
 
     # clz_Torappu_ActivityTable_BasicData
-    def IsPageEntry(self):
+    def RecType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityTable_BasicData
+    def IsPageEntry(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
 def clz_Torappu_ActivityTable_BasicDataStart(builder):
-    builder.StartObject(16)
+    builder.StartObject(17)
 
 def clz_Torappu_ActivityTable_BasicDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -804,8 +842,11 @@ def clz_Torappu_ActivityTable_BasicDataAddNeedFixedSync(builder, needFixedSync):
 def clz_Torappu_ActivityTable_BasicDataAddTrapDomainId(builder, trapDomainId):
     builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(trapDomainId), 0)
 
+def clz_Torappu_ActivityTable_BasicDataAddRecType(builder, recType):
+    builder.PrependInt32Slot(15, recType, 0)
+
 def clz_Torappu_ActivityTable_BasicDataAddIsPageEntry(builder, isPageEntry):
-    builder.PrependBoolSlot(15, isPageEntry, 0)
+    builder.PrependBoolSlot(16, isPageEntry, 0)
 
 def clz_Torappu_ActivityTable_BasicDataEnd(builder):
     return builder.EndObject()
@@ -48773,6 +48814,237 @@ def dict__string__clz_Torappu_ActivityTable_ActivityTrapMissionsDataEnd(builder)
 
 
 
+class clz_Torappu_TemplateMissionStyleData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_TemplateMissionStyleData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_TemplateMissionStyleData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_TemplateMissionStyleData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_TemplateMissionStyleData
+    def BigRewardType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_TemplateMissionStyleData
+    def BigRewardParamList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_TemplateMissionStyleData
+    def BigRewardParamListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_TemplateMissionStyleData
+    def BigRewardParamListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # clz_Torappu_TemplateMissionStyleData
+    def IsMissionListCommonType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_TemplateMissionStyleData
+    def IsMissionItemCommonType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_TemplateMissionStyleData
+    def MissionItemMainColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_TemplateMissionStyleData
+    def IsMissionItemCompleteUseMainColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_TemplateMissionStyleData
+    def MissionItemCompleteColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_TemplateMissionStyleData
+    def IsMissionRewardItemCommonType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_TemplateMissionStyleData
+    def IsClaimAllBtnCommonType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_TemplateMissionStyleData
+    def ClaimAllBtnMainColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_TemplateMissionStyleData
+    def ClaimAllBtnTips(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_TemplateMissionStyleData
+    def TitleType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_TemplateMissionStyleData
+    def CoinType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_TemplateMissionStyleData
+    def CoinBackColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_TemplateMissionStyleDataStart(builder):
+    builder.StartObject(14)
+
+def clz_Torappu_TemplateMissionStyleDataAddBigRewardType(builder, bigRewardType):
+    builder.PrependInt32Slot(0, bigRewardType, 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddBigRewardParamList(builder, bigRewardParamList):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(bigRewardParamList), 0)
+
+def clz_Torappu_TemplateMissionStyleDataStartBigRewardParamListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_TemplateMissionStyleDataAddIsMissionListCommonType(builder, isMissionListCommonType):
+    builder.PrependBoolSlot(2, isMissionListCommonType, 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddIsMissionItemCommonType(builder, isMissionItemCommonType):
+    builder.PrependBoolSlot(3, isMissionItemCommonType, 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddMissionItemMainColor(builder, missionItemMainColor):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(missionItemMainColor), 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddIsMissionItemCompleteUseMainColor(builder, isMissionItemCompleteUseMainColor):
+    builder.PrependBoolSlot(5, isMissionItemCompleteUseMainColor, 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddMissionItemCompleteColor(builder, missionItemCompleteColor):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(missionItemCompleteColor), 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddIsMissionRewardItemCommonType(builder, isMissionRewardItemCommonType):
+    builder.PrependBoolSlot(7, isMissionRewardItemCommonType, 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddIsClaimAllBtnCommonType(builder, isClaimAllBtnCommonType):
+    builder.PrependBoolSlot(8, isClaimAllBtnCommonType, 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddClaimAllBtnMainColor(builder, claimAllBtnMainColor):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(claimAllBtnMainColor), 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddClaimAllBtnTips(builder, claimAllBtnTips):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(claimAllBtnTips), 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddTitleType(builder, titleType):
+    builder.PrependInt32Slot(11, titleType, 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddCoinType(builder, coinType):
+    builder.PrependInt32Slot(12, coinType, 0)
+
+def clz_Torappu_TemplateMissionStyleDataAddCoinBackColor(builder, coinBackColor):
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(coinBackColor), 0)
+
+def clz_Torappu_TemplateMissionStyleDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_TemplateMissionStyleData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_TemplateMissionStyleData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_TemplateMissionStyleData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_TemplateMissionStyleData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_TemplateMissionStyleData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_TemplateMissionStyleData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_TemplateMissionStyleData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_TemplateMissionStyleDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_TemplateMissionStyleDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_TemplateMissionStyleDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_TemplateMissionStyleDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_ActivityTable(object):
     __slots__ = ['_tab']
 
@@ -49307,8 +49579,32 @@ class clz_Torappu_ActivityTable(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         return o == 0
 
+    # clz_Torappu_ActivityTable
+    def ActivityTemplateMissionStyles(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_TemplateMissionStyleData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityTable
+    def ActivityTemplateMissionStylesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityTable
+    def ActivityTemplateMissionStylesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        return o == 0
+
 def clz_Torappu_ActivityTableStart(builder):
-    builder.StartObject(25)
+    builder.StartObject(26)
 
 def clz_Torappu_ActivityTableAddBasicInfo(builder, basicInfo):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(basicInfo), 0)
@@ -49440,6 +49736,12 @@ def clz_Torappu_ActivityTableAddTrapRuneDataDict(builder, trapRuneDataDict):
     builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(trapRuneDataDict), 0)
 
 def clz_Torappu_ActivityTableStartTrapRuneDataDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityTableAddActivityTemplateMissionStyles(builder, activityTemplateMissionStyles):
+    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(activityTemplateMissionStyles), 0)
+
+def clz_Torappu_ActivityTableStartActivityTemplateMissionStylesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableEnd(builder):

@@ -85,6 +85,11 @@ class enum__Torappu_VoiceLangGroupType(object):
     LINKAGE = 6
 
 
+class enum__Torappu_FestivalVoiceTimeType(object):
+    NONE = 0
+    FESTIVAL = 1
+
+
 class clz_Torappu_CharWordUnlockParam(object):
     __slots__ = ['_tab']
 
@@ -1130,6 +1135,101 @@ def dict__enum__Torappu_VoiceLangType__list_clz_Torappu_NewVoiceTimeDataEnd(buil
 
 
 
+class clz_Torappu_FestivalTimeInterval(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_FestivalTimeInterval()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_FestivalTimeInterval(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_FestivalTimeInterval
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_FestivalTimeInterval
+    def StartTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_FestivalTimeInterval
+    def EndTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_FestivalTimeIntervalStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_FestivalTimeIntervalAddStartTs(builder, startTs):
+    builder.PrependInt64Slot(0, startTs, 0)
+
+def clz_Torappu_FestivalTimeIntervalAddEndTs(builder, endTs):
+    builder.PrependInt64Slot(1, endTs, 0)
+
+def clz_Torappu_FestivalTimeIntervalEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_FestivalTimeData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_FestivalTimeData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_FestivalTimeData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_FestivalTimeData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_FestivalTimeData
+    def TimeType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_FestivalTimeData
+    def Interval(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_FestivalTimeInterval()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def clz_Torappu_FestivalTimeDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_FestivalTimeDataAddTimeType(builder, timeType):
+    builder.PrependInt32Slot(0, timeType, 0)
+
+def clz_Torappu_FestivalTimeDataAddInterval(builder, interval):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(interval), 0)
+
+def clz_Torappu_FestivalTimeDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_FestivalVoiceData(object):
     __slots__ = ['_tab']
 
@@ -1156,32 +1256,91 @@ class clz_Torappu_FestivalVoiceData(object):
         return 0
 
     # clz_Torappu_FestivalVoiceData
-    def StartTs(self):
+    def TimeData(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_FestivalTimeData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_FestivalVoiceData
+    def TimeDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_FestivalVoiceData
-    def EndTs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
+    def TimeDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
 
 def clz_Torappu_FestivalVoiceDataStart(builder):
-    builder.StartObject(3)
+    builder.StartObject(2)
 
 def clz_Torappu_FestivalVoiceDataAddShowType(builder, showType):
     builder.PrependInt32Slot(0, showType, 0)
 
-def clz_Torappu_FestivalVoiceDataAddStartTs(builder, startTs):
-    builder.PrependInt64Slot(1, startTs, 0)
+def clz_Torappu_FestivalVoiceDataAddTimeData(builder, timeData):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(timeData), 0)
 
-def clz_Torappu_FestivalVoiceDataAddEndTs(builder, endTs):
-    builder.PrependInt64Slot(2, endTs, 0)
+def clz_Torappu_FestivalVoiceDataStartTimeDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_FestivalVoiceDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_FestivalVoiceData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_FestivalVoiceData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_FestivalVoiceData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_FestivalVoiceData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_FestivalVoiceData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_FestivalVoiceData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_FestivalVoiceData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_FestivalVoiceDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_FestivalVoiceDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_FestivalVoiceDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_FestivalVoiceDataEnd(builder):
     return builder.EndObject()
 
 
@@ -1680,7 +1839,7 @@ class clz_Torappu_CharWordTable(object):
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = clz_Torappu_FestivalVoiceData()
+            obj = dict__string__clz_Torappu_FestivalVoiceData()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None

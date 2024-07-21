@@ -1701,8 +1701,15 @@ class clz_Torappu_AttributesData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesData
+    def FearedImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDataStart(builder):
-    builder.StartObject(23)
+    builder.StartObject(24)
 
 def clz_Torappu_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -1772,6 +1779,9 @@ def clz_Torappu_AttributesDataAddLevitateImmune(builder, levitateImmune):
 
 def clz_Torappu_AttributesDataAddDisarmedCombatImmune(builder, disarmedCombatImmune):
     builder.PrependBoolSlot(22, disarmedCombatImmune, 0)
+
+def clz_Torappu_AttributesDataAddFearedImmune(builder, fearedImmune):
+    builder.PrependBoolSlot(23, fearedImmune, 0)
 
 def clz_Torappu_AttributesDataEnd(builder):
     return builder.EndObject()
@@ -2841,8 +2851,18 @@ class clz_Torappu_EnemyDatabase_AttributesData(object):
             return obj
         return None
 
+    # clz_Torappu_EnemyDatabase_AttributesData
+    def FearedImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Undefinable_1_System_Boolean_()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
 def clz_Torappu_EnemyDatabase_AttributesDataStart(builder):
-    builder.StartObject(26)
+    builder.StartObject(27)
 
 def clz_Torappu_EnemyDatabase_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(maxHp), 0)
@@ -2921,6 +2941,9 @@ def clz_Torappu_EnemyDatabase_AttributesDataAddLevitateImmune(builder, levitateI
 
 def clz_Torappu_EnemyDatabase_AttributesDataAddDisarmedCombatImmune(builder, disarmedCombatImmune):
     builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(disarmedCombatImmune), 0)
+
+def clz_Torappu_EnemyDatabase_AttributesDataAddFearedImmune(builder, fearedImmune):
+    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(fearedImmune), 0)
 
 def clz_Torappu_EnemyDatabase_AttributesDataEnd(builder):
     return builder.EndObject()

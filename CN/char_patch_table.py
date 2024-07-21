@@ -86,45 +86,50 @@ class enum__Torappu_ItemType(object):
     REP_COIN = 37
     ROGUELIKE = 38
     LINKAGE_TKT_GACHA_10 = 39
-    VOUCHER_ELITE_II_5 = 40
-    VOUCHER_ELITE_II_6 = 41
-    VOUCHER_SKIN = 42
-    RETRO_COIN = 43
-    PLAYER_AVATAR = 44
-    UNI_COLLECTION = 45
-    VOUCHER_FULL_POTENTIAL = 46
-    RL_COIN = 47
-    RETURN_CREDIT = 48
-    MEDAL = 49
-    CHARM = 50
-    HOME_BACKGROUND = 51
-    EXTERMINATION_AGENT = 52
-    OPTIONAL_VOUCHER_PICK = 53
-    ACT_CART_COMPONENT = 54
-    VOUCHER_LEVELMAX_6 = 55
-    VOUCHER_LEVELMAX_5 = 56
-    ACTIVITY_POTENTIAL = 57
-    ITEM_PACK = 58
-    SANDBOX = 59
-    FAVOR_ADD_ITEM = 60
-    CLASSIC_SHD = 61
-    CLASSIC_TKT_GACHA = 62
-    CLASSIC_TKT_GACHA_10 = 63
-    LIMITED_BUFF = 64
-    CLASSIC_FES_PICK_TIER_5 = 65
-    CLASSIC_FES_PICK_TIER_6 = 66
-    RETURN_PROGRESS = 67
-    NEW_PROGRESS = 68
-    MCARD_VOUCHER = 69
-    MATERIAL_ISSUE_VOUCHER = 70
-    CRS_SHOP_COIN_V2 = 71
-    HOME_THEME = 72
-    SANDBOX_PERM = 73
-    SANDBOX_TOKEN = 74
-    TEMPLATE_TRAP = 75
-    NAME_CARD_SKIN = 76
-    EXCLUSIVE_TKT_GACHA = 77
-    EXCLUSIVE_TKT_GACHA_10 = 78
+    VOUCHER_ELITE_II_4 = 40
+    VOUCHER_ELITE_II_5 = 41
+    VOUCHER_ELITE_II_6 = 42
+    VOUCHER_SKIN = 43
+    RETRO_COIN = 44
+    PLAYER_AVATAR = 45
+    UNI_COLLECTION = 46
+    VOUCHER_FULL_POTENTIAL = 47
+    RL_COIN = 48
+    RETURN_CREDIT = 49
+    MEDAL = 50
+    CHARM = 51
+    HOME_BACKGROUND = 52
+    EXTERMINATION_AGENT = 53
+    OPTIONAL_VOUCHER_PICK = 54
+    ACT_CART_COMPONENT = 55
+    VOUCHER_LEVELMAX_6 = 56
+    VOUCHER_LEVELMAX_5 = 57
+    VOUCHER_LEVELMAX_4 = 58
+    VOUCHER_SKILL_SPECIALLEVELMAX_6 = 59
+    VOUCHER_SKILL_SPECIALLEVELMAX_5 = 60
+    VOUCHER_SKILL_SPECIALLEVELMAX_4 = 61
+    ACTIVITY_POTENTIAL = 62
+    ITEM_PACK = 63
+    SANDBOX = 64
+    FAVOR_ADD_ITEM = 65
+    CLASSIC_SHD = 66
+    CLASSIC_TKT_GACHA = 67
+    CLASSIC_TKT_GACHA_10 = 68
+    LIMITED_BUFF = 69
+    CLASSIC_FES_PICK_TIER_5 = 70
+    CLASSIC_FES_PICK_TIER_6 = 71
+    RETURN_PROGRESS = 72
+    NEW_PROGRESS = 73
+    MCARD_VOUCHER = 74
+    MATERIAL_ISSUE_VOUCHER = 75
+    CRS_SHOP_COIN_V2 = 76
+    HOME_THEME = 77
+    SANDBOX_PERM = 78
+    SANDBOX_TOKEN = 79
+    TEMPLATE_TRAP = 80
+    NAME_CARD_SKIN = 81
+    EXCLUSIVE_TKT_GACHA = 82
+    EXCLUSIVE_TKT_GACHA_10 = 83
 
 
 class enum__Torappu_CharacterData_PotentialRank_TypeEnum(object):
@@ -166,7 +171,8 @@ class enum__Torappu_AbnormalFlag(object):
     ANTI_STATUS_RESISTABLE = 30
     DISARMED_COMBAT = 31
     TOWER_TARGET_FREE = 32
-    E_NUM = 33
+    FEARED = 33
+    E_NUM = 34
 
 
 class enum__Torappu_AbnormalCombo(object):
@@ -785,8 +791,15 @@ class clz_Torappu_AttributesData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesData
+    def FearedImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDataStart(builder):
-    builder.StartObject(23)
+    builder.StartObject(24)
 
 def clz_Torappu_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -856,6 +869,9 @@ def clz_Torappu_AttributesDataAddLevitateImmune(builder, levitateImmune):
 
 def clz_Torappu_AttributesDataAddDisarmedCombatImmune(builder, disarmedCombatImmune):
     builder.PrependBoolSlot(22, disarmedCombatImmune, 0)
+
+def clz_Torappu_AttributesDataAddFearedImmune(builder, fearedImmune):
+    builder.PrependBoolSlot(23, fearedImmune, 0)
 
 def clz_Torappu_AttributesDataEnd(builder):
     return builder.EndObject()
@@ -2106,8 +2122,15 @@ class clz_Torappu_AttributesDeltaData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesDeltaData
+    def FearedImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDeltaDataStart(builder):
-    builder.StartObject(23)
+    builder.StartObject(24)
 
 def clz_Torappu_AttributesDeltaDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -2177,6 +2200,9 @@ def clz_Torappu_AttributesDeltaDataAddLevitateImmune(builder, levitateImmune):
 
 def clz_Torappu_AttributesDeltaDataAddDisarmedCombatImmune(builder, disarmedCombatImmune):
     builder.PrependBoolSlot(22, disarmedCombatImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddFearedImmune(builder, fearedImmune):
+    builder.PrependBoolSlot(23, fearedImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataEnd(builder):
     return builder.EndObject()
