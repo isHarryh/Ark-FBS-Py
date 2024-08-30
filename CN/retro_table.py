@@ -167,7 +167,8 @@ class enum__Torappu_ActivityType(object):
     BLESS_ONLY = 40
     CHECKIN_ACCESS = 41
     YEAR_5_GENERAL = 42
-    ENUM = 43
+    TYPE_ACT35SIDE = 43
+    ENUM = 44
 
 
 class enum__Torappu_StageType(object):
@@ -1266,8 +1267,22 @@ class clz_Torappu_RetroActData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_RetroActData
+    def IsRecommend(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_RetroActData
+    def RecommendTagRemoveStage(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_RetroActDataStart(builder):
-    builder.StartObject(11)
+    builder.StartObject(13)
 
 def clz_Torappu_RetroActDataAddRetroId(builder, retroId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(retroId), 0)
@@ -1304,6 +1319,12 @@ def clz_Torappu_RetroActDataAddCustomActId(builder, customActId):
 
 def clz_Torappu_RetroActDataAddCustomActType(builder, customActType):
     builder.PrependInt32Slot(10, customActType, 0)
+
+def clz_Torappu_RetroActDataAddIsRecommend(builder, isRecommend):
+    builder.PrependBoolSlot(11, isRecommend, 0)
+
+def clz_Torappu_RetroActDataAddRecommendTagRemoveStage(builder, recommendTagRemoveStage):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(recommendTagRemoveStage), 0)
 
 def clz_Torappu_RetroActDataEnd(builder):
     return builder.EndObject()

@@ -172,7 +172,8 @@ class enum__Torappu_AbnormalFlag(object):
     DISARMED_COMBAT = 31
     TOWER_TARGET_FREE = 32
     FEARED = 33
-    E_NUM = 34
+    SKILL_ACTIVABLE_IN_ABNORMAL = 34
+    E_NUM = 35
 
 
 class enum__Torappu_AbnormalCombo(object):

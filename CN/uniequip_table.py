@@ -106,6 +106,52 @@ class enum__Torappu_UniEquipType(object):
     ADVANCED = 1
 
 
+class dict__string__int(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__int()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__int(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__int
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__int
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__int
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def dict__string__intStart(builder):
+    builder.StartObject(2)
+
+def dict__string__intAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__intAddValue(builder, value):
+    builder.PrependInt32Slot(1, value, 0)
+
+def dict__string__intEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_ItemBundle(object):
     __slots__ = ['_tab']
 
@@ -345,15 +391,8 @@ class clz_Torappu_UniEquipData(object):
         return 0
 
     # clz_Torappu_UniEquipData
-    def UnlockFavorPoint(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_UniEquipData
     def MissionList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -361,13 +400,37 @@ class clz_Torappu_UniEquipData(object):
 
     # clz_Torappu_UniEquipData
     def MissionListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_UniEquipData
     def MissionListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        return o == 0
+
+    # clz_Torappu_UniEquipData
+    def UnlockFavors(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__int()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_UniEquipData
+    def UnlockFavorsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_UniEquipData
+    def UnlockFavorsIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
@@ -416,8 +479,36 @@ class clz_Torappu_UniEquipData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_UniEquipData
+    def HasUnlockMission(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_UniEquipData
+    def IsSpecialEquip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_UniEquipData
+    def SpecialEquipDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_UniEquipData
+    def SpecialEquipColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_UniEquipDataStart(builder):
-    builder.StartObject(20)
+    builder.StartObject(24)
 
 def clz_Torappu_UniEquipDataAddUniEquipId(builder, uniEquipId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(uniEquipId), 0)
@@ -461,13 +552,16 @@ def clz_Torappu_UniEquipDataAddShowLevel(builder, showLevel):
 def clz_Torappu_UniEquipDataAddUnlockLevel(builder, unlockLevel):
     builder.PrependInt32Slot(13, unlockLevel, 0)
 
-def clz_Torappu_UniEquipDataAddUnlockFavorPoint(builder, unlockFavorPoint):
-    builder.PrependInt32Slot(14, unlockFavorPoint, 0)
-
 def clz_Torappu_UniEquipDataAddMissionList(builder, missionList):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(missionList), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(missionList), 0)
 
 def clz_Torappu_UniEquipDataStartMissionListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_UniEquipDataAddUnlockFavors(builder, unlockFavors):
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(unlockFavors), 0)
+
+def clz_Torappu_UniEquipDataStartUnlockFavorsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_UniEquipDataAddItemCost(builder, itemCost):
@@ -484,6 +578,18 @@ def clz_Torappu_UniEquipDataAddUniEquipGetTime(builder, uniEquipGetTime):
 
 def clz_Torappu_UniEquipDataAddCharEquipOrder(builder, charEquipOrder):
     builder.PrependInt32Slot(19, charEquipOrder, 0)
+
+def clz_Torappu_UniEquipDataAddHasUnlockMission(builder, hasUnlockMission):
+    builder.PrependBoolSlot(20, hasUnlockMission, 0)
+
+def clz_Torappu_UniEquipDataAddIsSpecialEquip(builder, isSpecialEquip):
+    builder.PrependBoolSlot(21, isSpecialEquip, 0)
+
+def clz_Torappu_UniEquipDataAddSpecialEquipDesc(builder, specialEquipDesc):
+    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(specialEquipDesc), 0)
+
+def clz_Torappu_UniEquipDataAddSpecialEquipColor(builder, specialEquipColor):
+    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(specialEquipColor), 0)
 
 def clz_Torappu_UniEquipDataEnd(builder):
     return builder.EndObject()

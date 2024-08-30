@@ -149,60 +149,70 @@ class clz_Torappu_OpenServerScheduleItem(object):
         return None
 
     # clz_Torappu_OpenServerScheduleItem
-    def StartTs(self):
+    def VersionId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # clz_Torappu_OpenServerScheduleItem
-    def EndTs(self):
+    def StartTs(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_OpenServerScheduleItem
-    def TotalCheckinDescption(self):
+    def EndTs(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_OpenServerScheduleItem
-    def ChainLoginDescription(self):
+    def TotalCheckinDescption(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_OpenServerScheduleItem
-    def CharImg(self):
+    def ChainLoginDescription(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_OpenServerScheduleItem
+    def CharImg(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_OpenServerScheduleItemStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(7)
 
 def clz_Torappu_OpenServerScheduleItemAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
 
+def clz_Torappu_OpenServerScheduleItemAddVersionId(builder, versionId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(versionId), 0)
+
 def clz_Torappu_OpenServerScheduleItemAddStartTs(builder, startTs):
-    builder.PrependInt32Slot(1, startTs, 0)
+    builder.PrependInt32Slot(2, startTs, 0)
 
 def clz_Torappu_OpenServerScheduleItemAddEndTs(builder, endTs):
-    builder.PrependInt32Slot(2, endTs, 0)
+    builder.PrependInt32Slot(3, endTs, 0)
 
 def clz_Torappu_OpenServerScheduleItemAddTotalCheckinDescption(builder, totalCheckinDescption):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(totalCheckinDescption), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(totalCheckinDescption), 0)
 
 def clz_Torappu_OpenServerScheduleItemAddChainLoginDescription(builder, chainLoginDescription):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(chainLoginDescription), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(chainLoginDescription), 0)
 
 def clz_Torappu_OpenServerScheduleItemAddCharImg(builder, charImg):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(charImg), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(charImg), 0)
 
 def clz_Torappu_OpenServerScheduleItemEnd(builder):
     return builder.EndObject()
@@ -753,8 +763,15 @@ class clz_Torappu_OpenServerItemData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_OpenServerItemData
+    def Name(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_OpenServerItemDataStart(builder):
-    builder.StartObject(3)
+    builder.StartObject(4)
 
 def clz_Torappu_OpenServerItemDataAddItemId(builder, itemId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemId), 0)
@@ -764,6 +781,9 @@ def clz_Torappu_OpenServerItemDataAddItemType(builder, itemType):
 
 def clz_Torappu_OpenServerItemDataAddCount(builder, count):
     builder.PrependInt32Slot(2, count, 0)
+
+def clz_Torappu_OpenServerItemDataAddName(builder, name):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
 
 def clz_Torappu_OpenServerItemDataEnd(builder):
     return builder.EndObject()
@@ -988,8 +1008,48 @@ class clz_Torappu_OpenServerData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         return o == 0
 
+    # clz_Torappu_OpenServerData
+    def TotalCheckinCharData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_OpenServerData
+    def TotalCheckinCharDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_OpenServerData
+    def TotalCheckinCharDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+    # clz_Torappu_OpenServerData
+    def ChainLoginCharData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_OpenServerData
+    def ChainLoginCharDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_OpenServerData
+    def ChainLoginCharDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        return o == 0
+
 def clz_Torappu_OpenServerDataStart(builder):
-    builder.StartObject(4)
+    builder.StartObject(6)
 
 def clz_Torappu_OpenServerDataAddOpenServerMissionGroup(builder, openServerMissionGroup):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(openServerMissionGroup), 0)
@@ -1010,6 +1070,18 @@ def clz_Torappu_OpenServerDataAddChainLoginData(builder, chainLoginData):
     builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(chainLoginData), 0)
 
 def clz_Torappu_OpenServerDataStartChainLoginDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_OpenServerDataAddTotalCheckinCharData(builder, totalCheckinCharData):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(totalCheckinCharData), 0)
+
+def clz_Torappu_OpenServerDataStartTotalCheckinCharDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_OpenServerDataAddChainLoginCharData(builder, chainLoginCharData):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(chainLoginCharData), 0)
+
+def clz_Torappu_OpenServerDataStartChainLoginCharDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_OpenServerDataEnd(builder):
@@ -1098,14 +1170,74 @@ class clz_Torappu_OpenServerConst(object):
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_OpenServerConst
+    def ResFullOpenUnlockStageId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_OpenServerConst
+    def ResFullOpenDuration(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_OpenServerConst
+    def ResFullOpenTitle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_OpenServerConst
+    def ResFullOpenDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_OpenServerConst
+    def ResFullOpenGuideGroupThreshold(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_OpenServerConst
+    def ResFullOpenStartTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_OpenServerConstStart(builder):
-    builder.StartObject(2)
+    builder.StartObject(8)
 
 def clz_Torappu_OpenServerConstAddFirstDiamondShardMailCount(builder, firstDiamondShardMailCount):
     builder.PrependInt32Slot(0, firstDiamondShardMailCount, 0)
 
 def clz_Torappu_OpenServerConstAddInitApMailEndTs(builder, initApMailEndTs):
     builder.PrependInt64Slot(1, initApMailEndTs, 0)
+
+def clz_Torappu_OpenServerConstAddResFullOpenUnlockStageId(builder, resFullOpenUnlockStageId):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(resFullOpenUnlockStageId), 0)
+
+def clz_Torappu_OpenServerConstAddResFullOpenDuration(builder, resFullOpenDuration):
+    builder.PrependInt32Slot(3, resFullOpenDuration, 0)
+
+def clz_Torappu_OpenServerConstAddResFullOpenTitle(builder, resFullOpenTitle):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(resFullOpenTitle), 0)
+
+def clz_Torappu_OpenServerConstAddResFullOpenDesc(builder, resFullOpenDesc):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(resFullOpenDesc), 0)
+
+def clz_Torappu_OpenServerConstAddResFullOpenGuideGroupThreshold(builder, resFullOpenGuideGroupThreshold):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(resFullOpenGuideGroupThreshold), 0)
+
+def clz_Torappu_OpenServerConstAddResFullOpenStartTime(builder, resFullOpenStartTime):
+    builder.PrependInt64Slot(7, resFullOpenStartTime, 0)
 
 def clz_Torappu_OpenServerConstEnd(builder):
     return builder.EndObject()

@@ -70,6 +70,13 @@ class enum__Torappu_SandboxV2FoodAttribute(object):
     ENHANCED = 7
 
 
+class enum__Torappu_SandboxV2FoodVariantType(object):
+    NONE = 0
+    ALPHA = 1
+    BETA = 2
+    GAMMA = 3
+
+
 class enum__Torappu_SandboxV2NodeType(object):
     NONE = 0
     HOME = 1
@@ -269,6 +276,7 @@ class enum__Torappu_SandboxV2NpcType(object):
     NORMAL = 0
     FIXED_RIFT = 1
     RANDOM_RIFT = 2
+    PREY_RIFT = 3
 
 
 class enum__Torappu_BattleDialogType(object):
@@ -346,6 +354,7 @@ class enum__Torappu_SandboxV2RiftMainTargetType(object):
     PROTECT = 4
     FIGHT = 5
     CATCH_THIEF = 6
+    PREY_HUNT = 7
 
 
 class enum__Torappu_SandboxV2ArchiveQuestType(object):
@@ -1402,8 +1411,15 @@ class clz_Torappu_SandboxV2ItemTrapData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_SandboxV2ItemTrapData
+    def BuffId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_SandboxV2ItemTrapDataStart(builder):
-    builder.StartObject(12)
+    builder.StartObject(13)
 
 def clz_Torappu_SandboxV2ItemTrapDataAddItemId(builder, itemId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemId), 0)
@@ -1440,6 +1456,9 @@ def clz_Torappu_SandboxV2ItemTrapDataAddItemType(builder, itemType):
 
 def clz_Torappu_SandboxV2ItemTrapDataAddItemTag(builder, itemTag):
     builder.PrependInt32Slot(11, itemTag, 0)
+
+def clz_Torappu_SandboxV2ItemTrapDataAddBuffId(builder, buffId):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(buffId), 0)
 
 def clz_Torappu_SandboxV2ItemTrapDataEnd(builder):
     return builder.EndObject()
@@ -1839,42 +1858,49 @@ class clz_Torappu_SandboxV2CraftItemData(object):
         return o == 0
 
     # clz_Torappu_SandboxV2CraftItemData
-    def WithdrawRatio(self):
+    def OutputRatio(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2CraftItemData
-    def RepairCost(self):
+    def WithdrawRatio(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2CraftItemData
-    def IsHidden(self):
+    def RepairCost(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_SandboxV2CraftItemData
+    def IsHidden(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_SandboxV2CraftItemData
     def CraftGroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2CraftItemData
     def RecipeLevel(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
 def clz_Torappu_SandboxV2CraftItemDataStart(builder):
-    builder.StartObject(10)
+    builder.StartObject(11)
 
 def clz_Torappu_SandboxV2CraftItemDataAddItemId(builder, itemId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemId), 0)
@@ -1897,20 +1923,23 @@ def clz_Torappu_SandboxV2CraftItemDataAddUpgradeItems(builder, upgradeItems):
 def clz_Torappu_SandboxV2CraftItemDataStartUpgradeItemsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_SandboxV2CraftItemDataAddOutputRatio(builder, outputRatio):
+    builder.PrependInt32Slot(5, outputRatio, 0)
+
 def clz_Torappu_SandboxV2CraftItemDataAddWithdrawRatio(builder, withdrawRatio):
-    builder.PrependInt32Slot(5, withdrawRatio, 0)
+    builder.PrependInt32Slot(6, withdrawRatio, 0)
 
 def clz_Torappu_SandboxV2CraftItemDataAddRepairCost(builder, repairCost):
-    builder.PrependInt32Slot(6, repairCost, 0)
+    builder.PrependInt32Slot(7, repairCost, 0)
 
 def clz_Torappu_SandboxV2CraftItemDataAddIsHidden(builder, isHidden):
-    builder.PrependBoolSlot(7, isHidden, 0)
+    builder.PrependBoolSlot(8, isHidden, 0)
 
 def clz_Torappu_SandboxV2CraftItemDataAddCraftGroupId(builder, craftGroupId):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(craftGroupId), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(craftGroupId), 0)
 
 def clz_Torappu_SandboxV2CraftItemDataAddRecipeLevel(builder, recipeLevel):
-    builder.PrependInt32Slot(9, recipeLevel, 0)
+    builder.PrependInt32Slot(10, recipeLevel, 0)
 
 def clz_Torappu_SandboxV2CraftItemDataEnd(builder):
     return builder.EndObject()
@@ -2005,8 +2034,15 @@ class clz_Torappu_SandboxV2LivestockData(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_SandboxV2LivestockData
+    def TargetFenceId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_SandboxV2LivestockDataStart(builder):
-    builder.StartObject(3)
+    builder.StartObject(4)
 
 def clz_Torappu_SandboxV2LivestockDataAddLivestockItemId(builder, livestockItemId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(livestockItemId), 0)
@@ -2016,6 +2052,9 @@ def clz_Torappu_SandboxV2LivestockDataAddShinyLivestockItemId(builder, shinyLive
 
 def clz_Torappu_SandboxV2LivestockDataAddLivestockEnemyId(builder, livestockEnemyId):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(livestockEnemyId), 0)
+
+def clz_Torappu_SandboxV2LivestockDataAddTargetFenceId(builder, targetFenceId):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(targetFenceId), 0)
 
 def clz_Torappu_SandboxV2LivestockDataEnd(builder):
     return builder.EndObject()
@@ -2518,21 +2557,35 @@ class clz_Torappu_SandboxV2FoodMatData(object):
         return 0
 
     # clz_Torappu_SandboxV2FoodMatData
-    def BuffDesc(self):
+    def VariantType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_SandboxV2FoodMatData
+    def BonusDuration(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_SandboxV2FoodMatData
+    def BuffDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2FoodMatData
     def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
 def clz_Torappu_SandboxV2FoodMatDataStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(7)
 
 def clz_Torappu_SandboxV2FoodMatDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -2543,11 +2596,17 @@ def clz_Torappu_SandboxV2FoodMatDataAddType(builder, type):
 def clz_Torappu_SandboxV2FoodMatDataAddAttribute(builder, attribute):
     builder.PrependInt32Slot(2, attribute, 0)
 
+def clz_Torappu_SandboxV2FoodMatDataAddVariantType(builder, variantType):
+    builder.PrependInt32Slot(3, variantType, 0)
+
+def clz_Torappu_SandboxV2FoodMatDataAddBonusDuration(builder, bonusDuration):
+    builder.PrependInt32Slot(4, bonusDuration, 0)
+
 def clz_Torappu_SandboxV2FoodMatDataAddBuffDesc(builder, buffDesc):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(buffDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(buffDesc), 0)
 
 def clz_Torappu_SandboxV2FoodMatDataAddSortId(builder, sortId):
-    builder.PrependInt32Slot(4, sortId, 0)
+    builder.PrependInt32Slot(6, sortId, 0)
 
 def clz_Torappu_SandboxV2FoodMatDataEnd(builder):
     return builder.EndObject()
@@ -2665,6 +2724,62 @@ def clz_Torappu_SandboxV2FoodRecipeDataEnd(builder):
 
 
 
+class clz_Torappu_SandboxV2FoodVariantData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_SandboxV2FoodVariantData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_SandboxV2FoodVariantData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_SandboxV2FoodVariantData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_SandboxV2FoodVariantData
+    def Type(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_SandboxV2FoodVariantData
+    def Name(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2FoodVariantData
+    def Usage(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_SandboxV2FoodVariantDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_SandboxV2FoodVariantDataAddType(builder, type):
+    builder.PrependInt32Slot(0, type, 0)
+
+def clz_Torappu_SandboxV2FoodVariantDataAddName(builder, name):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+
+def clz_Torappu_SandboxV2FoodVariantDataAddUsage(builder, usage):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(usage), 0)
+
+def clz_Torappu_SandboxV2FoodVariantDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_SandboxV2FoodData(object):
     __slots__ = ['_tab']
 
@@ -2742,56 +2857,45 @@ class clz_Torappu_SandboxV2FoodData(object):
         return o == 0
 
     # clz_Torappu_SandboxV2FoodData
-    def Duration(self):
+    def Variants(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_SandboxV2FoodVariantData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_SandboxV2FoodData
+    def VariantsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_SandboxV2FoodData
+    def VariantsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_SandboxV2FoodData
+    def Duration(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2FoodData
-    def ItemName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_SandboxV2FoodData
-    def GeneralName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_SandboxV2FoodData
-    def EnhancedName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_SandboxV2FoodData
-    def ItemUsage(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_SandboxV2FoodData
-    def EnhancedUsage(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_SandboxV2FoodData
     def SortId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
 def clz_Torappu_SandboxV2FoodDataStart(builder):
-    builder.StartObject(10)
+    builder.StartObject(6)
 
 def clz_Torappu_SandboxV2FoodDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -2808,26 +2912,17 @@ def clz_Torappu_SandboxV2FoodDataAddRecipes(builder, recipes):
 def clz_Torappu_SandboxV2FoodDataStartRecipesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_SandboxV2FoodDataAddVariants(builder, variants):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(variants), 0)
+
+def clz_Torappu_SandboxV2FoodDataStartVariantsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_SandboxV2FoodDataAddDuration(builder, duration):
-    builder.PrependInt32Slot(3, duration, 0)
-
-def clz_Torappu_SandboxV2FoodDataAddItemName(builder, itemName):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(itemName), 0)
-
-def clz_Torappu_SandboxV2FoodDataAddGeneralName(builder, generalName):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(generalName), 0)
-
-def clz_Torappu_SandboxV2FoodDataAddEnhancedName(builder, enhancedName):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(enhancedName), 0)
-
-def clz_Torappu_SandboxV2FoodDataAddItemUsage(builder, itemUsage):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(itemUsage), 0)
-
-def clz_Torappu_SandboxV2FoodDataAddEnhancedUsage(builder, enhancedUsage):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(enhancedUsage), 0)
+    builder.PrependInt32Slot(4, duration, 0)
 
 def clz_Torappu_SandboxV2FoodDataAddSortId(builder, sortId):
-    builder.PrependInt32Slot(9, sortId, 0)
+    builder.PrependInt32Slot(5, sortId, 0)
 
 def clz_Torappu_SandboxV2FoodDataEnd(builder):
     return builder.EndObject()
@@ -5131,8 +5226,28 @@ class clz_Torappu_SandboxV2GameConst(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
         return o == 0
 
+    # clz_Torappu_SandboxV2GameConst
+    def NoLogInEnemyStatsEnemyId(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_SandboxV2GameConst
+    def NoLogInEnemyStatsEnemyIdLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_SandboxV2GameConst
+    def NoLogInEnemyStatsEnemyIdIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
+        return o == 0
+
 def clz_Torappu_SandboxV2GameConstStart(builder):
-    builder.StartObject(38)
+    builder.StartObject(39)
 
 def clz_Torappu_SandboxV2GameConstAddMainMapId(builder, mainMapId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(mainMapId), 0)
@@ -5263,6 +5378,12 @@ def clz_Torappu_SandboxV2GameConstAddDungeonTriggeredGuideQuestList(builder, dun
 def clz_Torappu_SandboxV2GameConstStartDungeonTriggeredGuideQuestListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_SandboxV2GameConstAddNoLogInEnemyStatsEnemyId(builder, noLogInEnemyStatsEnemyId):
+    builder.PrependUOffsetTRelativeSlot(38, flatbuffers.number_types.UOffsetTFlags.py_type(noLogInEnemyStatsEnemyId), 0)
+
+def clz_Torappu_SandboxV2GameConstStartNoLogInEnemyStatsEnemyIdVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_SandboxV2GameConstEnd(builder):
     return builder.EndObject()
 
@@ -5366,6 +5487,98 @@ def dict__string__stringAddValue(builder, value):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
 
 def dict__string__stringEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_SandboxV2DiffModeData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_SandboxV2DiffModeData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_SandboxV2DiffModeData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_SandboxV2DiffModeData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_SandboxV2DiffModeData
+    def Title(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2DiffModeData
+    def Desc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2DiffModeData
+    def BuffList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_SandboxV2DiffModeData
+    def BuffListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_SandboxV2DiffModeData
+    def BuffListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # clz_Torappu_SandboxV2DiffModeData
+    def DetailList(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2DiffModeData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_SandboxV2DiffModeDataStart(builder):
+    builder.StartObject(5)
+
+def clz_Torappu_SandboxV2DiffModeDataAddTitle(builder, title):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(title), 0)
+
+def clz_Torappu_SandboxV2DiffModeDataAddDesc(builder, desc):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
+
+def clz_Torappu_SandboxV2DiffModeDataAddBuffList(builder, buffList):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(buffList), 0)
+
+def clz_Torappu_SandboxV2DiffModeDataStartBuffListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_SandboxV2DiffModeDataAddDetailList(builder, detailList):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(detailList), 0)
+
+def clz_Torappu_SandboxV2DiffModeDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(4, sortId, 0)
+
+def clz_Torappu_SandboxV2DiffModeDataEnd(builder):
     return builder.EndObject()
 
 
@@ -5505,91 +5718,91 @@ class clz_Torappu_SandboxV2BasicConst(object):
         return None
 
     # clz_Torappu_SandboxV2BasicConst
-    def EnhancedSubFoodmat(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_SandboxV2BasicConst
-    def EnhancedDuration(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_SandboxV2BasicConst
     def WorkbenchMakeLimit(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2BasicConst
     def LogisticsPosLimit(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2BasicConst
     def LogisticsUnlockLevel(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2BasicConst
     def LogisticsDrinkCost(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2BasicConst
     def LogisticsEvacuateTips(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2BasicConst
     def LogisticsEvacuateWarning(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2BasicConst
     def BaseRepairCost(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2BasicConst
     def PortRepairCost(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2BasicConst
     def UnitFenceLimit(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_SandboxV2BasicConst
+    def UnitRareFenceLimit(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2BasicConst
     def CageId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2BasicConst
     def FenceId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2BasicConst
+    def RareFenceId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
@@ -5814,8 +6027,15 @@ class clz_Torappu_SandboxV2BasicConst(object):
         return o == 0
 
     # clz_Torappu_SandboxV2BasicConst
-    def StringRes(self, j):
+    def ModeSelectTips(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2BasicConst
+    def StringRes(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -5827,18 +6047,82 @@ class clz_Torappu_SandboxV2BasicConst(object):
 
     # clz_Torappu_SandboxV2BasicConst
     def StringResLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_SandboxV2BasicConst
     def StringResIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
+        return o == 0
+
+    # clz_Torappu_SandboxV2BasicConst
+    def DiffList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_SandboxV2DiffModeData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_SandboxV2BasicConst
+    def DiffListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_SandboxV2BasicConst
+    def DiffListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
+        return o == 0
+
+    # clz_Torappu_SandboxV2BasicConst
+    def BattlePreloadEnemies(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_SandboxV2BasicConst
+    def BattlePreloadEnemiesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_SandboxV2BasicConst
+    def BattlePreloadEnemiesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
+        return o == 0
+
+    # clz_Torappu_SandboxV2BasicConst
+    def BattleExcludedTrapsInRush(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(114))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_SandboxV2BasicConst
+    def BattleExcludedTrapsInRushLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(114))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_SandboxV2BasicConst
+    def BattleExcludedTrapsInRushIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(114))
         return o == 0
 
 def clz_Torappu_SandboxV2BasicConstStart(builder):
-    builder.StartObject(52)
+    builder.StartObject(56)
 
 def clz_Torappu_SandboxV2BasicConstAddStaminaItemId(builder, staminaItemId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(staminaItemId), 0)
@@ -5882,44 +6166,44 @@ def clz_Torappu_SandboxV2BasicConstAddDrinkMakeLimit(builder, drinkMakeLimit):
 def clz_Torappu_SandboxV2BasicConstAddSpecialMatWater(builder, specialMatWater):
     builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(specialMatWater), 0)
 
-def clz_Torappu_SandboxV2BasicConstAddEnhancedSubFoodmat(builder, enhancedSubFoodmat):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(enhancedSubFoodmat), 0)
-
-def clz_Torappu_SandboxV2BasicConstAddEnhancedDuration(builder, enhancedDuration):
-    builder.PrependInt32Slot(12, enhancedDuration, 0)
-
 def clz_Torappu_SandboxV2BasicConstAddWorkbenchMakeLimit(builder, workbenchMakeLimit):
-    builder.PrependInt32Slot(13, workbenchMakeLimit, 0)
+    builder.PrependInt32Slot(11, workbenchMakeLimit, 0)
 
 def clz_Torappu_SandboxV2BasicConstAddLogisticsPosLimit(builder, logisticsPosLimit):
-    builder.PrependInt32Slot(14, logisticsPosLimit, 0)
+    builder.PrependInt32Slot(12, logisticsPosLimit, 0)
 
 def clz_Torappu_SandboxV2BasicConstAddLogisticsUnlockLevel(builder, logisticsUnlockLevel):
-    builder.PrependInt32Slot(15, logisticsUnlockLevel, 0)
+    builder.PrependInt32Slot(13, logisticsUnlockLevel, 0)
 
 def clz_Torappu_SandboxV2BasicConstAddLogisticsDrinkCost(builder, logisticsDrinkCost):
-    builder.PrependInt32Slot(16, logisticsDrinkCost, 0)
+    builder.PrependInt32Slot(14, logisticsDrinkCost, 0)
 
 def clz_Torappu_SandboxV2BasicConstAddLogisticsEvacuateTips(builder, logisticsEvacuateTips):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(logisticsEvacuateTips), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(logisticsEvacuateTips), 0)
 
 def clz_Torappu_SandboxV2BasicConstAddLogisticsEvacuateWarning(builder, logisticsEvacuateWarning):
-    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(logisticsEvacuateWarning), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(logisticsEvacuateWarning), 0)
 
 def clz_Torappu_SandboxV2BasicConstAddBaseRepairCost(builder, baseRepairCost):
-    builder.PrependInt32Slot(19, baseRepairCost, 0)
+    builder.PrependInt32Slot(17, baseRepairCost, 0)
 
 def clz_Torappu_SandboxV2BasicConstAddPortRepairCost(builder, portRepairCost):
-    builder.PrependInt32Slot(20, portRepairCost, 0)
+    builder.PrependInt32Slot(18, portRepairCost, 0)
 
 def clz_Torappu_SandboxV2BasicConstAddUnitFenceLimit(builder, unitFenceLimit):
-    builder.PrependInt32Slot(21, unitFenceLimit, 0)
+    builder.PrependInt32Slot(19, unitFenceLimit, 0)
+
+def clz_Torappu_SandboxV2BasicConstAddUnitRareFenceLimit(builder, unitRareFenceLimit):
+    builder.PrependInt32Slot(20, unitRareFenceLimit, 0)
 
 def clz_Torappu_SandboxV2BasicConstAddCageId(builder, cageId):
-    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(cageId), 0)
+    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(cageId), 0)
 
 def clz_Torappu_SandboxV2BasicConstAddFenceId(builder, fenceId):
-    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(fenceId), 0)
+    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(fenceId), 0)
+
+def clz_Torappu_SandboxV2BasicConstAddRareFenceId(builder, rareFenceId):
+    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(rareFenceId), 0)
 
 def clz_Torappu_SandboxV2BasicConstAddMonthlyRushEntryText1(builder, monthlyRushEntryText1):
     builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(monthlyRushEntryText1), 0)
@@ -6008,10 +6292,31 @@ def clz_Torappu_SandboxV2BasicConstAddExploreModeBuffDescs(builder, exploreModeB
 def clz_Torappu_SandboxV2BasicConstStartExploreModeBuffDescsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_SandboxV2BasicConstAddModeSelectTips(builder, modeSelectTips):
+    builder.PrependUOffsetTRelativeSlot(51, flatbuffers.number_types.UOffsetTFlags.py_type(modeSelectTips), 0)
+
 def clz_Torappu_SandboxV2BasicConstAddStringRes(builder, stringRes):
-    builder.PrependUOffsetTRelativeSlot(51, flatbuffers.number_types.UOffsetTFlags.py_type(stringRes), 0)
+    builder.PrependUOffsetTRelativeSlot(52, flatbuffers.number_types.UOffsetTFlags.py_type(stringRes), 0)
 
 def clz_Torappu_SandboxV2BasicConstStartStringResVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_SandboxV2BasicConstAddDiffList(builder, diffList):
+    builder.PrependUOffsetTRelativeSlot(53, flatbuffers.number_types.UOffsetTFlags.py_type(diffList), 0)
+
+def clz_Torappu_SandboxV2BasicConstStartDiffListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_SandboxV2BasicConstAddBattlePreloadEnemies(builder, battlePreloadEnemies):
+    builder.PrependUOffsetTRelativeSlot(54, flatbuffers.number_types.UOffsetTFlags.py_type(battlePreloadEnemies), 0)
+
+def clz_Torappu_SandboxV2BasicConstStartBattlePreloadEnemiesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_SandboxV2BasicConstAddBattleExcludedTrapsInRush(builder, battleExcludedTrapsInRush):
+    builder.PrependUOffsetTRelativeSlot(55, flatbuffers.number_types.UOffsetTFlags.py_type(battleExcludedTrapsInRush), 0)
+
+def clz_Torappu_SandboxV2BasicConstStartBattleExcludedTrapsInRushVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_SandboxV2BasicConstEnd(builder):
@@ -6052,91 +6357,112 @@ class clz_Torappu_SandboxV2RiftConst(object):
         return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def SubTargetRewardId(self):
+    def HuntDungeonId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def DungeonSeasonId(self):
+    def SubTargetRewardId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def FixedDungeonTypeName(self):
+    def PreyQuestRewardId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def RandomDungeonTypeName(self):
+    def DungeonSeasonId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_SandboxV2RiftConst
-    def NoTeamDescription(self):
+    def FixedDungeonTypeName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def NoTeamName(self):
+    def RandomDungeonTypeName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def NoTeamBackgroundId(self):
+    def PreyDungeonTypeName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def NoTeamSmallIconId(self):
+    def NoTeamDescription(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def NoTeamBigIconId(self):
+    def NoTeamName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def MessengerEnemyId(self):
+    def NoTeamBackgroundId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2RiftConst
-    def RiftRushEnemyGroupLimit(self):
+    def NoTeamSmallIconId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2RiftConst
+    def NoTeamBigIconId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2RiftConst
+    def MessengerEnemyId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2RiftConst
+    def RiftRushEnemyGroupLimit(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2RiftConst
     def RiftRushSpawnCd(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
 def clz_Torappu_SandboxV2RiftConstStart(builder):
-    builder.StartObject(14)
+    builder.StartObject(17)
 
 def clz_Torappu_SandboxV2RiftConstAddRefreshRate(builder, refreshRate):
     builder.PrependInt32Slot(0, refreshRate, 0)
@@ -6144,41 +6470,50 @@ def clz_Torappu_SandboxV2RiftConstAddRefreshRate(builder, refreshRate):
 def clz_Torappu_SandboxV2RiftConstAddRandomDungeonId(builder, randomDungeonId):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(randomDungeonId), 0)
 
+def clz_Torappu_SandboxV2RiftConstAddHuntDungeonId(builder, huntDungeonId):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(huntDungeonId), 0)
+
 def clz_Torappu_SandboxV2RiftConstAddSubTargetRewardId(builder, subTargetRewardId):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(subTargetRewardId), 0)
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(subTargetRewardId), 0)
+
+def clz_Torappu_SandboxV2RiftConstAddPreyQuestRewardId(builder, preyQuestRewardId):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(preyQuestRewardId), 0)
 
 def clz_Torappu_SandboxV2RiftConstAddDungeonSeasonId(builder, dungeonSeasonId):
-    builder.PrependInt32Slot(3, dungeonSeasonId, 0)
+    builder.PrependInt32Slot(5, dungeonSeasonId, 0)
 
 def clz_Torappu_SandboxV2RiftConstAddFixedDungeonTypeName(builder, fixedDungeonTypeName):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(fixedDungeonTypeName), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(fixedDungeonTypeName), 0)
 
 def clz_Torappu_SandboxV2RiftConstAddRandomDungeonTypeName(builder, randomDungeonTypeName):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(randomDungeonTypeName), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(randomDungeonTypeName), 0)
+
+def clz_Torappu_SandboxV2RiftConstAddPreyDungeonTypeName(builder, preyDungeonTypeName):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(preyDungeonTypeName), 0)
 
 def clz_Torappu_SandboxV2RiftConstAddNoTeamDescription(builder, noTeamDescription):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamDescription), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamDescription), 0)
 
 def clz_Torappu_SandboxV2RiftConstAddNoTeamName(builder, noTeamName):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamName), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamName), 0)
 
 def clz_Torappu_SandboxV2RiftConstAddNoTeamBackgroundId(builder, noTeamBackgroundId):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamBackgroundId), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamBackgroundId), 0)
 
 def clz_Torappu_SandboxV2RiftConstAddNoTeamSmallIconId(builder, noTeamSmallIconId):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamSmallIconId), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamSmallIconId), 0)
 
 def clz_Torappu_SandboxV2RiftConstAddNoTeamBigIconId(builder, noTeamBigIconId):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamBigIconId), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(noTeamBigIconId), 0)
 
 def clz_Torappu_SandboxV2RiftConstAddMessengerEnemyId(builder, messengerEnemyId):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(messengerEnemyId), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(messengerEnemyId), 0)
 
 def clz_Torappu_SandboxV2RiftConstAddRiftRushEnemyGroupLimit(builder, riftRushEnemyGroupLimit):
-    builder.PrependInt32Slot(12, riftRushEnemyGroupLimit, 0)
+    builder.PrependInt32Slot(15, riftRushEnemyGroupLimit, 0)
 
 def clz_Torappu_SandboxV2RiftConstAddRiftRushSpawnCd(builder, riftRushSpawnCd):
-    builder.PrependInt32Slot(13, riftRushSpawnCd, 0)
+    builder.PrependInt32Slot(16, riftRushSpawnCd, 0)
 
 def clz_Torappu_SandboxV2RiftConstEnd(builder):
     return builder.EndObject()
@@ -10294,40 +10629,50 @@ class clz_Torappu_SandboxV2RiftDifficultyData(object):
         return None
 
     # clz_Torappu_SandboxV2RiftDifficultyData
-    def Desc(self):
+    def RiftId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_SandboxV2RiftDifficultyData
-    def DifficultyLevel(self):
+    def Desc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_SandboxV2RiftDifficultyData
+    def DifficultyLevel(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_SandboxV2RiftDifficultyData
     def RewardGroupId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
 def clz_Torappu_SandboxV2RiftDifficultyDataStart(builder):
-    builder.StartObject(4)
+    builder.StartObject(5)
 
 def clz_Torappu_SandboxV2RiftDifficultyDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
 
+def clz_Torappu_SandboxV2RiftDifficultyDataAddRiftId(builder, riftId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(riftId), 0)
+
 def clz_Torappu_SandboxV2RiftDifficultyDataAddDesc(builder, desc):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
 
 def clz_Torappu_SandboxV2RiftDifficultyDataAddDifficultyLevel(builder, difficultyLevel):
-    builder.PrependInt32Slot(2, difficultyLevel, 0)
+    builder.PrependInt32Slot(3, difficultyLevel, 0)
 
 def clz_Torappu_SandboxV2RiftDifficultyDataAddRewardGroupId(builder, rewardGroupId):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(rewardGroupId), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(rewardGroupId), 0)
 
 def clz_Torappu_SandboxV2RiftDifficultyDataEnd(builder):
     return builder.EndObject()
