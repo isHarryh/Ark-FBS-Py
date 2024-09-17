@@ -1584,35 +1584,14 @@ class clz_Torappu_HandbookStoryStageData(object):
         return o == 0
 
     # clz_Torappu_HandbookStoryStageData
-    def StageNameForShow(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_HandbookStoryStageData
-    def ZoneNameForShow(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_HandbookStoryStageData
-    def PicId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_HandbookStoryStageData
     def StageGetTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
 def clz_Torappu_HandbookStoryStageDataStart(builder):
-    builder.StartObject(14)
+    builder.StartObject(11)
 
 def clz_Torappu_HandbookStoryStageDataAddCharId(builder, charId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(charId), 0)
@@ -1650,17 +1629,8 @@ def clz_Torappu_HandbookStoryStageDataAddRewardItem(builder, rewardItem):
 def clz_Torappu_HandbookStoryStageDataStartRewardItemVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_HandbookStoryStageDataAddStageNameForShow(builder, stageNameForShow):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(stageNameForShow), 0)
-
-def clz_Torappu_HandbookStoryStageDataAddZoneNameForShow(builder, zoneNameForShow):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(zoneNameForShow), 0)
-
-def clz_Torappu_HandbookStoryStageDataAddPicId(builder, picId):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(picId), 0)
-
 def clz_Torappu_HandbookStoryStageDataAddStageGetTime(builder, stageGetTime):
-    builder.PrependInt64Slot(13, stageGetTime, 0)
+    builder.PrependInt64Slot(10, stageGetTime, 0)
 
 def clz_Torappu_HandbookStoryStageDataEnd(builder):
     return builder.EndObject()

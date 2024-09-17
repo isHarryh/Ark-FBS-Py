@@ -168,7 +168,9 @@ class enum__Torappu_ActivityType(object):
     CHECKIN_ACCESS = 41
     YEAR_5_GENERAL = 42
     TYPE_ACT35SIDE = 43
-    ENUM = 44
+    VEC_BREAK = 44
+    TYPE_ACT36SIDE = 45
+    ENUM = 46
 
 
 class enum__Torappu_StageType(object):

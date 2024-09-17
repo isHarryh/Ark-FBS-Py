@@ -1879,6 +1879,52 @@ def clz_Torappu_RoguelikeTopicMonthMissionEnd(builder):
 
 
 
+class clz_Torappu_RoguelikeTopicMonthSquadTeamChar(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_RoguelikeTopicMonthSquadTeamChar()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_RoguelikeTopicMonthSquadTeamChar(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_RoguelikeTopicMonthSquadTeamChar
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_RoguelikeTopicMonthSquadTeamChar
+    def TeamCharId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeTopicMonthSquadTeamChar
+    def TeamTmplId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_RoguelikeTopicMonthSquadTeamCharStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_RoguelikeTopicMonthSquadTeamCharAddTeamCharId(builder, teamCharId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(teamCharId), 0)
+
+def clz_Torappu_RoguelikeTopicMonthSquadTeamCharAddTeamTmplId(builder, teamTmplId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(teamTmplId), 0)
+
+def clz_Torappu_RoguelikeTopicMonthSquadTeamCharEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_RoguelikeTopicMonthSquad(object):
     __slots__ = ['_tab']
 
@@ -1964,9 +2010,13 @@ class clz_Torappu_RoguelikeTopicMonthSquad(object):
     def TeamChars(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_RoguelikeTopicMonthSquadTeamChar()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
     # clz_Torappu_RoguelikeTopicMonthSquad
     def TeamCharsLength(self):

@@ -15,6 +15,7 @@ class enum__Torappu_GachaRuleType(object):
     SINGLE = 5
     FESCLASSIC = 6
     CLASSIC_ATTAIN = 7
+    SPECIAL = 8
 
 
 class enum__Torappu_ItemType(object):
@@ -1715,6 +1716,52 @@ def dict__string__stringEnd(builder):
 
 
 
+class dict__int__float(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__int__float()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__int__float(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__int__float
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__int__float
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # dict__int__float
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def dict__int__floatStart(builder):
+    builder.StartObject(2)
+
+def dict__int__floatAddKey(builder, key):
+    builder.PrependInt32Slot(0, key, 0)
+
+def dict__int__floatAddValue(builder, value):
+    builder.PrependFloat32Slot(1, value, 0.0)
+
+def dict__int__floatEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_GachaData(object):
     __slots__ = ['_tab']
 
@@ -2082,8 +2129,32 @@ class clz_Torappu_GachaData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         return o == 0
 
+    # clz_Torappu_GachaData
+    def SpecialGachaPercentDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__int__float()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_GachaData
+    def SpecialGachaPercentDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_GachaData
+    def SpecialGachaPercentDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        return o == 0
+
 def clz_Torappu_GachaDataStart(builder):
-    builder.StartObject(17)
+    builder.StartObject(18)
 
 def clz_Torappu_GachaDataAddGachaPoolClient(builder, gachaPoolClient):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(gachaPoolClient), 0)
@@ -2173,6 +2244,12 @@ def clz_Torappu_GachaDataAddDicRecruit6StarHint(builder, dicRecruit6StarHint):
     builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(dicRecruit6StarHint), 0)
 
 def clz_Torappu_GachaDataStartDicRecruit6StarHintVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_GachaDataAddSpecialGachaPercentDict(builder, specialGachaPercentDict):
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(specialGachaPercentDict), 0)
+
+def clz_Torappu_GachaDataStartSpecialGachaPercentDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GachaDataEnd(builder):
