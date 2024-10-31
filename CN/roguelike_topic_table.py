@@ -272,6 +272,7 @@ class enum__Torappu_RoguelikeGameChoiceType(object):
     WISH = 9
     TRADE_PROB_SHOW = 10
     SACRIFICE_TOTEM = 11
+    WISH_ALL = 12
 
 
 class enum__Torappu_RoguelikeChoiceLeftDecoType(object):
@@ -6509,78 +6510,98 @@ class clz_Torappu_RoguelikeGameStageData(object):
         return None
 
     # clz_Torappu_RoguelikeGameStageData
-    def Code(self):
+    def LevelReplaceIds(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
 
     # clz_Torappu_RoguelikeGameStageData
-    def Name(self):
+    def LevelReplaceIdsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_RoguelikeGameStageData
+    def LevelReplaceIdsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_RoguelikeGameStageData
+    def Code(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameStageData
-    def LoadingPicId(self):
+    def Name(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameStageData
-    def Description(self):
+    def LoadingPicId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameStageData
-    def EliteDesc(self):
+    def Description(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameStageData
-    def IsBoss(self):
+    def EliteDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # clz_Torappu_RoguelikeGameStageData
-    def IsElite(self):
+    def IsBoss(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_RoguelikeGameStageData
-    def Difficulty(self):
+    def IsElite(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_RoguelikeGameStageData
-    def CapsulePool(self):
+    def Difficulty(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_RoguelikeGameStageData
+    def CapsulePool(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameStageData
     def CapsuleProb(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_RoguelikeGameStageData
     def VutresProb(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Float64Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 8))
@@ -6588,26 +6609,26 @@ class clz_Torappu_RoguelikeGameStageData(object):
 
     # clz_Torappu_RoguelikeGameStageData
     def VutresProbAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float64Flags, o)
         return 0
 
     # clz_Torappu_RoguelikeGameStageData
     def VutresProbLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RoguelikeGameStageData
     def VutresProbIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         return o == 0
 
     # clz_Torappu_RoguelikeGameStageData
     def BoxProb(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Float64Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 8))
@@ -6615,32 +6636,32 @@ class clz_Torappu_RoguelikeGameStageData(object):
 
     # clz_Torappu_RoguelikeGameStageData
     def BoxProbAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float64Flags, o)
         return 0
 
     # clz_Torappu_RoguelikeGameStageData
     def BoxProbLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RoguelikeGameStageData
     def BoxProbIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
     # clz_Torappu_RoguelikeGameStageData
     def SpecialNodeId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
 def clz_Torappu_RoguelikeGameStageDataStart(builder):
-    builder.StartObject(16)
+    builder.StartObject(17)
 
 def clz_Torappu_RoguelikeGameStageDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -6651,50 +6672,56 @@ def clz_Torappu_RoguelikeGameStageDataAddLinkedStageId(builder, linkedStageId):
 def clz_Torappu_RoguelikeGameStageDataAddLevelId(builder, levelId):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(levelId), 0)
 
+def clz_Torappu_RoguelikeGameStageDataAddLevelReplaceIds(builder, levelReplaceIds):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(levelReplaceIds), 0)
+
+def clz_Torappu_RoguelikeGameStageDataStartLevelReplaceIdsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_RoguelikeGameStageDataAddCode(builder, code):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(code), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(code), 0)
 
 def clz_Torappu_RoguelikeGameStageDataAddName(builder, name):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
 
 def clz_Torappu_RoguelikeGameStageDataAddLoadingPicId(builder, loadingPicId):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(loadingPicId), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(loadingPicId), 0)
 
 def clz_Torappu_RoguelikeGameStageDataAddDescription(builder, description):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
 
 def clz_Torappu_RoguelikeGameStageDataAddEliteDesc(builder, eliteDesc):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(eliteDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(eliteDesc), 0)
 
 def clz_Torappu_RoguelikeGameStageDataAddIsBoss(builder, isBoss):
-    builder.PrependInt32Slot(8, isBoss, 0)
+    builder.PrependInt32Slot(9, isBoss, 0)
 
 def clz_Torappu_RoguelikeGameStageDataAddIsElite(builder, isElite):
-    builder.PrependInt32Slot(9, isElite, 0)
+    builder.PrependInt32Slot(10, isElite, 0)
 
 def clz_Torappu_RoguelikeGameStageDataAddDifficulty(builder, difficulty):
-    builder.PrependInt32Slot(10, difficulty, 0)
+    builder.PrependInt32Slot(11, difficulty, 0)
 
 def clz_Torappu_RoguelikeGameStageDataAddCapsulePool(builder, capsulePool):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(capsulePool), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(capsulePool), 0)
 
 def clz_Torappu_RoguelikeGameStageDataAddCapsuleProb(builder, capsuleProb):
-    builder.PrependFloat32Slot(12, capsuleProb, 0.0)
+    builder.PrependFloat32Slot(13, capsuleProb, 0.0)
 
 def clz_Torappu_RoguelikeGameStageDataAddVutresProb(builder, vutresProb):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(vutresProb), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(vutresProb), 0)
 
 def clz_Torappu_RoguelikeGameStageDataStartVutresProbVector(builder, numElems):
     return builder.StartVector(8, numElems, 8)
 
 def clz_Torappu_RoguelikeGameStageDataAddBoxProb(builder, boxProb):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(boxProb), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(boxProb), 0)
 
 def clz_Torappu_RoguelikeGameStageDataStartBoxProbVector(builder, numElems):
     return builder.StartVector(8, numElems, 8)
 
 def clz_Torappu_RoguelikeGameStageDataAddSpecialNodeId(builder, specialNodeId):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(specialNodeId), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(specialNodeId), 0)
 
 def clz_Torappu_RoguelikeGameStageDataEnd(builder):
     return builder.EndObject()
@@ -16828,8 +16855,35 @@ class clz_Torappu_RoguelikeAlchemyData(object):
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
+    # clz_Torappu_RoguelikeAlchemyData
+    def OverrideConditionBandIds(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_RoguelikeAlchemyData
+    def OverrideConditionBandIdsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_RoguelikeAlchemyData
+    def OverrideConditionBandIdsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        return o == 0
+
+    # clz_Torappu_RoguelikeAlchemyData
+    def OverrideRecipeId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_RoguelikeAlchemyDataStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(8)
 
 def clz_Torappu_RoguelikeAlchemyDataAddFragmentTypeList(builder, fragmentTypeList):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(fragmentTypeList), 0)
@@ -16851,6 +16905,15 @@ def clz_Torappu_RoguelikeAlchemyDataAddShieldProp(builder, shieldProp):
 
 def clz_Torappu_RoguelikeAlchemyDataAddPopulationProp(builder, populationProp):
     builder.PrependFloat32Slot(5, populationProp, 0.0)
+
+def clz_Torappu_RoguelikeAlchemyDataAddOverrideConditionBandIds(builder, overrideConditionBandIds):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(overrideConditionBandIds), 0)
+
+def clz_Torappu_RoguelikeAlchemyDataStartOverrideConditionBandIdsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_RoguelikeAlchemyDataAddOverrideRecipeId(builder, overrideRecipeId):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(overrideRecipeId), 0)
 
 def clz_Torappu_RoguelikeAlchemyDataEnd(builder):
     return builder.EndObject()
