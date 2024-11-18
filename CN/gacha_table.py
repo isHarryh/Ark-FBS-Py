@@ -1962,8 +1962,15 @@ class clz_Torappu_GachaData(object):
         return None
 
     # clz_Torappu_GachaData
-    def Carousel(self, j):
+    def ShowGachaLogEntry(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_GachaData
+    def Carousel(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1975,19 +1982,19 @@ class clz_Torappu_GachaData(object):
 
     # clz_Torappu_GachaData
     def CarouselLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GachaData
     def CarouselIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         return o == 0
 
     # clz_Torappu_GachaData
     def FreeGacha(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1999,19 +2006,19 @@ class clz_Torappu_GachaData(object):
 
     # clz_Torappu_GachaData
     def FreeGachaLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GachaData
     def FreeGachaIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         return o == 0
 
     # clz_Torappu_GachaData
     def LimitTenGachaItem(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2023,19 +2030,19 @@ class clz_Torappu_GachaData(object):
 
     # clz_Torappu_GachaData
     def LimitTenGachaItemLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GachaData
     def LimitTenGachaItemIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         return o == 0
 
     # clz_Torappu_GachaData
     def LinkageTenGachaItem(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2047,19 +2054,19 @@ class clz_Torappu_GachaData(object):
 
     # clz_Torappu_GachaData
     def LinkageTenGachaItemLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GachaData
     def LinkageTenGachaItemIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         return o == 0
 
     # clz_Torappu_GachaData
     def NormalGachaItem(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2071,19 +2078,19 @@ class clz_Torappu_GachaData(object):
 
     # clz_Torappu_GachaData
     def NormalGachaItemLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GachaData
     def NormalGachaItemIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
     # clz_Torappu_GachaData
     def FesGachaPoolRelateItem(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2095,19 +2102,19 @@ class clz_Torappu_GachaData(object):
 
     # clz_Torappu_GachaData
     def FesGachaPoolRelateItemLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GachaData
     def FesGachaPoolRelateItemIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         return o == 0
 
     # clz_Torappu_GachaData
     def DicRecruit6StarHint(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2119,19 +2126,19 @@ class clz_Torappu_GachaData(object):
 
     # clz_Torappu_GachaData
     def DicRecruit6StarHintLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GachaData
     def DicRecruit6StarHintIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         return o == 0
 
     # clz_Torappu_GachaData
     def SpecialGachaPercentDict(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2143,18 +2150,18 @@ class clz_Torappu_GachaData(object):
 
     # clz_Torappu_GachaData
     def SpecialGachaPercentDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_GachaData
     def SpecialGachaPercentDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         return o == 0
 
 def clz_Torappu_GachaDataStart(builder):
-    builder.StartObject(18)
+    builder.StartObject(19)
 
 def clz_Torappu_GachaDataAddGachaPoolClient(builder, gachaPoolClient):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(gachaPoolClient), 0)
@@ -2204,50 +2211,53 @@ def clz_Torappu_GachaDataStartSpecialTagRarityTableVector(builder, numElems):
 def clz_Torappu_GachaDataAddRecruitDetail(builder, recruitDetail):
     builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(recruitDetail), 0)
 
+def clz_Torappu_GachaDataAddShowGachaLogEntry(builder, showGachaLogEntry):
+    builder.PrependBoolSlot(10, showGachaLogEntry, 0)
+
 def clz_Torappu_GachaDataAddCarousel(builder, carousel):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(carousel), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(carousel), 0)
 
 def clz_Torappu_GachaDataStartCarouselVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GachaDataAddFreeGacha(builder, freeGacha):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(freeGacha), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(freeGacha), 0)
 
 def clz_Torappu_GachaDataStartFreeGachaVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GachaDataAddLimitTenGachaItem(builder, limitTenGachaItem):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(limitTenGachaItem), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(limitTenGachaItem), 0)
 
 def clz_Torappu_GachaDataStartLimitTenGachaItemVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GachaDataAddLinkageTenGachaItem(builder, linkageTenGachaItem):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(linkageTenGachaItem), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(linkageTenGachaItem), 0)
 
 def clz_Torappu_GachaDataStartLinkageTenGachaItemVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GachaDataAddNormalGachaItem(builder, normalGachaItem):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(normalGachaItem), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(normalGachaItem), 0)
 
 def clz_Torappu_GachaDataStartNormalGachaItemVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GachaDataAddFesGachaPoolRelateItem(builder, fesGachaPoolRelateItem):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(fesGachaPoolRelateItem), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(fesGachaPoolRelateItem), 0)
 
 def clz_Torappu_GachaDataStartFesGachaPoolRelateItemVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GachaDataAddDicRecruit6StarHint(builder, dicRecruit6StarHint):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(dicRecruit6StarHint), 0)
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(dicRecruit6StarHint), 0)
 
 def clz_Torappu_GachaDataStartDicRecruit6StarHintVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_GachaDataAddSpecialGachaPercentDict(builder, specialGachaPercentDict):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(specialGachaPercentDict), 0)
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(specialGachaPercentDict), 0)
 
 def clz_Torappu_GachaDataStartSpecialGachaPercentDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)

@@ -2194,8 +2194,15 @@ class clz_Torappu_ReturnV2Const(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_ReturnV2Const
+    def OldGpid(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_ReturnV2ConstStart(builder):
-    builder.StartObject(7)
+    builder.StartObject(8)
 
 def clz_Torappu_ReturnV2ConstAddStartTime(builder, startTime):
     builder.PrependInt64Slot(0, startTime, 0)
@@ -2217,6 +2224,9 @@ def clz_Torappu_ReturnV2ConstAddReturnPriceDesc(builder, returnPriceDesc):
 
 def clz_Torappu_ReturnV2ConstAddDailySupplyDesc(builder, dailySupplyDesc):
     builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(dailySupplyDesc), 0)
+
+def clz_Torappu_ReturnV2ConstAddOldGpid(builder, oldGpid):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(oldGpid), 0)
 
 def clz_Torappu_ReturnV2ConstEnd(builder):
     return builder.EndObject()
