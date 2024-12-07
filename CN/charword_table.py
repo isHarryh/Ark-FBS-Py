@@ -88,6 +88,7 @@ class enum__Torappu_VoiceLangGroupType(object):
 class enum__Torappu_FestivalVoiceTimeType(object):
     NONE = 0
     FESTIVAL = 1
+    BIRTHDAY = 2
 
 
 class clz_Torappu_CharWordUnlockParam(object):
@@ -1377,14 +1378,24 @@ class clz_Torappu_FestivalVoiceWeightData(object):
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
+    # clz_Torappu_FestivalVoiceWeightData
+    def Priority(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_FestivalVoiceWeightDataStart(builder):
-    builder.StartObject(2)
+    builder.StartObject(3)
 
 def clz_Torappu_FestivalVoiceWeightDataAddShowType(builder, showType):
     builder.PrependInt32Slot(0, showType, 0)
 
 def clz_Torappu_FestivalVoiceWeightDataAddWeight(builder, weight):
     builder.PrependFloat32Slot(1, weight, 0.0)
+
+def clz_Torappu_FestivalVoiceWeightDataAddPriority(builder, priority):
+    builder.PrependInt32Slot(2, priority, 0)
 
 def clz_Torappu_FestivalVoiceWeightDataEnd(builder):
     return builder.EndObject()

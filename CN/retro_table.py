@@ -172,7 +172,9 @@ class enum__Torappu_ActivityType(object):
     TYPE_ACT36SIDE = 45
     TYPE_ACT38SIDE = 46
     AUTOCHESS_VERIFY1 = 47
-    ENUM = 48
+    CHECKIN_VIDEO = 48
+    ARCADE = 49
+    ENUM = 50
 
 
 class enum__Torappu_StageType(object):

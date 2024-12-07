@@ -126,6 +126,7 @@ class enum__Torappu_LifeType(object):
     IMMEDIATELY = 0
     LIMITED = 1
     INFINITY = 2
+    CUSTOM = 3
 
 
 class clz_Torappu_AttributeModifierData_AttributeModifier(object):

@@ -363,8 +363,15 @@ class clz_Torappu_LevelData_Options(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         return o == 0
 
+    # clz_Torappu_LevelData_Options
+    def EnemyTauntLevelPow(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_LevelData_OptionsStart(builder):
-    builder.StartObject(13)
+    builder.StartObject(14)
 
 def clz_Torappu_LevelData_OptionsAddCharacterLimit(builder, characterLimit):
     builder.PrependInt32Slot(0, characterLimit, 0)
@@ -407,6 +414,9 @@ def clz_Torappu_LevelData_OptionsAddConfigBlackBoard(builder, configBlackBoard):
 
 def clz_Torappu_LevelData_OptionsStartConfigBlackBoardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_LevelData_OptionsAddEnemyTauntLevelPow(builder, enemyTauntLevelPow):
+    builder.PrependInt32Slot(13, enemyTauntLevelPow, 0)
 
 def clz_Torappu_LevelData_OptionsEnd(builder):
     return builder.EndObject()

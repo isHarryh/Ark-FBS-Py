@@ -2605,22 +2605,29 @@ class clz_Torappu_ClimbTowerSeasonInfoData(object):
         return None
 
     # clz_Torappu_ClimbTowerSeasonInfoData
-    def StartTs(self):
+    def SeasonNum(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ClimbTowerSeasonInfoData
-    def EndTs(self):
+    def StartTs(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ClimbTowerSeasonInfoData
-    def Towers(self, j):
+    def EndTs(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ClimbTowerSeasonInfoData
+    def Towers(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -2628,19 +2635,19 @@ class clz_Torappu_ClimbTowerSeasonInfoData(object):
 
     # clz_Torappu_ClimbTowerSeasonInfoData
     def TowersLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ClimbTowerSeasonInfoData
     def TowersIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         return o == 0
 
     # clz_Torappu_ClimbTowerSeasonInfoData
     def SeasonCards(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -2648,25 +2655,38 @@ class clz_Torappu_ClimbTowerSeasonInfoData(object):
 
     # clz_Torappu_ClimbTowerSeasonInfoData
     def SeasonCardsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ClimbTowerSeasonInfoData
     def SeasonCardsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         return o == 0
 
     # clz_Torappu_ClimbTowerSeasonInfoData
-    def SeasonColor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+    def ReplicatedTowers(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ClimbTowerSeasonInfoData
+    def ReplicatedTowersLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ClimbTowerSeasonInfoData
+    def ReplicatedTowersIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        return o == 0
 
 def clz_Torappu_ClimbTowerSeasonInfoDataStart(builder):
-    builder.StartObject(7)
+    builder.StartObject(8)
 
 def clz_Torappu_ClimbTowerSeasonInfoDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -2674,26 +2694,32 @@ def clz_Torappu_ClimbTowerSeasonInfoDataAddId(builder, id):
 def clz_Torappu_ClimbTowerSeasonInfoDataAddName(builder, name):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
 
+def clz_Torappu_ClimbTowerSeasonInfoDataAddSeasonNum(builder, seasonNum):
+    builder.PrependInt32Slot(2, seasonNum, 0)
+
 def clz_Torappu_ClimbTowerSeasonInfoDataAddStartTs(builder, startTs):
-    builder.PrependInt64Slot(2, startTs, 0)
+    builder.PrependInt64Slot(3, startTs, 0)
 
 def clz_Torappu_ClimbTowerSeasonInfoDataAddEndTs(builder, endTs):
-    builder.PrependInt64Slot(3, endTs, 0)
+    builder.PrependInt64Slot(4, endTs, 0)
 
 def clz_Torappu_ClimbTowerSeasonInfoDataAddTowers(builder, towers):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(towers), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(towers), 0)
 
 def clz_Torappu_ClimbTowerSeasonInfoDataStartTowersVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ClimbTowerSeasonInfoDataAddSeasonCards(builder, seasonCards):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(seasonCards), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(seasonCards), 0)
 
 def clz_Torappu_ClimbTowerSeasonInfoDataStartSeasonCardsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_ClimbTowerSeasonInfoDataAddSeasonColor(builder, seasonColor):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(seasonColor), 0)
+def clz_Torappu_ClimbTowerSeasonInfoDataAddReplicatedTowers(builder, replicatedTowers):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(replicatedTowers), 0)
+
+def clz_Torappu_ClimbTowerSeasonInfoDataStartReplicatedTowersVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ClimbTowerSeasonInfoDataEnd(builder):
     return builder.EndObject()
@@ -2865,8 +2891,43 @@ class clz_Torappu_ClimbTowerDetailConst(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_ClimbTowerDetailConst
+    def SweepStartTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ClimbTowerDetailConst
+    def SweepOpenOrdinaryLayer(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ClimbTowerDetailConst
+    def SweepOpenDifficultLayer(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ClimbTowerDetailConst
+    def SweepCostCount(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ClimbTowerDetailConst
+    def SquadMemStartTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_ClimbTowerDetailConstStart(builder):
-    builder.StartObject(14)
+    builder.StartObject(19)
 
 def clz_Torappu_ClimbTowerDetailConstAddUnlockLevelId(builder, unlockLevelId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(unlockLevelId), 0)
@@ -2909,6 +2970,21 @@ def clz_Torappu_ClimbTowerDetailConstAddSubCardObtainDesc(builder, subCardObtain
 
 def clz_Torappu_ClimbTowerDetailConstAddSubGodCardUnlockDesc(builder, subGodCardUnlockDesc):
     builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(subGodCardUnlockDesc), 0)
+
+def clz_Torappu_ClimbTowerDetailConstAddSweepStartTime(builder, sweepStartTime):
+    builder.PrependInt64Slot(14, sweepStartTime, 0)
+
+def clz_Torappu_ClimbTowerDetailConstAddSweepOpenOrdinaryLayer(builder, sweepOpenOrdinaryLayer):
+    builder.PrependInt32Slot(15, sweepOpenOrdinaryLayer, 0)
+
+def clz_Torappu_ClimbTowerDetailConstAddSweepOpenDifficultLayer(builder, sweepOpenDifficultLayer):
+    builder.PrependInt32Slot(16, sweepOpenDifficultLayer, 0)
+
+def clz_Torappu_ClimbTowerDetailConstAddSweepCostCount(builder, sweepCostCount):
+    builder.PrependInt32Slot(17, sweepCostCount, 0)
+
+def clz_Torappu_ClimbTowerDetailConstAddSquadMemStartTime(builder, squadMemStartTime):
+    builder.PrependInt64Slot(18, squadMemStartTime, 0)
 
 def clz_Torappu_ClimbTowerDetailConstEnd(builder):
     return builder.EndObject()
@@ -3053,7 +3129,7 @@ class clz_Torappu_ClimbTowerMissionData(object):
         return None
 
     # clz_Torappu_ClimbTowerMissionData
-    def MissionBkg(self):
+    def BindTowerId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
@@ -3247,8 +3323,8 @@ def clz_Torappu_ClimbTowerMissionDataStart(builder):
 def clz_Torappu_ClimbTowerMissionDataAddBindGodCardId(builder, bindGodCardId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(bindGodCardId), 0)
 
-def clz_Torappu_ClimbTowerMissionDataAddMissionBkg(builder, missionBkg):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(missionBkg), 0)
+def clz_Torappu_ClimbTowerMissionDataAddBindTowerId(builder, bindTowerId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(bindTowerId), 0)
 
 def clz_Torappu_ClimbTowerMissionDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -3815,8 +3891,32 @@ class clz_Torappu_ClimbTowerTable(object):
         return o == 0
 
     # clz_Torappu_ClimbTowerTable
-    def MissionData(self, j):
+    def RewardInfoListHardMode(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ClimbTowerRewardInfo()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ClimbTowerTable
+    def RewardInfoListHardModeLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ClimbTowerTable
+    def RewardInfoListHardModeIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        return o == 0
+
+    # clz_Torappu_ClimbTowerTable
+    def MissionData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -3828,19 +3928,19 @@ class clz_Torappu_ClimbTowerTable(object):
 
     # clz_Torappu_ClimbTowerTable
     def MissionDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ClimbTowerTable
     def MissionDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         return o == 0
 
     # clz_Torappu_ClimbTowerTable
     def MissionGroup(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -3852,18 +3952,18 @@ class clz_Torappu_ClimbTowerTable(object):
 
     # clz_Torappu_ClimbTowerTable
     def MissionGroupLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ClimbTowerTable
     def MissionGroupIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         return o == 0
 
 def clz_Torappu_ClimbTowerTableStart(builder):
-    builder.StartObject(11)
+    builder.StartObject(12)
 
 def clz_Torappu_ClimbTowerTableAddTowers(builder, towers):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(towers), 0)
@@ -3916,14 +4016,20 @@ def clz_Torappu_ClimbTowerTableAddRewardInfoList(builder, rewardInfoList):
 def clz_Torappu_ClimbTowerTableStartRewardInfoListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_ClimbTowerTableAddRewardInfoListHardMode(builder, rewardInfoListHardMode):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(rewardInfoListHardMode), 0)
+
+def clz_Torappu_ClimbTowerTableStartRewardInfoListHardModeVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_ClimbTowerTableAddMissionData(builder, missionData):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(missionData), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(missionData), 0)
 
 def clz_Torappu_ClimbTowerTableStartMissionDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ClimbTowerTableAddMissionGroup(builder, missionGroup):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(missionGroup), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(missionGroup), 0)
 
 def clz_Torappu_ClimbTowerTableStartMissionGroupVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
