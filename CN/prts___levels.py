@@ -55,17 +55,6 @@ class enum__Torappu_PlayerSideMask(object):
     NONE = 3
 
 
-class enum__Torappu_Battle_AdvancedBuildableMask(object):
-    NONE = 0
-    DEFAULT = 1
-    DEEP_SEA = 2
-    TIDE_SEA = 4
-    NIGHT = 8
-    HIDE = 16
-    WOODRD_HOLE = 32
-    RIDGE_FIELD = 64
-
-
 class enum__Torappu_SharedConsts_Direction(object):
     UP = 0
     RIGHT = 1
@@ -363,15 +352,8 @@ class clz_Torappu_LevelData_Options(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         return o == 0
 
-    # clz_Torappu_LevelData_Options
-    def EnemyTauntLevelPow(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
 def clz_Torappu_LevelData_OptionsStart(builder):
-    builder.StartObject(14)
+    builder.StartObject(13)
 
 def clz_Torappu_LevelData_OptionsAddCharacterLimit(builder, characterLimit):
     builder.PrependInt32Slot(0, characterLimit, 0)
@@ -414,9 +396,6 @@ def clz_Torappu_LevelData_OptionsAddConfigBlackBoard(builder, configBlackBoard):
 
 def clz_Torappu_LevelData_OptionsStartConfigBlackBoardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_LevelData_OptionsAddEnemyTauntLevelPow(builder, enemyTauntLevelPow):
-    builder.PrependInt32Slot(13, enemyTauntLevelPow, 0)
 
 def clz_Torappu_LevelData_OptionsEnd(builder):
     return builder.EndObject()
@@ -1205,15 +1184,8 @@ class clz_Torappu_LevelData_GlobalBuffData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
-    # clz_Torappu_LevelData_GlobalBuffData
-    def UseExtraData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
 def clz_Torappu_LevelData_GlobalBuffDataStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(5)
 
 def clz_Torappu_LevelData_GlobalBuffDataAddPrefabKey(builder, prefabKey):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(prefabKey), 0)
@@ -1232,9 +1204,6 @@ def clz_Torappu_LevelData_GlobalBuffDataAddPassProfessionMaskFlag(builder, passP
 
 def clz_Torappu_LevelData_GlobalBuffDataAddProfessionMask(builder, professionMask):
     builder.PrependInt32Slot(4, professionMask, 0)
-
-def clz_Torappu_LevelData_GlobalBuffDataAddUseExtraData(builder, useExtraData):
-    builder.PrependBoolSlot(5, useExtraData, 0)
 
 def clz_Torappu_LevelData_GlobalBuffDataEnd(builder):
     return builder.EndObject()
@@ -3502,88 +3471,6 @@ def clz_Torappu_LevelData_EnemyDataDbReferenceEnd(builder):
 
 
 
-class clz_System_Object(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_System_Object()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_System_Object(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_System_Object
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def clz_System_ObjectStart(builder):
-    builder.StartObject(0)
-
-def clz_System_ObjectEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_LevelData_ActionID(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_LevelData_ActionID()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_LevelData_ActionID(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_LevelData_ActionID
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_LevelData_ActionID
-    def WaveI(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_LevelData_ActionID
-    def FragI(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_LevelData_ActionID
-    def ActionI(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-def clz_Torappu_LevelData_ActionIDStart(builder):
-    builder.StartObject(3)
-
-def clz_Torappu_LevelData_ActionIDAddWaveI(builder, waveI):
-    builder.PrependInt32Slot(0, waveI, 0)
-
-def clz_Torappu_LevelData_ActionIDAddFragI(builder, fragI):
-    builder.PrependInt32Slot(1, fragI, 0)
-
-def clz_Torappu_LevelData_ActionIDAddActionI(builder, actionI):
-    builder.PrependInt32Slot(2, actionI, 0)
-
-def clz_Torappu_LevelData_ActionIDEnd(builder):
-    return builder.EndObject()
-
-
-
 class clz_Torappu_LevelData_WaveData_FragmentData_ActionData(object):
     __slots__ = ['_tab']
 
@@ -3735,35 +3622,8 @@ class clz_Torappu_LevelData_WaveData_FragmentData_ActionData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-    # clz_Torappu_LevelData_WaveData_FragmentData_ActionData
-    def IsValid(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_LevelData_WaveData_FragmentData_ActionData
-    def ExtraMeta(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_System_Object()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_LevelData_WaveData_FragmentData_ActionData
-    def ActionId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_LevelData_ActionID()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
 def clz_Torappu_LevelData_WaveData_FragmentData_ActionDataStart(builder):
-    builder.StartObject(22)
+    builder.StartObject(19)
 
 def clz_Torappu_LevelData_WaveData_FragmentData_ActionDataAddActionType(builder, actionType):
     builder.PrependInt32Slot(0, actionType, 0)
@@ -3821,15 +3681,6 @@ def clz_Torappu_LevelData_WaveData_FragmentData_ActionDataAddDontBlockWave(build
 
 def clz_Torappu_LevelData_WaveData_FragmentData_ActionDataAddForceBlockWaveInBranch(builder, forceBlockWaveInBranch):
     builder.PrependBoolSlot(18, forceBlockWaveInBranch, 0)
-
-def clz_Torappu_LevelData_WaveData_FragmentData_ActionDataAddIsValid(builder, isValid):
-    builder.PrependBoolSlot(19, isValid, 0)
-
-def clz_Torappu_LevelData_WaveData_FragmentData_ActionDataAddExtraMeta(builder, extraMeta):
-    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(extraMeta), 0)
-
-def clz_Torappu_LevelData_WaveData_FragmentData_ActionDataAddActionId(builder, actionId):
-    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(actionId), 0)
 
 def clz_Torappu_LevelData_WaveData_FragmentData_ActionDataEnd(builder):
     return builder.EndObject()
@@ -3998,72 +3849,6 @@ def clz_Torappu_LevelData_WaveDataEnd(builder):
 
 
 
-class dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsdict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionData
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionData
-    def Value(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_LevelData_WaveData_FragmentData_ActionData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionData
-    def ValueLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionData
-    def ValueIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
-def dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionDataStart(builder):
-    builder.StartObject(2)
-
-def dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionDataAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
-
-def dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionDataAddValue(builder, value):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
-
-def dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionDataStartValueVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionDataEnd(builder):
-    return builder.EndObject()
-
-
-
 class clz_Torappu_LevelData_BranchData_PhaseData(object):
     __slots__ = ['_tab']
 
@@ -4113,76 +3898,8 @@ class clz_Torappu_LevelData_BranchData_PhaseData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
-    # clz_Torappu_LevelData_BranchData_PhaseData
-    def MRandomActionGroups(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = dict__string__list_clz_Torappu_LevelData_WaveData_FragmentData_ActionData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_LevelData_BranchData_PhaseData
-    def MRandomActionGroupsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_LevelData_BranchData_PhaseData
-    def MRandomActionGroupsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        return o == 0
-
-    # clz_Torappu_LevelData_BranchData_PhaseData
-    def MActionWithRandomSpawn(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_LevelData_WaveData_FragmentData_ActionData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_LevelData_BranchData_PhaseData
-    def MActionWithRandomSpawnLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_LevelData_BranchData_PhaseData
-    def MActionWithRandomSpawnIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-    # clz_Torappu_LevelData_BranchData_PhaseData
-    def MValidActionPackKeys(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
-
-    # clz_Torappu_LevelData_BranchData_PhaseData
-    def MValidActionPackKeysLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_LevelData_BranchData_PhaseData
-    def MValidActionPackKeysIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        return o == 0
-
 def clz_Torappu_LevelData_BranchData_PhaseDataStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(2)
 
 def clz_Torappu_LevelData_BranchData_PhaseDataAddPreDelay(builder, preDelay):
     builder.PrependFloat32Slot(0, preDelay, 0.0)
@@ -4191,24 +3908,6 @@ def clz_Torappu_LevelData_BranchData_PhaseDataAddActions(builder, actions):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(actions), 0)
 
 def clz_Torappu_LevelData_BranchData_PhaseDataStartActionsVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_LevelData_BranchData_PhaseDataAddMRandomActionGroups(builder, mRandomActionGroups):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(mRandomActionGroups), 0)
-
-def clz_Torappu_LevelData_BranchData_PhaseDataStartMRandomActionGroupsVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_LevelData_BranchData_PhaseDataAddMActionWithRandomSpawn(builder, mActionWithRandomSpawn):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(mActionWithRandomSpawn), 0)
-
-def clz_Torappu_LevelData_BranchData_PhaseDataStartMActionWithRandomSpawnVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_LevelData_BranchData_PhaseDataAddMValidActionPackKeys(builder, mValidActionPackKeys):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(mValidActionPackKeys), 0)
-
-def clz_Torappu_LevelData_BranchData_PhaseDataStartMValidActionPackKeysVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LevelData_BranchData_PhaseDataEnd(builder):
@@ -5099,62 +4798,6 @@ def clz_Torappu_LevelData_PredefinedDataEnd(builder):
 
 
 
-class clz_Torappu_LevelData_RuntimeData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_LevelData_RuntimeData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_LevelData_RuntimeData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_LevelData_RuntimeData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_LevelData_RuntimeData
-    def ExtraLoadEnemies(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_LevelData_EnemyDataDbReference()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_LevelData_RuntimeData
-    def ExtraLoadEnemiesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_LevelData_RuntimeData
-    def ExtraLoadEnemiesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-def clz_Torappu_LevelData_RuntimeDataStart(builder):
-    builder.StartObject(1)
-
-def clz_Torappu_LevelData_RuntimeDataAddExtraLoadEnemies(builder, extraLoadEnemies):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(extraLoadEnemies), 0)
-
-def clz_Torappu_LevelData_RuntimeDataStartExtraLoadEnemiesVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_LevelData_RuntimeDataEnd(builder):
-    return builder.EndObject()
-
-
-
 class clz_Torappu_LevelData(object):
     __slots__ = ['_tab']
 
@@ -5498,18 +5141,8 @@ class clz_Torappu_LevelData(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # clz_Torappu_LevelData
-    def RuntimeData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_LevelData_RuntimeData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
 def clz_Torappu_LevelDataStart(builder):
-    builder.StartObject(22)
+    builder.StartObject(21)
 
 def clz_Torappu_LevelDataAddOptions(builder, options):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(options), 0)
@@ -5603,9 +5236,6 @@ def clz_Torappu_LevelDataAddOperaConfig(builder, operaConfig):
 
 def clz_Torappu_LevelDataAddCameraPlugin(builder, cameraPlugin):
     builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(cameraPlugin), 0)
-
-def clz_Torappu_LevelDataAddRuntimeData(builder, runtimeData):
-    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(runtimeData), 0)
 
 def clz_Torappu_LevelDataEnd(builder):
     return builder.EndObject()
