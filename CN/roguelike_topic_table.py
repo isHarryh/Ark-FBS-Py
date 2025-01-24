@@ -36,6 +36,12 @@ class enum__Torappu_RoguelikeCharState(object):
     THIRD_LOW = 8
 
 
+class enum__Torappu_RoguelikeEnrollType(object):
+    NONE = -1
+    DLC = 0
+    REVIEW = 1
+
+
 class enum__Torappu_ItemType(object):
     NONE = 0
     CHAR = 1
@@ -342,6 +348,12 @@ class enum__Torappu_RoguelikeGameVariationType(object):
     BAT = 3
 
 
+class enum__Torappu_RoguelikeGameCharBuffType(object):
+    NONE = 0
+    MUTATION = 1
+    EVOLUTION = 2
+
+
 class enum__Torappu_RoguelikeTaskRarity(object):
     NORMAL = 0
     RARE = 1
@@ -404,6 +416,8 @@ class enum__Torappu_RoguelikeGameItemType(object):
     DISASTER = 35
     DISASTER_TYPE = 36
     ABSTRACT_DISASTER = 37
+    PILL = 38
+    BIGPILL = 39
 
 
 class enum__Torappu_RoguelikeGameItemSubType(object):
@@ -1312,14 +1326,34 @@ class clz_Torappu_RoguelikeTopicEnroll(object):
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_RoguelikeTopicEnroll
+    def EnrollType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_RoguelikeTopicEnroll
+    def EnrollNoticeEndTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_RoguelikeTopicEnrollStart(builder):
-    builder.StartObject(2)
+    builder.StartObject(4)
 
 def clz_Torappu_RoguelikeTopicEnrollAddEnrollId(builder, enrollId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(enrollId), 0)
 
 def clz_Torappu_RoguelikeTopicEnrollAddEnrollTime(builder, enrollTime):
     builder.PrependInt64Slot(1, enrollTime, 0)
+
+def clz_Torappu_RoguelikeTopicEnrollAddEnrollType(builder, enrollType):
+    builder.PrependInt32Slot(2, enrollType, 0)
+
+def clz_Torappu_RoguelikeTopicEnrollAddEnrollNoticeEndTime(builder, enrollNoticeEndTime):
+    builder.PrependInt64Slot(3, enrollNoticeEndTime, 0)
 
 def clz_Torappu_RoguelikeTopicEnrollEnd(builder):
     return builder.EndObject()
@@ -3577,37 +3611,47 @@ class clz_Torappu_ActArchiveChatItemData(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # clz_Torappu_ActArchiveChatItemData
-    def ChatFloor(self):
+    def Floor(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActArchiveChatItemData
-    def ChatDesc(self):
+    def ChatZoneId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActArchiveChatItemData
-    def ChatStoryId(self):
+    def ChatDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-def clz_Torappu_ActArchiveChatItemDataStart(builder):
-    builder.StartObject(3)
+    # clz_Torappu_ActArchiveChatItemData
+    def ChatStoryId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
-def clz_Torappu_ActArchiveChatItemDataAddChatFloor(builder, chatFloor):
-    builder.PrependInt32Slot(0, chatFloor, 0)
+def clz_Torappu_ActArchiveChatItemDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_ActArchiveChatItemDataAddFloor(builder, floor):
+    builder.PrependInt32Slot(0, floor, 0)
+
+def clz_Torappu_ActArchiveChatItemDataAddChatZoneId(builder, chatZoneId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(chatZoneId), 0)
 
 def clz_Torappu_ActArchiveChatItemDataAddChatDesc(builder, chatDesc):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(chatDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(chatDesc), 0)
 
 def clz_Torappu_ActArchiveChatItemDataAddChatStoryId(builder, chatStoryId):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(chatStoryId), 0)
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(chatStoryId), 0)
 
 def clz_Torappu_ActArchiveChatItemDataEnd(builder):
     return builder.EndObject()
@@ -3640,15 +3684,8 @@ class clz_Torappu_ActArchiveChatGroupData(object):
         return 0
 
     # clz_Torappu_ActArchiveChatGroupData
-    def NumChat(self):
+    def ChatItemList(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_ActArchiveChatGroupData
-    def ClientChatItemData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -3659,30 +3696,27 @@ class clz_Torappu_ActArchiveChatGroupData(object):
         return None
 
     # clz_Torappu_ActArchiveChatGroupData
-    def ClientChatItemDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+    def ChatItemListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActArchiveChatGroupData
-    def ClientChatItemDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+    def ChatItemListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
 def clz_Torappu_ActArchiveChatGroupDataStart(builder):
-    builder.StartObject(3)
+    builder.StartObject(2)
 
 def clz_Torappu_ActArchiveChatGroupDataAddSortId(builder, sortId):
     builder.PrependInt32Slot(0, sortId, 0)
 
-def clz_Torappu_ActArchiveChatGroupDataAddNumChat(builder, numChat):
-    builder.PrependInt32Slot(1, numChat, 0)
+def clz_Torappu_ActArchiveChatGroupDataAddChatItemList(builder, chatItemList):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(chatItemList), 0)
 
-def clz_Torappu_ActArchiveChatGroupDataAddClientChatItemData(builder, clientChatItemData):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(clientChatItemData), 0)
-
-def clz_Torappu_ActArchiveChatGroupDataStartClientChatItemDataVector(builder, numElems):
+def clz_Torappu_ActArchiveChatGroupDataStartChatItemListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActArchiveChatGroupDataEnd(builder):
@@ -6045,175 +6079,182 @@ class clz_Torappu_RoguelikeTopicDetailConst(object):
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def GotCharBuffToast(self):
+    def GotCharMutationBuffToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def GotSquadBuffToast(self):
+    def GotCharEvolutionBuffToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def LoseCharBuffToast(self):
+    def GotSquadBuffToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def MonthTeamSystemName(self):
+    def LoseCharBuffToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def BattlePassUpdateName(self):
+    def MonthTeamSystemName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def MonthCharCardTagName(self):
+    def BattlePassUpdateName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def MonthTeamDescTagName(self):
+    def MonthCharCardTagName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def OuterBuffCompleteText(self):
+    def MonthTeamDescTagName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def OuterProgressTextColor(self):
+    def OuterBuffCompleteText(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def ChallengeTaskTargetName(self):
+    def OuterProgressTextColor(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def ChallengeTaskConditionName(self):
+    def ChallengeTaskTargetName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def ChallengeTaskRewardName(self):
+    def ChallengeTaskConditionName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def ChallengeTaskModeName(self):
+    def ChallengeTaskRewardName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def ChallengeTaskName(self):
+    def ChallengeTaskModeName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def OuterBuffTokenSum(self):
+    def ChallengeTaskName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeTopicDetailConst
+    def OuterBuffTokenSum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_RoguelikeTopicDetailConst
     def NeedAllFrontNode(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_RoguelikeTopicDetailConst
-    def ShowBlurBack(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def EndingIconBorderDifficulty(self):
+    def ShowBlurBack(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def EndingIconBorderCount(self):
+    def EndingIconBorderDifficulty(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def CopySeedModeInfo(self):
+    def EndingIconBorderCount(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def CopySucceededTextHint(self):
+    def CopySeedModeInfo(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeTopicDetailConst
-    def HistoricalRecordsCount(self):
+    def CopySucceededTextHint(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeTopicDetailConst
+    def HistoricalRecordsCount(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_RoguelikeTopicDetailConst
     def HistoricalRecordsStartTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_RoguelikeTopicDetailConst
     def HistoricalRecordsMode(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
 def clz_Torappu_RoguelikeTopicDetailConstStart(builder):
-    builder.StartObject(38)
+    builder.StartObject(39)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddPlayerLevelTable(builder, playerLevelTable):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(playerLevelTable), 0)
@@ -6269,77 +6310,80 @@ def clz_Torappu_RoguelikeTopicDetailConstAddDefaultSacrificeDesc(builder, defaul
 def clz_Torappu_RoguelikeTopicDetailConstAddDefaultExpeditionSelectDesc(builder, defaultExpeditionSelectDesc):
     builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(defaultExpeditionSelectDesc), 0)
 
-def clz_Torappu_RoguelikeTopicDetailConstAddGotCharBuffToast(builder, gotCharBuffToast):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(gotCharBuffToast), 0)
+def clz_Torappu_RoguelikeTopicDetailConstAddGotCharMutationBuffToast(builder, gotCharMutationBuffToast):
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(gotCharMutationBuffToast), 0)
+
+def clz_Torappu_RoguelikeTopicDetailConstAddGotCharEvolutionBuffToast(builder, gotCharEvolutionBuffToast):
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(gotCharEvolutionBuffToast), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddGotSquadBuffToast(builder, gotSquadBuffToast):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(gotSquadBuffToast), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(gotSquadBuffToast), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddLoseCharBuffToast(builder, loseCharBuffToast):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(loseCharBuffToast), 0)
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(loseCharBuffToast), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddMonthTeamSystemName(builder, monthTeamSystemName):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(monthTeamSystemName), 0)
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(monthTeamSystemName), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddBattlePassUpdateName(builder, battlePassUpdateName):
-    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(battlePassUpdateName), 0)
+    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(battlePassUpdateName), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddMonthCharCardTagName(builder, monthCharCardTagName):
-    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(monthCharCardTagName), 0)
+    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(monthCharCardTagName), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddMonthTeamDescTagName(builder, monthTeamDescTagName):
-    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(monthTeamDescTagName), 0)
+    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(monthTeamDescTagName), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddOuterBuffCompleteText(builder, outerBuffCompleteText):
-    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(outerBuffCompleteText), 0)
+    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(outerBuffCompleteText), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddOuterProgressTextColor(builder, outerProgressTextColor):
-    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(outerProgressTextColor), 0)
+    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(outerProgressTextColor), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddChallengeTaskTargetName(builder, challengeTaskTargetName):
-    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskTargetName), 0)
+    builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskTargetName), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddChallengeTaskConditionName(builder, challengeTaskConditionName):
-    builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskConditionName), 0)
+    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskConditionName), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddChallengeTaskRewardName(builder, challengeTaskRewardName):
-    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskRewardName), 0)
+    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskRewardName), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddChallengeTaskModeName(builder, challengeTaskModeName):
-    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskModeName), 0)
+    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskModeName), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddChallengeTaskName(builder, challengeTaskName):
-    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskName), 0)
+    builder.PrependUOffsetTRelativeSlot(28, flatbuffers.number_types.UOffsetTFlags.py_type(challengeTaskName), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddOuterBuffTokenSum(builder, outerBuffTokenSum):
-    builder.PrependInt32Slot(28, outerBuffTokenSum, 0)
+    builder.PrependInt32Slot(29, outerBuffTokenSum, 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddNeedAllFrontNode(builder, needAllFrontNode):
-    builder.PrependBoolSlot(29, needAllFrontNode, 0)
+    builder.PrependBoolSlot(30, needAllFrontNode, 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddShowBlurBack(builder, showBlurBack):
-    builder.PrependBoolSlot(30, showBlurBack, 0)
+    builder.PrependBoolSlot(31, showBlurBack, 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddEndingIconBorderDifficulty(builder, endingIconBorderDifficulty):
-    builder.PrependInt32Slot(31, endingIconBorderDifficulty, 0)
+    builder.PrependInt32Slot(32, endingIconBorderDifficulty, 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddEndingIconBorderCount(builder, endingIconBorderCount):
-    builder.PrependInt32Slot(32, endingIconBorderCount, 0)
+    builder.PrependInt32Slot(33, endingIconBorderCount, 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddCopySeedModeInfo(builder, copySeedModeInfo):
-    builder.PrependUOffsetTRelativeSlot(33, flatbuffers.number_types.UOffsetTFlags.py_type(copySeedModeInfo), 0)
+    builder.PrependUOffsetTRelativeSlot(34, flatbuffers.number_types.UOffsetTFlags.py_type(copySeedModeInfo), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddCopySucceededTextHint(builder, copySucceededTextHint):
-    builder.PrependUOffsetTRelativeSlot(34, flatbuffers.number_types.UOffsetTFlags.py_type(copySucceededTextHint), 0)
+    builder.PrependUOffsetTRelativeSlot(35, flatbuffers.number_types.UOffsetTFlags.py_type(copySucceededTextHint), 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddHistoricalRecordsCount(builder, historicalRecordsCount):
-    builder.PrependInt32Slot(35, historicalRecordsCount, 0)
+    builder.PrependInt32Slot(36, historicalRecordsCount, 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddHistoricalRecordsStartTime(builder, historicalRecordsStartTime):
-    builder.PrependInt64Slot(36, historicalRecordsStartTime, 0)
+    builder.PrependInt64Slot(37, historicalRecordsStartTime, 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstAddHistoricalRecordsMode(builder, historicalRecordsMode):
-    builder.PrependInt32Slot(37, historicalRecordsMode, 0)
+    builder.PrependInt32Slot(38, historicalRecordsMode, 0)
 
 def clz_Torappu_RoguelikeTopicDetailConstEnd(builder):
     return builder.EndObject()
@@ -9085,43 +9129,50 @@ class clz_Torappu_RoguelikeGameCharBuffData(object):
         return None
 
     # clz_Torappu_RoguelikeGameCharBuffData
-    def IconId(self):
+    def BuffType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_RoguelikeGameCharBuffData
-    def OuterName(self):
+    def IconId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameCharBuffData
-    def InnerName(self):
+    def OuterName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameCharBuffData
-    def FunctionDesc(self):
+    def InnerName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameCharBuffData
-    def Desc(self):
+    def FunctionDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeGameCharBuffData
-    def Buffs(self, j):
+    def Desc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeGameCharBuffData
+    def Buffs(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -9133,39 +9184,42 @@ class clz_Torappu_RoguelikeGameCharBuffData(object):
 
     # clz_Torappu_RoguelikeGameCharBuffData
     def BuffsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RoguelikeGameCharBuffData
     def BuffsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         return o == 0
 
 def clz_Torappu_RoguelikeGameCharBuffDataStart(builder):
-    builder.StartObject(7)
+    builder.StartObject(8)
 
 def clz_Torappu_RoguelikeGameCharBuffDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
 
+def clz_Torappu_RoguelikeGameCharBuffDataAddBuffType(builder, buffType):
+    builder.PrependInt32Slot(1, buffType, 0)
+
 def clz_Torappu_RoguelikeGameCharBuffDataAddIconId(builder, iconId):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(iconId), 0)
 
 def clz_Torappu_RoguelikeGameCharBuffDataAddOuterName(builder, outerName):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(outerName), 0)
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(outerName), 0)
 
 def clz_Torappu_RoguelikeGameCharBuffDataAddInnerName(builder, innerName):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(innerName), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(innerName), 0)
 
 def clz_Torappu_RoguelikeGameCharBuffDataAddFunctionDesc(builder, functionDesc):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(functionDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(functionDesc), 0)
 
 def clz_Torappu_RoguelikeGameCharBuffDataAddDesc(builder, desc):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
 
 def clz_Torappu_RoguelikeGameCharBuffDataAddBuffs(builder, buffs):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(buffs), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(buffs), 0)
 
 def clz_Torappu_RoguelikeGameCharBuffDataStartBuffsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
@@ -20656,6 +20710,78 @@ def clz_Torappu_RL02EndingTextEnd(builder):
 
 
 
+class clz_Torappu_RL02DifficultyExt(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_RL02DifficultyExt()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_RL02DifficultyExt(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_RL02DifficultyExt
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_RL02DifficultyExt
+    def ModeDifficulty(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_RL02DifficultyExt
+    def Grade(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_RL02DifficultyExt
+    def BuffDesc(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_RL02DifficultyExt
+    def BuffDescLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_RL02DifficultyExt
+    def BuffDescIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+def clz_Torappu_RL02DifficultyExtStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_RL02DifficultyExtAddModeDifficulty(builder, modeDifficulty):
+    builder.PrependInt32Slot(0, modeDifficulty, 0)
+
+def clz_Torappu_RL02DifficultyExtAddGrade(builder, grade):
+    builder.PrependInt32Slot(1, grade, 0)
+
+def clz_Torappu_RL02DifficultyExtAddBuffDesc(builder, buffDesc):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(buffDesc), 0)
+
+def clz_Torappu_RL02DifficultyExtStartBuffDescVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_RL02DifficultyExtEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_RL02CustomizeData(object):
     __slots__ = ['_tab']
 
@@ -20780,8 +20906,32 @@ class clz_Torappu_RL02CustomizeData(object):
             return obj
         return None
 
+    # clz_Torappu_RL02CustomizeData
+    def Difficulties(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_RL02DifficultyExt()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_RL02CustomizeData
+    def DifficultiesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_RL02CustomizeData
+    def DifficultiesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        return o == 0
+
 def clz_Torappu_RL02CustomizeDataStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(6)
 
 def clz_Torappu_RL02CustomizeDataAddDevelopments(builder, developments):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(developments), 0)
@@ -20809,6 +20959,12 @@ def clz_Torappu_RL02CustomizeDataStartDevelopmentLinesVector(builder, numElems):
 
 def clz_Torappu_RL02CustomizeDataAddEndingText(builder, endingText):
     builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(endingText), 0)
+
+def clz_Torappu_RL02CustomizeDataAddDifficulties(builder, difficulties):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(difficulties), 0)
+
+def clz_Torappu_RL02CustomizeDataStartDifficultiesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RL02CustomizeDataEnd(builder):
     return builder.EndObject()

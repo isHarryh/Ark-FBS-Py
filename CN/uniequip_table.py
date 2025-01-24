@@ -473,42 +473,56 @@ class clz_Torappu_UniEquipData(object):
         return 0
 
     # clz_Torappu_UniEquipData
-    def CharEquipOrder(self):
+    def UniEquipShowEnd(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_UniEquipData
+    def CharEquipOrder(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_UniEquipData
     def HasUnlockMission(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_UniEquipData
-    def IsSpecialEquip(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_UniEquipData
-    def SpecialEquipDesc(self):
+    def IsSpecialEquip(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_UniEquipData
+    def SpecialEquipDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_UniEquipData
     def SpecialEquipColor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_UniEquipData
+    def CharColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
 def clz_Torappu_UniEquipDataStart(builder):
-    builder.StartObject(24)
+    builder.StartObject(26)
 
 def clz_Torappu_UniEquipDataAddUniEquipId(builder, uniEquipId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(uniEquipId), 0)
@@ -576,20 +590,26 @@ def clz_Torappu_UniEquipDataAddType(builder, type):
 def clz_Torappu_UniEquipDataAddUniEquipGetTime(builder, uniEquipGetTime):
     builder.PrependInt64Slot(18, uniEquipGetTime, 0)
 
+def clz_Torappu_UniEquipDataAddUniEquipShowEnd(builder, uniEquipShowEnd):
+    builder.PrependInt64Slot(19, uniEquipShowEnd, 0)
+
 def clz_Torappu_UniEquipDataAddCharEquipOrder(builder, charEquipOrder):
-    builder.PrependInt32Slot(19, charEquipOrder, 0)
+    builder.PrependInt32Slot(20, charEquipOrder, 0)
 
 def clz_Torappu_UniEquipDataAddHasUnlockMission(builder, hasUnlockMission):
-    builder.PrependBoolSlot(20, hasUnlockMission, 0)
+    builder.PrependBoolSlot(21, hasUnlockMission, 0)
 
 def clz_Torappu_UniEquipDataAddIsSpecialEquip(builder, isSpecialEquip):
-    builder.PrependBoolSlot(21, isSpecialEquip, 0)
+    builder.PrependBoolSlot(22, isSpecialEquip, 0)
 
 def clz_Torappu_UniEquipDataAddSpecialEquipDesc(builder, specialEquipDesc):
-    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(specialEquipDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(specialEquipDesc), 0)
 
 def clz_Torappu_UniEquipDataAddSpecialEquipColor(builder, specialEquipColor):
-    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(specialEquipColor), 0)
+    builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(specialEquipColor), 0)
+
+def clz_Torappu_UniEquipDataAddCharColor(builder, charColor):
+    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(charColor), 0)
 
 def clz_Torappu_UniEquipDataEnd(builder):
     return builder.EndObject()
@@ -973,6 +993,72 @@ def dict__string__list_stringEnd(builder):
 
 
 
+class clz_Torappu_UniEquipTypeInfo(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_UniEquipTypeInfo()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_UniEquipTypeInfo(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_UniEquipTypeInfo
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_UniEquipTypeInfo
+    def UniEquipTypeName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_UniEquipTypeInfo
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_UniEquipTypeInfo
+    def IsSpecial(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_UniEquipTypeInfo
+    def IsInitial(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_UniEquipTypeInfoStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_UniEquipTypeInfoAddUniEquipTypeName(builder, uniEquipTypeName):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(uniEquipTypeName), 0)
+
+def clz_Torappu_UniEquipTypeInfoAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_UniEquipTypeInfoAddIsSpecial(builder, isSpecial):
+    builder.PrependBoolSlot(2, isSpecial, 0)
+
+def clz_Torappu_UniEquipTypeInfoAddIsInitial(builder, isInitial):
+    builder.PrependBoolSlot(3, isInitial, 0)
+
+def clz_Torappu_UniEquipTypeInfoEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_UniEquipTrack(object):
     __slots__ = ['_tab']
 
@@ -1005,14 +1091,34 @@ class clz_Torappu_UniEquipTrack(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_UniEquipTrack
+    def Type(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_UniEquipTrack
+    def ArchiveShowTimeEnd(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_UniEquipTrackStart(builder):
-    builder.StartObject(2)
+    builder.StartObject(4)
 
 def clz_Torappu_UniEquipTrackAddCharId(builder, charId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(charId), 0)
 
 def clz_Torappu_UniEquipTrackAddEquipId(builder, equipId):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(equipId), 0)
+
+def clz_Torappu_UniEquipTrackAddType(builder, type):
+    builder.PrependInt32Slot(2, type, 0)
+
+def clz_Torappu_UniEquipTrackAddArchiveShowTimeEnd(builder, archiveShowTimeEnd):
+    builder.PrependInt64Slot(3, archiveShowTimeEnd, 0)
 
 def clz_Torappu_UniEquipTrackEnd(builder):
     return builder.EndObject()
@@ -1176,8 +1282,32 @@ class clz_Torappu_UniEquipTable(object):
         return o == 0
 
     # clz_Torappu_UniEquipTable
-    def CharEquip(self, j):
+    def SubProfToProfDict(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__int()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_UniEquipTable
+    def SubProfToProfDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_UniEquipTable
+    def SubProfToProfDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_UniEquipTable
+    def CharEquip(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1189,19 +1319,43 @@ class clz_Torappu_UniEquipTable(object):
 
     # clz_Torappu_UniEquipTable
     def CharEquipLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_UniEquipTable
     def CharEquipIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+    # clz_Torappu_UniEquipTable
+    def EquipTypeInfos(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_UniEquipTypeInfo()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_UniEquipTable
+    def EquipTypeInfosLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_UniEquipTable
+    def EquipTypeInfosIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         return o == 0
 
     # clz_Torappu_UniEquipTable
     def EquipTrackDict(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -1213,18 +1367,18 @@ class clz_Torappu_UniEquipTable(object):
 
     # clz_Torappu_UniEquipTable
     def EquipTrackDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_UniEquipTable
     def EquipTrackDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         return o == 0
 
 def clz_Torappu_UniEquipTableStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(7)
 
 def clz_Torappu_UniEquipTableAddEquipDict(builder, equipDict):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(equipDict), 0)
@@ -1244,14 +1398,26 @@ def clz_Torappu_UniEquipTableAddSubProfDict(builder, subProfDict):
 def clz_Torappu_UniEquipTableStartSubProfDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_UniEquipTableAddSubProfToProfDict(builder, subProfToProfDict):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(subProfToProfDict), 0)
+
+def clz_Torappu_UniEquipTableStartSubProfToProfDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_UniEquipTableAddCharEquip(builder, charEquip):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(charEquip), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(charEquip), 0)
 
 def clz_Torappu_UniEquipTableStartCharEquipVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_UniEquipTableAddEquipTypeInfos(builder, equipTypeInfos):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(equipTypeInfos), 0)
+
+def clz_Torappu_UniEquipTableStartEquipTypeInfosVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_UniEquipTableAddEquipTrackDict(builder, equipTrackDict):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(equipTrackDict), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(equipTrackDict), 0)
 
 def clz_Torappu_UniEquipTableStartEquipTrackDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)

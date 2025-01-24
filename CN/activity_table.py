@@ -411,6 +411,7 @@ class enum__Torappu_PlayerAvatarGroupType(object):
     DEFAULT = 2
     SPECIAL = 3
     ACTIVITY = 4
+    DYNAMIC = 5
 
 
 class enum__Torappu_ActivityInterlockData_InterlockStageType(object):
@@ -935,8 +936,15 @@ class clz_Torappu_ActivityTable_BasicData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_ActivityTable_BasicData
+    def IsMagnify(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_ActivityTable_BasicDataStart(builder):
-    builder.StartObject(17)
+    builder.StartObject(18)
 
 def clz_Torappu_ActivityTable_BasicDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -991,6 +999,9 @@ def clz_Torappu_ActivityTable_BasicDataAddRecType(builder, recType):
 
 def clz_Torappu_ActivityTable_BasicDataAddIsPageEntry(builder, isPageEntry):
     builder.PrependBoolSlot(16, isPageEntry, 0)
+
+def clz_Torappu_ActivityTable_BasicDataAddIsMagnify(builder, isMagnify):
+    builder.PrependBoolSlot(17, isMagnify, 0)
 
 def clz_Torappu_ActivityTable_BasicDataEnd(builder):
     return builder.EndObject()
@@ -45943,57 +45954,50 @@ class clz_Torappu_ActArcadeData_ArcadeConstData(object):
         return None
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
-    def ZoneEntryUnlockText(self):
+    def ZoneEntryUnlockToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
-    def ZoneEntryUnlockToast(self):
+    def ZoneEntryEndText(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
-    def ZoneEntryEndText(self):
+    def ZoneEntryEndToast(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
-    def ZoneEntryEndToast(self):
+    def RankUnlockNextStage(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
-    def RankUnlockNextStage(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_ActArcadeData_ArcadeConstData
     def StageScoreDisplayLimit(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
     def ZoneUltiScoreDisplayLimit(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
     def EnemyHudScore(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -46001,19 +46005,19 @@ class clz_Torappu_ActArcadeData_ArcadeConstData(object):
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
     def EnemyHudScoreLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
     def EnemyHudScoreIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
     def TrapNotBuildableInRest(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -46021,18 +46025,18 @@ class clz_Torappu_ActArcadeData_ArcadeConstData(object):
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
     def TrapNotBuildableInRestLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActArcadeData_ArcadeConstData
     def TrapNotBuildableInRestIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         return o == 0
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataStart(builder):
-    builder.StartObject(18)
+    builder.StartObject(17)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddMilestoneName(builder, milestoneName):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneName), 0)
@@ -46061,35 +46065,32 @@ def clz_Torappu_ActArcadeData_ArcadeConstDataAddBadgeCollectionName(builder, bad
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddCollectionEntryRelatedBadge(builder, collectionEntryRelatedBadge):
     builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(collectionEntryRelatedBadge), 0)
 
-def clz_Torappu_ActArcadeData_ArcadeConstDataAddZoneEntryUnlockText(builder, zoneEntryUnlockText):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(zoneEntryUnlockText), 0)
-
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddZoneEntryUnlockToast(builder, zoneEntryUnlockToast):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(zoneEntryUnlockToast), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(zoneEntryUnlockToast), 0)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddZoneEntryEndText(builder, zoneEntryEndText):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(zoneEntryEndText), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(zoneEntryEndText), 0)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddZoneEntryEndToast(builder, zoneEntryEndToast):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(zoneEntryEndToast), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(zoneEntryEndToast), 0)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddRankUnlockNextStage(builder, rankUnlockNextStage):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(rankUnlockNextStage), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(rankUnlockNextStage), 0)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddStageScoreDisplayLimit(builder, stageScoreDisplayLimit):
-    builder.PrependInt32Slot(14, stageScoreDisplayLimit, 0)
+    builder.PrependInt32Slot(13, stageScoreDisplayLimit, 0)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddZoneUltiScoreDisplayLimit(builder, zoneUltiScoreDisplayLimit):
-    builder.PrependInt32Slot(15, zoneUltiScoreDisplayLimit, 0)
+    builder.PrependInt32Slot(14, zoneUltiScoreDisplayLimit, 0)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddEnemyHudScore(builder, enemyHudScore):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(enemyHudScore), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(enemyHudScore), 0)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataStartEnemyHudScoreVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataAddTrapNotBuildableInRest(builder, trapNotBuildableInRest):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(trapNotBuildableInRest), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(trapNotBuildableInRest), 0)
 
 def clz_Torappu_ActArcadeData_ArcadeConstDataStartTrapNotBuildableInRestVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
