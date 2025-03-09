@@ -25,7 +25,8 @@ class enum__Torappu_BattleFunctionDisableMask(object):
     COST_PANEL_KEEP_CHARACTERLIMIT = 16384
     CHARACTER_LIMIT = 32768
     AUTOCHESS_SELL_OR_DESTORY = 65536
-    ALL = 131071
+    CHARACTER_MENU_PANEL = 131072
+    ALL = 262143
 
 
 class enum__Torappu_TileData_HeightType(object):
@@ -1184,8 +1185,15 @@ class clz_Torappu_LevelData_GlobalBuffData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_LevelData_GlobalBuffData
+    def PlayerSideMask(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_LevelData_GlobalBuffDataStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(6)
 
 def clz_Torappu_LevelData_GlobalBuffDataAddPrefabKey(builder, prefabKey):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(prefabKey), 0)
@@ -1204,6 +1212,9 @@ def clz_Torappu_LevelData_GlobalBuffDataAddPassProfessionMaskFlag(builder, passP
 
 def clz_Torappu_LevelData_GlobalBuffDataAddProfessionMask(builder, professionMask):
     builder.PrependInt32Slot(4, professionMask, 0)
+
+def clz_Torappu_LevelData_GlobalBuffDataAddPlayerSideMask(builder, playerSideMask):
+    builder.PrependUint8Slot(5, playerSideMask, 0)
 
 def clz_Torappu_LevelData_GlobalBuffDataEnd(builder):
     return builder.EndObject()
@@ -1944,164 +1955,6 @@ def clz_Torappu_LevelData_EnemyData_ESpDataEnd(builder):
 
 
 
-class clz_Torappu_DynamicAbilityData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_DynamicAbilityData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_DynamicAbilityData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_DynamicAbilityData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_DynamicAbilityData
-    def AtRoot(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_DynamicAbilityData
-    def PrefabKey(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_DynamicAbilityData
-    def Blackboard(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_Blackboard_DataPair()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_DynamicAbilityData
-    def BlackboardLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_DynamicAbilityData
-    def BlackboardIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        return o == 0
-
-def clz_Torappu_DynamicAbilityDataStart(builder):
-    builder.StartObject(3)
-
-def clz_Torappu_DynamicAbilityDataAddAtRoot(builder, atRoot):
-    builder.PrependBoolSlot(0, atRoot, 0)
-
-def clz_Torappu_DynamicAbilityDataAddPrefabKey(builder, prefabKey):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(prefabKey), 0)
-
-def clz_Torappu_DynamicAbilityDataAddBlackboard(builder, blackboard):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(blackboard), 0)
-
-def clz_Torappu_DynamicAbilityDataStartBlackboardVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_DynamicAbilityDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_LevelData_EnemyData_RuntimeData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_LevelData_EnemyData_RuntimeData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_LevelData_EnemyData_RuntimeData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_LevelData_EnemyData_RuntimeData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_LevelData_EnemyData_RuntimeData
-    def DynamicAbilities(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_DynamicAbilityData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_LevelData_EnemyData_RuntimeData
-    def DynamicAbilitiesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_LevelData_EnemyData_RuntimeData
-    def DynamicAbilitiesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-    # clz_Torappu_LevelData_EnemyData_RuntimeData
-    def SkinData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
-
-    # clz_Torappu_LevelData_EnemyData_RuntimeData
-    def SkinDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_LevelData_EnemyData_RuntimeData
-    def SkinDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
-def clz_Torappu_LevelData_EnemyData_RuntimeDataStart(builder):
-    builder.StartObject(2)
-
-def clz_Torappu_LevelData_EnemyData_RuntimeDataAddDynamicAbilities(builder, dynamicAbilities):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(dynamicAbilities), 0)
-
-def clz_Torappu_LevelData_EnemyData_RuntimeDataStartDynamicAbilitiesVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_LevelData_EnemyData_RuntimeDataAddSkinData(builder, skinData):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(skinData), 0)
-
-def clz_Torappu_LevelData_EnemyData_RuntimeDataStartSkinDataVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_LevelData_EnemyData_RuntimeDataEnd(builder):
-    return builder.EndObject()
-
-
-
 class clz_Torappu_LevelData_EnemyData(object):
     __slots__ = ['_tab']
 
@@ -2292,18 +2145,8 @@ class clz_Torappu_LevelData_EnemyData(object):
             return obj
         return None
 
-    # clz_Torappu_LevelData_EnemyData
-    def MRuntimeData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_LevelData_EnemyData_RuntimeData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
 def clz_Torappu_LevelData_EnemyDataStart(builder):
-    builder.StartObject(18)
+    builder.StartObject(17)
 
 def clz_Torappu_LevelData_EnemyDataAddName(builder, name):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
@@ -2364,9 +2207,6 @@ def clz_Torappu_LevelData_EnemyDataStartSkillsVector(builder, numElems):
 
 def clz_Torappu_LevelData_EnemyDataAddSpData(builder, spData):
     builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(spData), 0)
-
-def clz_Torappu_LevelData_EnemyDataAddMRuntimeData(builder, mRuntimeData):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(mRuntimeData), 0)
 
 def clz_Torappu_LevelData_EnemyDataEnd(builder):
     return builder.EndObject()

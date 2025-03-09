@@ -133,8 +133,9 @@ class enum__Torappu_ItemType(object):
     SANDBOX_TOKEN = 79
     TEMPLATE_TRAP = 80
     NAME_CARD_SKIN = 81
-    EXCLUSIVE_TKT_GACHA = 82
-    EXCLUSIVE_TKT_GACHA_10 = 83
+    EMOTICON_SET = 82
+    EXCLUSIVE_TKT_GACHA = 83
+    EXCLUSIVE_TKT_GACHA_10 = 84
 
 
 class clz_Torappu_ZoneData(object):

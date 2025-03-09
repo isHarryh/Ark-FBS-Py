@@ -6,20 +6,6 @@ import flatbuffers
 from flatbuffers.compat import import_numpy
 np = import_numpy()
 
-class enum__Torappu_ProfessionCategory(object):
-    NONE = 0
-    WARRIOR = 1
-    SNIPER = 2
-    TANK = 4
-    MEDIC = 8
-    SUPPORT = 16
-    CASTER = 32
-    SPECIAL = 64
-    TOKEN = 128
-    TRAP = 256
-    PIONEER = 512
-
-
 class enum__Torappu_Battle_Cooperate_EndTileType(object):
     NONE = 0
     MY_SIDE = 1
@@ -27,360 +13,9 @@ class enum__Torappu_Battle_Cooperate_EndTileType(object):
     SHARED = 3
 
 
-class clz_Torappu_Blackboard_DataPair(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_Blackboard_DataPair()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_Blackboard_DataPair(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_Blackboard_DataPair
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_Blackboard_DataPair
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_Blackboard_DataPair
-    def Value(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # clz_Torappu_Blackboard_DataPair
-    def ValueStr(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def clz_Torappu_Blackboard_DataPairStart(builder):
-    builder.StartObject(3)
-
-def clz_Torappu_Blackboard_DataPairAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
-
-def clz_Torappu_Blackboard_DataPairAddValue(builder, value):
-    builder.PrependFloat32Slot(1, value, 0.0)
-
-def clz_Torappu_Blackboard_DataPairAddValueStr(builder, valueStr):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(valueStr), 0)
-
-def clz_Torappu_Blackboard_DataPairEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def BuffId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def AtRoot(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def Title(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def Description(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def Blackboard(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_Blackboard_DataPair()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def BlackboardLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def BlackboardIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        return o == 0
-
-def clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardStart(builder):
-    builder.StartObject(6)
-
-def clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardAddBuffId(builder, buffId):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(buffId), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardAddAtRoot(builder, atRoot):
-    builder.PrependBoolSlot(2, atRoot, 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardAddTitle(builder, title):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(title), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardAddDescription(builder, description):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardAddBlackboard(builder, blackboard):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(blackboard), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardStartBlackboardVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardEnd(builder):
-    return builder.EndObject()
-
-
-
-class dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsdict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard
-    def Value(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardStart(builder):
-    builder.StartObject(2)
-
-def dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardAddKey(builder, key):
-    builder.PrependInt32Slot(0, key, 0)
-
-def dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardAddValue(builder, value):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
-
-def dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoardEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_Battle_Cooperate_CooperateBonusData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_Battle_Cooperate_CooperateBonusData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_Battle_Cooperate_CooperateBonusData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def Fail(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def Weight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def Description(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def Blackboard(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_Blackboard_DataPair()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def BlackboardLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def BlackboardIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        return o == 0
-
-def clz_Torappu_Battle_Cooperate_CooperateBonusDataStart(builder):
-    builder.StartObject(5)
-
-def clz_Torappu_Battle_Cooperate_CooperateBonusDataAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateBonusDataAddFail(builder, fail):
-    builder.PrependBoolSlot(1, fail, 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateBonusDataAddWeight(builder, weight):
-    builder.PrependInt32Slot(2, weight, 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateBonusDataAddDescription(builder, description):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateBonusDataAddBlackboard(builder, blackboard):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(blackboard), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateBonusDataStartBlackboardVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_Battle_Cooperate_CooperateBonusDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsdict__string__clz_Torappu_Battle_Cooperate_CooperateBonusData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusData
-    def Value(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_Battle_Cooperate_CooperateBonusData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusDataStart(builder):
-    builder.StartObject(2)
-
-def dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusDataAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
-
-def dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusDataAddValue(builder, value):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
-
-def dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusDataEnd(builder):
-    return builder.EndObject()
-
+class enum__Torappu_Battle_Cooperate_LASTROUNDRESULT(object):
+    GOAL = 0
+    LOST = 1
 
 
 class clz_Torappu_Battle_Cooperate_CooperateEndTileInfo(object):
@@ -478,6 +113,407 @@ def dict__enum__Torappu_Battle_Cooperate_EndTileType__clz_Torappu_Battle_Coopera
 
 
 
+class clz_Torappu_Battle_Cooperate_CooperateAheadGoalData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Battle_Cooperate_CooperateAheadGoalData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Battle_Cooperate_CooperateAheadGoalData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Battle_Cooperate_CooperateAheadGoalData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Battle_Cooperate_CooperateAheadGoalData
+    def AheadCnt(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateAheadGoalData
+    def Level(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_Battle_Cooperate_CooperateAheadGoalDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_Battle_Cooperate_CooperateAheadGoalDataAddAheadCnt(builder, aheadCnt):
+    builder.PrependInt32Slot(0, aheadCnt, 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateAheadGoalDataAddLevel(builder, level):
+    builder.PrependInt32Slot(1, level, 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateAheadGoalDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__int(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__int()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__int(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__int
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__int
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__int
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__intStart(builder):
+    builder.StartObject(2)
+
+def dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__intAddKey(builder, key):
+    builder.PrependInt32Slot(0, key, 0)
+
+def dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__intAddValue(builder, value):
+    builder.PrependInt32Slot(1, value, 0)
+
+def dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__intEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Battle_Cooperate_CooperateWaveWeight(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Battle_Cooperate_CooperateWaveWeight()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Battle_Cooperate_CooperateWaveWeight(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Battle_Cooperate_CooperateWaveWeight
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Battle_Cooperate_CooperateWaveWeight
+    def Wave(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateWaveWeight
+    def Weight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_Battle_Cooperate_CooperateWaveWeightStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_Battle_Cooperate_CooperateWaveWeightAddWave(builder, wave):
+    builder.PrependInt32Slot(0, wave, 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateWaveWeightAddWeight(builder, weight):
+    builder.PrependInt32Slot(1, weight, 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateWaveWeightEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeight(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeight()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeight(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeight
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeight
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeight
+    def Value(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_Battle_Cooperate_CooperateWaveWeight()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeight
+    def ValueLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeight
+    def ValueIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeightStart(builder):
+    builder.StartObject(2)
+
+def dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeightAddKey(builder, key):
+    builder.PrependInt32Slot(0, key, 0)
+
+def dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeightAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeightStartValueVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeightEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Battle_Cooperate_CooperateTeamWeight(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Battle_Cooperate_CooperateTeamWeight()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Battle_Cooperate_CooperateTeamWeight(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Battle_Cooperate_CooperateTeamWeight
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Battle_Cooperate_CooperateTeamWeight
+    def TeamName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateTeamWeight
+    def Weight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamWeightStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamWeightAddTeamName(builder, teamName):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(teamName), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamWeightAddWeight(builder, weight):
+    builder.PrependInt32Slot(1, weight, 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamWeightEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_Battle_Cooperate_CooperateTeamPlayer(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Battle_Cooperate_CooperateTeamPlayer()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Battle_Cooperate_CooperateTeamPlayer(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Battle_Cooperate_CooperateTeamPlayer
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Battle_Cooperate_CooperateTeamPlayer
+    def Forward(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateTeamPlayer
+    def Goalkeeper(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateTeamPlayer
+    def Muscleman(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamPlayerStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamPlayerAddForward(builder, forward):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(forward), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamPlayerAddGoalkeeper(builder, goalkeeper):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(goalkeeper), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamPlayerAddMuscleman(builder, muscleman):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(muscleman), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateTeamPlayerEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayer(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayer()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayer(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayer
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayer
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayer
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Battle_Cooperate_CooperateTeamPlayer()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayerStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayerAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayerAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayerEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__string(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__string()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__string(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__string
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__string
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__string
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def dict__string__stringStart(builder):
+    builder.StartObject(2)
+
+def dict__string__stringAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__stringAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__stringEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_Battle_Cooperate_CooperateModeBattleData(object):
     __slots__ = ['_tab']
 
@@ -504,70 +540,15 @@ class clz_Torappu_Battle_Cooperate_CooperateModeBattleData(object):
         return 0
 
     # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
-    def CostTransferredExtra(self):
+    def GetMaxMsgCntInOneUpdate(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
-    def GetMaxMsgCntInOneUpdate(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
-    def BuffList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = dict__enum__Torappu_ProfessionCategory__clz_Torappu_Battle_Cooperate_CooperateProfessionBuffBlackBoard()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
-    def BuffListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
-    def BuffListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
-    def CooperateBonusMap(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = dict__string__clz_Torappu_Battle_Cooperate_CooperateBonusData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
-    def CooperateBonusMapLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
-    def CooperateBonusMapIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        return o == 0
-
-    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
     def EndTileInfo(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -579,44 +560,219 @@ class clz_Torappu_Battle_Cooperate_CooperateModeBattleData(object):
 
     # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
     def EndTileInfoLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
     def EndTileInfoIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballAheadGoalCntFactor(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_Battle_Cooperate_CooperateAheadGoalData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballAheadGoalCntFactorLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballAheadGoalCntFactorIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballHardTypeFactor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballLastRoundResultFactor(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__enum__Torappu_Battle_Cooperate_LASTROUNDRESULT__int()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballLastRoundResultFactorLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballLastRoundResultFactorIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         return o == 0
 
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballLevelOfWaveFactor(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__int__list_clz_Torappu_Battle_Cooperate_CooperateWaveWeight()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballLevelOfWaveFactorLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballLevelOfWaveFactorIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        return o == 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballTeamWeights(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_Battle_Cooperate_CooperateTeamWeight()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballTeamWeightsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballTeamWeightsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        return o == 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballTeamPlayers(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_Battle_Cooperate_CooperateTeamPlayer()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballTeamPlayersLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballTeamPlayersIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        return o == 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballPlayersName(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__string()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballPlayersNameLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_Battle_Cooperate_CooperateModeBattleData
+    def FootballPlayersNameIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        return o == 0
+
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(10)
 
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddCostTransferred(builder, costTransferred):
     builder.PrependInt32Slot(0, costTransferred, 0)
 
-def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddCostTransferredExtra(builder, costTransferredExtra):
-    builder.PrependInt32Slot(1, costTransferredExtra, 0)
-
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddGetMaxMsgCntInOneUpdate(builder, getMaxMsgCntInOneUpdate):
-    builder.PrependInt32Slot(2, getMaxMsgCntInOneUpdate, 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddBuffList(builder, buffList):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(buffList), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartBuffListVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddCooperateBonusMap(builder, cooperateBonusMap):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(cooperateBonusMap), 0)
-
-def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartCooperateBonusMapVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
+    builder.PrependInt32Slot(1, getMaxMsgCntInOneUpdate, 0)
 
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddEndTileInfo(builder, endTileInfo):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(endTileInfo), 0)
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(endTileInfo), 0)
 
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartEndTileInfoVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballAheadGoalCntFactor(builder, footballAheadGoalCntFactor):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(footballAheadGoalCntFactor), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartFootballAheadGoalCntFactorVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballHardTypeFactor(builder, footballHardTypeFactor):
+    builder.PrependInt32Slot(4, footballHardTypeFactor, 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballLastRoundResultFactor(builder, footballLastRoundResultFactor):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(footballLastRoundResultFactor), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartFootballLastRoundResultFactorVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballLevelOfWaveFactor(builder, footballLevelOfWaveFactor):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(footballLevelOfWaveFactor), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartFootballLevelOfWaveFactorVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballTeamWeights(builder, footballTeamWeights):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(footballTeamWeights), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartFootballTeamWeightsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballTeamPlayers(builder, footballTeamPlayers):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(footballTeamPlayers), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartFootballTeamPlayersVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataAddFootballPlayersName(builder, footballPlayersName):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(footballPlayersName), 0)
+
+def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataStartFootballPlayersNameVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_Battle_Cooperate_CooperateModeBattleDataEnd(builder):

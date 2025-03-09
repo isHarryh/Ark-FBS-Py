@@ -6,11 +6,6 @@ import flatbuffers
 from flatbuffers.compat import import_numpy
 np = import_numpy()
 
-class enum__Torappu_AudioManager_FXCategory(object):
-    FX_UI = 0
-    FX_BATTLE = 1
-
-
 class enum__Torappu_BattleVoiceOption_BattleVoiceType(object):
     BATTLE_START = 0
     ENCOUNTER_ENEMY = 1
@@ -365,42 +360,6 @@ def clz_Torappu_Audio_Middleware_Data_SoundFXBankAddName(builder, name):
     builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
 
 def clz_Torappu_Audio_Middleware_Data_SoundFXBankEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_Audio_Middleware_Data_Bank(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_Audio_Middleware_Data_Bank()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_Audio_Middleware_Data_Bank(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_Audio_Middleware_Data_Bank
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_Audio_Middleware_Data_Bank
-    def Name(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def clz_Torappu_Audio_Middleware_Data_BankStart(builder):
-    builder.StartObject(1)
-
-def clz_Torappu_Audio_Middleware_Data_BankAddName(builder, name):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
-
-def clz_Torappu_Audio_Middleware_Data_BankEnd(builder):
     return builder.EndObject()
 
 

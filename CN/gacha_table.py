@@ -16,6 +16,8 @@ class enum__Torappu_GachaRuleType(object):
     FESCLASSIC = 6
     CLASSIC_ATTAIN = 7
     SPECIAL = 8
+    DOUBLE = 9
+    CLASSIC_DOUBLE = 10
 
 
 class enum__Torappu_ItemType(object):
@@ -101,8 +103,9 @@ class enum__Torappu_ItemType(object):
     SANDBOX_TOKEN = 79
     TEMPLATE_TRAP = 80
     NAME_CARD_SKIN = 81
-    EXCLUSIVE_TKT_GACHA = 82
-    EXCLUSIVE_TKT_GACHA_10 = 83
+    EMOTICON_SET = 82
+    EXCLUSIVE_TKT_GACHA = 83
+    EXCLUSIVE_TKT_GACHA_10 = 84
 
 
 class hg__internal__JObject(object):
@@ -209,57 +212,64 @@ class clz_Torappu_GachaPoolClientData(object):
         return None
 
     # clz_Torappu_GachaPoolClientData
-    def Guarantee5Avail(self):
+    def GuaranteeName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # clz_Torappu_GachaPoolClientData
-    def Guarantee5Count(self):
+    def Guarantee5Avail(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GachaPoolClientData
-    def Lmtgsid(self):
+    def Guarantee5Count(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_GachaPoolClientData
-    def CdprimColor(self):
+    def Lmtgsid(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GachaPoolClientData
-    def CdsecColor(self):
+    def CdprimColor(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GachaPoolClientData
-    def FreeBackColor(self):
+    def CdsecColor(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GachaPoolClientData
-    def GachaRuleType(self):
+    def FreeBackColor(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_GachaPoolClientData
+    def GachaRuleType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GachaPoolClientData
     def DynMeta(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = hg__internal__JObject()
@@ -269,14 +279,14 @@ class clz_Torappu_GachaPoolClientData(object):
 
     # clz_Torappu_GachaPoolClientData
     def LinkageRuleId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_GachaPoolClientData
     def LinkageParam(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = hg__internal__JObject()
@@ -286,7 +296,7 @@ class clz_Torappu_GachaPoolClientData(object):
 
     # clz_Torappu_GachaPoolClientData
     def LimitParam(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = hg__internal__JObject()
@@ -295,7 +305,7 @@ class clz_Torappu_GachaPoolClientData(object):
         return None
 
 def clz_Torappu_GachaPoolClientDataStart(builder):
-    builder.StartObject(18)
+    builder.StartObject(19)
 
 def clz_Torappu_GachaPoolClientDataAddGachaPoolId(builder, gachaPoolId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(gachaPoolId), 0)
@@ -318,38 +328,41 @@ def clz_Torappu_GachaPoolClientDataAddGachaPoolSummary(builder, gachaPoolSummary
 def clz_Torappu_GachaPoolClientDataAddGachaPoolDetail(builder, gachaPoolDetail):
     builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(gachaPoolDetail), 0)
 
+def clz_Torappu_GachaPoolClientDataAddGuaranteeName(builder, guaranteeName):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(guaranteeName), 0)
+
 def clz_Torappu_GachaPoolClientDataAddGuarantee5Avail(builder, guarantee5Avail):
-    builder.PrependInt32Slot(7, guarantee5Avail, 0)
+    builder.PrependInt32Slot(8, guarantee5Avail, 0)
 
 def clz_Torappu_GachaPoolClientDataAddGuarantee5Count(builder, guarantee5Count):
-    builder.PrependInt32Slot(8, guarantee5Count, 0)
+    builder.PrependInt32Slot(9, guarantee5Count, 0)
 
 def clz_Torappu_GachaPoolClientDataAddLmtgsid(builder, lmtgsid):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(lmtgsid), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(lmtgsid), 0)
 
 def clz_Torappu_GachaPoolClientDataAddCdprimColor(builder, cdprimColor):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(cdprimColor), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(cdprimColor), 0)
 
 def clz_Torappu_GachaPoolClientDataAddCdsecColor(builder, cdsecColor):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(cdsecColor), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(cdsecColor), 0)
 
 def clz_Torappu_GachaPoolClientDataAddFreeBackColor(builder, freeBackColor):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(freeBackColor), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(freeBackColor), 0)
 
 def clz_Torappu_GachaPoolClientDataAddGachaRuleType(builder, gachaRuleType):
-    builder.PrependInt32Slot(13, gachaRuleType, 0)
+    builder.PrependInt32Slot(14, gachaRuleType, 0)
 
 def clz_Torappu_GachaPoolClientDataAddDynMeta(builder, dynMeta):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(dynMeta), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(dynMeta), 0)
 
 def clz_Torappu_GachaPoolClientDataAddLinkageRuleId(builder, linkageRuleId):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(linkageRuleId), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(linkageRuleId), 0)
 
 def clz_Torappu_GachaPoolClientDataAddLinkageParam(builder, linkageParam):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(linkageParam), 0)
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(linkageParam), 0)
 
 def clz_Torappu_GachaPoolClientDataAddLimitParam(builder, limitParam):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(limitParam), 0)
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(limitParam), 0)
 
 def clz_Torappu_GachaPoolClientDataEnd(builder):
     return builder.EndObject()

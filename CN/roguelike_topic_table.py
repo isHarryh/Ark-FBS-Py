@@ -37,7 +37,6 @@ class enum__Torappu_RoguelikeCharState(object):
 
 
 class enum__Torappu_RoguelikeEnrollType(object):
-    NONE = -1
     DLC = 0
     REVIEW = 1
 
@@ -125,8 +124,9 @@ class enum__Torappu_ItemType(object):
     SANDBOX_TOKEN = 79
     TEMPLATE_TRAP = 80
     NAME_CARD_SKIN = 81
-    EXCLUSIVE_TKT_GACHA = 82
-    EXCLUSIVE_TKT_GACHA_10 = 83
+    EMOTICON_SET = 82
+    EXCLUSIVE_TKT_GACHA = 83
+    EXCLUSIVE_TKT_GACHA_10 = 84
 
 
 class enum__Torappu_RoguelikeGameMonthTaskClass(object):

@@ -89,8 +89,9 @@ class enum__Torappu_ItemType(object):
     SANDBOX_TOKEN = 79
     TEMPLATE_TRAP = 80
     NAME_CARD_SKIN = 81
-    EXCLUSIVE_TKT_GACHA = 82
-    EXCLUSIVE_TKT_GACHA_10 = 83
+    EMOTICON_SET = 82
+    EXCLUSIVE_TKT_GACHA = 83
+    EXCLUSIVE_TKT_GACHA_10 = 84
 
 
 class enum__Torappu_StageDropType(object):
@@ -174,7 +175,8 @@ class enum__Torappu_ActivityType(object):
     AUTOCHESS_VERIFY1 = 47
     CHECKIN_VIDEO = 48
     ARCADE = 49
-    ENUM = 50
+    MULTIPLAY_V3 = 50
+    ENUM = 51
 
 
 class enum__Torappu_StageType(object):
