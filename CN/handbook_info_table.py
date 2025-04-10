@@ -170,15 +170,29 @@ class clz_Torappu_HandBookStoryViewData_StoryText(object):
         return None
 
     # clz_Torappu_HandBookStoryViewData_StoryText
-    def UnLockString(self):
+    def ShowType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_HandBookStoryViewData_StoryText
+    def ShowParam(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_HandBookStoryViewData_StoryText
+    def UnLockString(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_HandBookStoryViewData_StoryText
     def PatchIdList(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -186,18 +200,18 @@ class clz_Torappu_HandBookStoryViewData_StoryText(object):
 
     # clz_Torappu_HandBookStoryViewData_StoryText
     def PatchIdListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_HandBookStoryViewData_StoryText
     def PatchIdListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         return o == 0
 
 def clz_Torappu_HandBookStoryViewData_StoryTextStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(7)
 
 def clz_Torappu_HandBookStoryViewData_StoryTextAddStoryText(builder, storyText):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(storyText), 0)
@@ -208,11 +222,17 @@ def clz_Torappu_HandBookStoryViewData_StoryTextAddUnLockType(builder, unLockType
 def clz_Torappu_HandBookStoryViewData_StoryTextAddUnLockParam(builder, unLockParam):
     builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(unLockParam), 0)
 
+def clz_Torappu_HandBookStoryViewData_StoryTextAddShowType(builder, showType):
+    builder.PrependInt32Slot(3, showType, 0)
+
+def clz_Torappu_HandBookStoryViewData_StoryTextAddShowParam(builder, showParam):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(showParam), 0)
+
 def clz_Torappu_HandBookStoryViewData_StoryTextAddUnLockString(builder, unLockString):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(unLockString), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(unLockString), 0)
 
 def clz_Torappu_HandBookStoryViewData_StoryTextAddPatchIdList(builder, patchIdList):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(patchIdList), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(patchIdList), 0)
 
 def clz_Torappu_HandBookStoryViewData_StoryTextStartPatchIdListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)

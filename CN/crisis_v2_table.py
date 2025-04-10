@@ -6,11 +6,14 @@ import flatbuffers
 from flatbuffers.compat import import_numpy
 np = import_numpy()
 
-class enum__Torappu_CharmRarity(object):
-    NONE = 0
-    LOW = 1
-    MEDIUM = 2
-    HIGH = 3
+class enum__Torappu_CrisisV2AppraiseType(object):
+    RANK_D = 0
+    RANK_C = 1
+    RANK_B = 2
+    RANK_A = 3
+    RANK_S = 4
+    RANK_SS = 5
+    RANK_SSS = 6
 
 
 class enum__Torappu_ProfessionCategory(object):
@@ -48,6 +51,412 @@ class enum__Torappu_Battle_SideType(object):
     BOTH_ALLY_AND_ENEMY = 3
     NEUTRAL = 4
     ALL = 7
+
+
+class clz_Torappu_CrisisV2SeasonInfo(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_CrisisV2SeasonInfo()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_CrisisV2SeasonInfo(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_CrisisV2SeasonInfo
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def SeasonId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def Name(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def StartTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def EndTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def MedalGroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def MedalId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def ThemeColor1(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def ThemeColor2(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def ThemeColor3(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def SeasonBgm(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def SeasonBgmChallenge(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2SeasonInfo
+    def CrisisV2SeasonCode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_CrisisV2SeasonInfoStart(builder):
+    builder.StartObject(12)
+
+def clz_Torappu_CrisisV2SeasonInfoAddSeasonId(builder, seasonId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(seasonId), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddName(builder, name):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddStartTs(builder, startTs):
+    builder.PrependInt64Slot(2, startTs, 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddEndTs(builder, endTs):
+    builder.PrependInt64Slot(3, endTs, 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddMedalGroupId(builder, medalGroupId):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(medalGroupId), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddMedalId(builder, medalId):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(medalId), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddThemeColor1(builder, themeColor1):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(themeColor1), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddThemeColor2(builder, themeColor2):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(themeColor2), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddThemeColor3(builder, themeColor3):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(themeColor3), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddSeasonBgm(builder, seasonBgm):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(seasonBgm), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddSeasonBgmChallenge(builder, seasonBgmChallenge):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(seasonBgmChallenge), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoAddCrisisV2SeasonCode(builder, crisisV2SeasonCode):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(crisisV2SeasonCode), 0)
+
+def clz_Torappu_CrisisV2SeasonInfoEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_CrisisV2SeasonInfo(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_CrisisV2SeasonInfo()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_CrisisV2SeasonInfo(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_CrisisV2SeasonInfo
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_CrisisV2SeasonInfo
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_CrisisV2SeasonInfo
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_CrisisV2SeasonInfo()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_CrisisV2SeasonInfoStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_CrisisV2SeasonInfoAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_CrisisV2SeasonInfoAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_CrisisV2SeasonInfoEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_CrisisV2AppraiseWrap(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_CrisisV2AppraiseWrap()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_CrisisV2AppraiseWrap(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_CrisisV2AppraiseWrap
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_CrisisV2AppraiseWrap
+    def AppraiseType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_CrisisV2AppraiseWrapStart(builder):
+    builder.StartObject(1)
+
+def clz_Torappu_CrisisV2AppraiseWrapAddAppraiseType(builder, appraiseType):
+    builder.PrependInt32Slot(0, appraiseType, 0)
+
+def clz_Torappu_CrisisV2AppraiseWrapEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__int__clz_Torappu_CrisisV2AppraiseWrap(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__int__clz_Torappu_CrisisV2AppraiseWrap()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__int__clz_Torappu_CrisisV2AppraiseWrap(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__int__clz_Torappu_CrisisV2AppraiseWrap
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__int__clz_Torappu_CrisisV2AppraiseWrap
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # dict__int__clz_Torappu_CrisisV2AppraiseWrap
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_CrisisV2AppraiseWrap()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__int__clz_Torappu_CrisisV2AppraiseWrapStart(builder):
+    builder.StartObject(2)
+
+def dict__int__clz_Torappu_CrisisV2AppraiseWrapAddKey(builder, key):
+    builder.PrependInt32Slot(0, key, 0)
+
+def dict__int__clz_Torappu_CrisisV2AppraiseWrapAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__int__clz_Torappu_CrisisV2AppraiseWrapEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_CrisisV2ConstData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_CrisisV2ConstData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_CrisisV2ConstData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_CrisisV2ConstData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_CrisisV2ConstData
+    def SysStartTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CrisisV2ConstData
+    def BlackScoreThreshold(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CrisisV2ConstData
+    def RedScoreThreshold(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CrisisV2ConstData
+    def DetailBkgRedThreshold(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CrisisV2ConstData
+    def VoiceGrade(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CrisisV2ConstData
+    def SeasonButtonUnlockInfo(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CrisisV2ConstData
+    def ShopCoinId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2ConstData
+    def HardBgmSwitchScore(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CrisisV2ConstData
+    def StageId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_CrisisV2ConstData
+    def HideTodoWhenStageFinish(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_CrisisV2ConstDataStart(builder):
+    builder.StartObject(10)
+
+def clz_Torappu_CrisisV2ConstDataAddSysStartTime(builder, sysStartTime):
+    builder.PrependInt64Slot(0, sysStartTime, 0)
+
+def clz_Torappu_CrisisV2ConstDataAddBlackScoreThreshold(builder, blackScoreThreshold):
+    builder.PrependInt32Slot(1, blackScoreThreshold, 0)
+
+def clz_Torappu_CrisisV2ConstDataAddRedScoreThreshold(builder, redScoreThreshold):
+    builder.PrependInt32Slot(2, redScoreThreshold, 0)
+
+def clz_Torappu_CrisisV2ConstDataAddDetailBkgRedThreshold(builder, detailBkgRedThreshold):
+    builder.PrependInt32Slot(3, detailBkgRedThreshold, 0)
+
+def clz_Torappu_CrisisV2ConstDataAddVoiceGrade(builder, voiceGrade):
+    builder.PrependInt32Slot(4, voiceGrade, 0)
+
+def clz_Torappu_CrisisV2ConstDataAddSeasonButtonUnlockInfo(builder, seasonButtonUnlockInfo):
+    builder.PrependInt64Slot(5, seasonButtonUnlockInfo, 0)
+
+def clz_Torappu_CrisisV2ConstDataAddShopCoinId(builder, shopCoinId):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(shopCoinId), 0)
+
+def clz_Torappu_CrisisV2ConstDataAddHardBgmSwitchScore(builder, hardBgmSwitchScore):
+    builder.PrependInt32Slot(7, hardBgmSwitchScore, 0)
+
+def clz_Torappu_CrisisV2ConstDataAddStageId(builder, stageId):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(stageId), 0)
+
+def clz_Torappu_CrisisV2ConstDataAddHideTodoWhenStageFinish(builder, hideTodoWhenStageFinish):
+    builder.PrependBoolSlot(9, hideTodoWhenStageFinish, 0)
+
+def clz_Torappu_CrisisV2ConstDataEnd(builder):
+    return builder.EndObject()
+
 
 
 class clz_Torappu_RuneData_Selector(object):
@@ -563,55 +972,34 @@ def clz_Torappu_RuneDataEnd(builder):
 
 
 
-class clz_Torappu_RuneTable_PackedRuneData(object):
+class dict__string__list_clz_Torappu_RuneData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_RuneTable_PackedRuneData()
+        x = dict__string__list_clz_Torappu_RuneData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsclz_Torappu_RuneTable_PackedRuneData(cls, buf, offset=0):
+    def GetRootAsdict__string__list_clz_Torappu_RuneData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # clz_Torappu_RuneTable_PackedRuneData
+    # dict__string__list_clz_Torappu_RuneData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # clz_Torappu_RuneTable_PackedRuneData
-    def Id(self):
+    # dict__string__list_clz_Torappu_RuneData
+    def Key(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # clz_Torappu_RuneTable_PackedRuneData
-    def Points(self):
+    # dict__string__list_clz_Torappu_RuneData
+    def Value(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # clz_Torappu_RuneTable_PackedRuneData
-    def MutexGroupKey(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_RuneTable_PackedRuneData
-    def Description(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_RuneTable_PackedRuneData
-    def Runes(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -621,291 +1009,160 @@ class clz_Torappu_RuneTable_PackedRuneData(object):
             return obj
         return None
 
-    # clz_Torappu_RuneTable_PackedRuneData
-    def RunesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_RuneTable_PackedRuneData
-    def RunesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        return o == 0
-
-def clz_Torappu_RuneTable_PackedRuneDataStart(builder):
-    builder.StartObject(5)
-
-def clz_Torappu_RuneTable_PackedRuneDataAddId(builder, id):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
-
-def clz_Torappu_RuneTable_PackedRuneDataAddPoints(builder, points):
-    builder.PrependFloat32Slot(1, points, 0.0)
-
-def clz_Torappu_RuneTable_PackedRuneDataAddMutexGroupKey(builder, mutexGroupKey):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(mutexGroupKey), 0)
-
-def clz_Torappu_RuneTable_PackedRuneDataAddDescription(builder, description):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
-
-def clz_Torappu_RuneTable_PackedRuneDataAddRunes(builder, runes):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(runes), 0)
-
-def clz_Torappu_RuneTable_PackedRuneDataStartRunesVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_RuneTable_PackedRuneDataEnd(builder):
-    return builder.EndObject()
-
-
-
-class clz_Torappu_CharmItemData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_CharmItemData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_CharmItemData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_CharmItemData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_CharmItemData
-    def Id(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CharmItemData
-    def Sort(self):
+    # dict__string__list_clz_Torappu_RuneData
+    def ValueLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_CharmItemData
-    def Name(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CharmItemData
-    def Icon(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CharmItemData
-    def ItemUsage(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CharmItemData
-    def ItemDesc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CharmItemData
-    def ItemObtainApproach(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CharmItemData
-    def Rarity(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_CharmItemData
-    def Desc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CharmItemData
-    def Price(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_CharmItemData
-    def SpecialObtainApproach(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CharmItemData
-    def CharmType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # clz_Torappu_CharmItemData
-    def ObtainInRandom(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # clz_Torappu_CharmItemData
-    def DropStages(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
-
-    # clz_Torappu_CharmItemData
-    def DropStagesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # clz_Torappu_CharmItemData
-    def DropStagesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+    # dict__string__list_clz_Torappu_RuneData
+    def ValueIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
-    # clz_Torappu_CharmItemData
-    def RuneData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_RuneTable_PackedRuneData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+def dict__string__list_clz_Torappu_RuneDataStart(builder):
+    builder.StartObject(2)
 
-def clz_Torappu_CharmItemDataStart(builder):
-    builder.StartObject(15)
+def dict__string__list_clz_Torappu_RuneDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
 
-def clz_Torappu_CharmItemDataAddId(builder, id):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
+def dict__string__list_clz_Torappu_RuneDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
 
-def clz_Torappu_CharmItemDataAddSort(builder, sort):
-    builder.PrependInt32Slot(1, sort, 0)
-
-def clz_Torappu_CharmItemDataAddName(builder, name):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
-
-def clz_Torappu_CharmItemDataAddIcon(builder, icon):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(icon), 0)
-
-def clz_Torappu_CharmItemDataAddItemUsage(builder, itemUsage):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(itemUsage), 0)
-
-def clz_Torappu_CharmItemDataAddItemDesc(builder, itemDesc):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(itemDesc), 0)
-
-def clz_Torappu_CharmItemDataAddItemObtainApproach(builder, itemObtainApproach):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(itemObtainApproach), 0)
-
-def clz_Torappu_CharmItemDataAddRarity(builder, rarity):
-    builder.PrependInt32Slot(7, rarity, 0)
-
-def clz_Torappu_CharmItemDataAddDesc(builder, desc):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(desc), 0)
-
-def clz_Torappu_CharmItemDataAddPrice(builder, price):
-    builder.PrependInt32Slot(9, price, 0)
-
-def clz_Torappu_CharmItemDataAddSpecialObtainApproach(builder, specialObtainApproach):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(specialObtainApproach), 0)
-
-def clz_Torappu_CharmItemDataAddCharmType(builder, charmType):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(charmType), 0)
-
-def clz_Torappu_CharmItemDataAddObtainInRandom(builder, obtainInRandom):
-    builder.PrependBoolSlot(12, obtainInRandom, 0)
-
-def clz_Torappu_CharmItemDataAddDropStages(builder, dropStages):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(dropStages), 0)
-
-def clz_Torappu_CharmItemDataStartDropStagesVector(builder, numElems):
+def dict__string__list_clz_Torappu_RuneDataStartValueVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_CharmItemDataAddRuneData(builder, runeData):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(runeData), 0)
-
-def clz_Torappu_CharmItemDataEnd(builder):
+def dict__string__list_clz_Torappu_RuneDataEnd(builder):
     return builder.EndObject()
 
 
 
-class clz_Torappu_CharmData(object):
+class clz_Torappu_CrisisV2SharedData(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_CharmData()
+        x = clz_Torappu_CrisisV2SharedData()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsclz_Torappu_CharmData(cls, buf, offset=0):
+    def GetRootAsclz_Torappu_CrisisV2SharedData(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # clz_Torappu_CharmData
+    # clz_Torappu_CrisisV2SharedData
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # clz_Torappu_CharmData
-    def CharmList(self, j):
+    # clz_Torappu_CrisisV2SharedData
+    def SeasonInfoDataMap(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = clz_Torappu_CharmItemData()
+            obj = dict__string__clz_Torappu_CrisisV2SeasonInfo()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # clz_Torappu_CharmData
-    def CharmListLength(self):
+    # clz_Torappu_CrisisV2SharedData
+    def SeasonInfoDataMapLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # clz_Torappu_CharmData
-    def CharmListIsNone(self):
+    # clz_Torappu_CrisisV2SharedData
+    def SeasonInfoDataMapIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         return o == 0
 
-def clz_Torappu_CharmDataStart(builder):
-    builder.StartObject(1)
+    # clz_Torappu_CrisisV2SharedData
+    def ScoreLevelToAppraiseDataMap(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__int__clz_Torappu_CrisisV2AppraiseWrap()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def clz_Torappu_CharmDataAddCharmList(builder, charmList):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(charmList), 0)
+    # clz_Torappu_CrisisV2SharedData
+    def ScoreLevelToAppraiseDataMapLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
 
-def clz_Torappu_CharmDataStartCharmListVector(builder, numElems):
+    # clz_Torappu_CrisisV2SharedData
+    def ScoreLevelToAppraiseDataMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # clz_Torappu_CrisisV2SharedData
+    def ConstData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_CrisisV2ConstData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_CrisisV2SharedData
+    def BattleCommentRuneData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__list_clz_Torappu_RuneData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_CrisisV2SharedData
+    def BattleCommentRuneDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_CrisisV2SharedData
+    def BattleCommentRuneDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+def clz_Torappu_CrisisV2SharedDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_CrisisV2SharedDataAddSeasonInfoDataMap(builder, seasonInfoDataMap):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(seasonInfoDataMap), 0)
+
+def clz_Torappu_CrisisV2SharedDataStartSeasonInfoDataMapVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def clz_Torappu_CharmDataEnd(builder):
+def clz_Torappu_CrisisV2SharedDataAddScoreLevelToAppraiseDataMap(builder, scoreLevelToAppraiseDataMap):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(scoreLevelToAppraiseDataMap), 0)
+
+def clz_Torappu_CrisisV2SharedDataStartScoreLevelToAppraiseDataMapVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_CrisisV2SharedDataAddConstData(builder, constData):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
+
+def clz_Torappu_CrisisV2SharedDataAddBattleCommentRuneData(builder, battleCommentRuneData):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(battleCommentRuneData), 0)
+
+def clz_Torappu_CrisisV2SharedDataStartBattleCommentRuneDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_CrisisV2SharedDataEnd(builder):
     return builder.EndObject()
 
-ROOT_TYPE = clz_Torappu_CharmData
+ROOT_TYPE = clz_Torappu_CrisisV2SharedData

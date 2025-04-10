@@ -111,7 +111,8 @@ class enum__Torappu_ItemType(object):
 class enum__Torappu_StoryReviewUnlockType(object):
     STAGE_CLEAR = 0
     USE_ITEM = 1
-    NOTHING = 2
+    BY_START_TIME = 2
+    NOTHING = 3
 
 
 class enum__Torappu_PlayerStageState(object):

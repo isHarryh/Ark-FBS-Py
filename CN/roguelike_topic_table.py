@@ -208,7 +208,8 @@ class enum__Torappu_LevelData_Difficulty(object):
     NORMAL = 1
     FOUR_STAR = 2
     EASY = 4
-    ALL = 7
+    SIX_STAR = 8
+    ALL = 15
 
 
 class enum__Torappu_ProfessionCategory(object):

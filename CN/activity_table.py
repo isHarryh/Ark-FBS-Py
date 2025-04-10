@@ -58,7 +58,9 @@ class enum__Torappu_ActivityType(object):
     CHECKIN_VIDEO = 48
     ARCADE = 49
     MULTIPLAY_V3 = 50
-    ENUM = 51
+    TYPE_MAINSS = 51
+    ENEMY_DUEL = 52
+    ENUM = 53
 
 
 class enum__Torappu_ActivityDisplayType(object):
@@ -74,6 +76,12 @@ class enum__Torappu_ActivityCompleteType(object):
     CANNOT_COMPLETE = 2
 
 
+class enum__Torappu_CommonUnlockType(object):
+    STAGECLEAR = 0
+    HASCHAR = 1
+    NONE = 2
+
+
 class enum__Torappu_MissionType(object):
     UNKNOWN = 0
     MAIN = 1
@@ -84,6 +92,7 @@ class enum__Torappu_MissionType(object):
     ACTIVITY = 6
     OPENSERVER = 7
     TOWERSEASON = 8
+    RETRO = 9
 
 
 class enum__Torappu_MissionItemBgType(object):
@@ -232,6 +241,15 @@ class enum__Torappu_PlayerSideMask(object):
     SIDE_A = 1
     SIDE_B = 2
     NONE = 3
+
+
+class enum__Torappu_Battle_SideType(object):
+    NONE = 0
+    ALLY = 1
+    ENEMY = 2
+    BOTH_ALLY_AND_ENEMY = 3
+    NEUTRAL = 4
+    ALL = 7
 
 
 class enum__Torappu_ActivityCollectionData_JumpType(object):
@@ -660,6 +678,22 @@ class enum__Torappu_PlayerAvatarGroupType(object):
     DYNAMIC = 5
 
 
+class enum__Torappu_EnemyDuelModeType(object):
+    OPERATION = 0
+    STAND = 1
+
+
+class enum__Torappu_EnemyDuelBetStrategy(object):
+    DEFAULT = 0
+    CHOOSE_WIN = 1
+    CHOOSE_ODD = 2
+    FOLLOW_FEWER = 3
+    FOLLOW_MORE = 4
+    CHOOSE_ODD_ENEMY_COUNT = 5
+    CHOOSE_EVEN_ENEMY_COUNT = 6
+    ALWAYS_LEFT = 7
+
+
 class enum__Torappu_ActivityThemeType(object):
     NONE = 0
     ACTIVITY = 1
@@ -668,6 +702,7 @@ class enum__Torappu_ActivityThemeType(object):
     ROGUELIKE = 4
     CRISISV2 = 5
     SANDBOX_PERM = 6
+    ACTIVITY_COMP = 7
 
 
 class enum__Torappu_AppearanceStyle(object):
@@ -685,7 +720,8 @@ class enum__Torappu_LevelData_Difficulty(object):
     NORMAL = 1
     FOUR_STAR = 2
     EASY = 4
-    ALL = 7
+    SIX_STAR = 8
+    ALL = 15
 
 
 class enum__Torappu_Act4funStageAttributeType(object):
@@ -784,6 +820,7 @@ class enum__Torappu_TemplateMissionBigRewardType(object):
     ILLUST_CHAR_REWARD = 1
     CUSTOM = 2
     PIC_REWARD = 3
+    SKIN_REWARD = 4
 
 
 class enum__Torappu_TemplateMissionTitleType(object):
@@ -794,6 +831,229 @@ class enum__Torappu_TemplateMissionTitleType(object):
 class enum__Torappu_TemplateMissionCoinInfoType(object):
     COMMON = 0
     CUSTOM = 1
+
+
+class clz_Torappu_StageUnlockParam(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_StageUnlockParam()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_StageUnlockParam(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_StageUnlockParam
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_StageUnlockParam
+    def StageId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_StageUnlockParamStart(builder):
+    builder.StartObject(1)
+
+def clz_Torappu_StageUnlockParamAddStageId(builder, stageId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(stageId), 0)
+
+def clz_Torappu_StageUnlockParamEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_CharUnlockParam(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_CharUnlockParam()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_CharUnlockParam(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_CharUnlockParam
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_CharUnlockParam
+    def CharId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_CharUnlockParamStart(builder):
+    builder.StartObject(1)
+
+def clz_Torappu_CharUnlockParamAddCharId(builder, charId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(charId), 0)
+
+def clz_Torappu_CharUnlockParamEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_CommonAvailCheck(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_CommonAvailCheck()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_CommonAvailCheck(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_CommonAvailCheck
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_CommonAvailCheck
+    def StartTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CommonAvailCheck
+    def EndTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CommonAvailCheck
+    def Type(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_CommonAvailCheck
+    def Rate(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_CommonAvailCheck
+    def StageUnlockParam(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_StageUnlockParam()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_CommonAvailCheck
+    def CharUnlockParam(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_CharUnlockParam()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def clz_Torappu_CommonAvailCheckStart(builder):
+    builder.StartObject(6)
+
+def clz_Torappu_CommonAvailCheckAddStartTs(builder, startTs):
+    builder.PrependInt64Slot(0, startTs, 0)
+
+def clz_Torappu_CommonAvailCheckAddEndTs(builder, endTs):
+    builder.PrependInt64Slot(1, endTs, 0)
+
+def clz_Torappu_CommonAvailCheckAddType(builder, type):
+    builder.PrependInt32Slot(2, type, 0)
+
+def clz_Torappu_CommonAvailCheckAddRate(builder, rate):
+    builder.PrependFloat32Slot(3, rate, 0.0)
+
+def clz_Torappu_CommonAvailCheckAddStageUnlockParam(builder, stageUnlockParam):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(stageUnlockParam), 0)
+
+def clz_Torappu_CommonAvailCheckAddCharUnlockParam(builder, charUnlockParam):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(charUnlockParam), 0)
+
+def clz_Torappu_CommonAvailCheckEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityTable_PicGroup(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityTable_PicGroup()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityTable_PicGroup(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityTable_PicGroup
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityTable_PicGroup
+    def SortIndex(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityTable_PicGroup
+    def PicId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityTable_PicGroup
+    def AvailCheck(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_CommonAvailCheck()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def clz_Torappu_ActivityTable_PicGroupStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_ActivityTable_PicGroupAddSortIndex(builder, sortIndex):
+    builder.PrependInt32Slot(0, sortIndex, 0)
+
+def clz_Torappu_ActivityTable_PicGroupAddPicId(builder, picId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(picId), 0)
+
+def clz_Torappu_ActivityTable_PicGroupAddAvailCheck(builder, availCheck):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(availCheck), 0)
+
+def clz_Torappu_ActivityTable_PicGroupEnd(builder):
+    return builder.EndObject()
+
 
 
 class clz_Torappu_ActivityTable_BasicData(object):
@@ -953,8 +1213,39 @@ class clz_Torappu_ActivityTable_BasicData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_ActivityTable_BasicData
+    def PicGroup(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ActivityTable_PicGroup()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityTable_BasicData
+    def PicGroupLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityTable_BasicData
+    def PicGroupIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        return o == 0
+
+    # clz_Torappu_ActivityTable_BasicData
+    def UsePicGroup(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_ActivityTable_BasicDataStart(builder):
-    builder.StartObject(18)
+    builder.StartObject(20)
 
 def clz_Torappu_ActivityTable_BasicDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -1012,6 +1303,15 @@ def clz_Torappu_ActivityTable_BasicDataAddIsPageEntry(builder, isPageEntry):
 
 def clz_Torappu_ActivityTable_BasicDataAddIsMagnify(builder, isMagnify):
     builder.PrependBoolSlot(17, isMagnify, 0)
+
+def clz_Torappu_ActivityTable_BasicDataAddPicGroup(builder, picGroup):
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(picGroup), 0)
+
+def clz_Torappu_ActivityTable_BasicDataStartPicGroupVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityTable_BasicDataAddUsePicGroup(builder, usePicGroup):
+    builder.PrependBoolSlot(19, usePicGroup, 0)
 
 def clz_Torappu_ActivityTable_BasicDataEnd(builder):
     return builder.EndObject()
@@ -1234,6 +1534,52 @@ def dict__string__stringAddValue(builder, value):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
 
 def dict__string__stringEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__long(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__long()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__long(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__long
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__long
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__long
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+def dict__string__longStart(builder):
+    builder.StartObject(2)
+
+def dict__string__longAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__longAddValue(builder, value):
+    builder.PrependInt64Slot(1, value, 0)
+
+def dict__string__longEnd(builder):
     return builder.EndObject()
 
 
@@ -1494,8 +1840,15 @@ class clz_Torappu_MissionData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_MissionData
+    def CountEndTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_MissionDataStart(builder):
-    builder.StartObject(18)
+    builder.StartObject(19)
 
 def clz_Torappu_MissionDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -1562,6 +1915,9 @@ def clz_Torappu_MissionDataAddFoldId(builder, foldId):
 
 def clz_Torappu_MissionDataAddHaveSubMissionToUnlock(builder, haveSubMissionToUnlock):
     builder.PrependBoolSlot(17, haveSubMissionToUnlock, 0)
+
+def clz_Torappu_MissionDataAddCountEndTs(builder, countEndTs):
+    builder.PrependInt64Slot(18, countEndTs, 0)
 
 def clz_Torappu_MissionDataEnd(builder):
     return builder.EndObject()
@@ -2266,52 +2622,6 @@ def dict__int__clz_Torappu_DefaultCheckInData_CheckInDailyInfoAddValue(builder, 
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
 
 def dict__int__clz_Torappu_DefaultCheckInData_CheckInDailyInfoEnd(builder):
-    return builder.EndObject()
-
-
-
-class dict__string__long(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = dict__string__long()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsdict__string__long(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # dict__string__long
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # dict__string__long
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # dict__string__long
-    def Value(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return 0
-
-def dict__string__longStart(builder):
-    builder.StartObject(2)
-
-def dict__string__longAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
-
-def dict__string__longAddValue(builder, value):
-    builder.PrependInt64Slot(1, value, 0)
-
-def dict__string__longEnd(builder):
     return builder.EndObject()
 
 
@@ -8345,8 +8655,15 @@ class clz_Torappu_RuneData_Selector(object):
         return 0
 
     # clz_Torappu_RuneData_Selector
-    def CharIdFilter(self, j):
+    def SideType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_RuneData_Selector
+    def CharIdFilter(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8354,19 +8671,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def CharIdFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def CharIdFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def EnemyIdFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8374,19 +8691,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def EnemyIdFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def EnemyIdFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def EnemyIdExcludeFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8394,19 +8711,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def EnemyIdExcludeFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def EnemyIdExcludeFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def EnemyLevelTypeFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8414,19 +8731,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def EnemyLevelTypeFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def EnemyLevelTypeFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def EnemyActionHiddenGroupFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8434,19 +8751,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def EnemyActionHiddenGroupFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def EnemyActionHiddenGroupFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def SkillIdFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8454,19 +8771,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def SkillIdFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def SkillIdFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def TileKeyFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8474,19 +8791,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def TileKeyFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def TileKeyFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def GroupTagFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8494,19 +8811,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def GroupTagFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def GroupTagFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def FilterTagFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8514,19 +8831,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def FilterTagFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def FilterTagFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def FilterTagExcludeFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8534,19 +8851,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def FilterTagExcludeFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def FilterTagExcludeFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def SubProfessionExcludeFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8554,19 +8871,19 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def SubProfessionExcludeFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def SubProfessionExcludeFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         return o == 0
 
     # clz_Torappu_RuneData_Selector
     def MapTagFilter(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -8574,18 +8891,18 @@ class clz_Torappu_RuneData_Selector(object):
 
     # clz_Torappu_RuneData_Selector
     def MapTagFilterLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RuneData_Selector
     def MapTagFilterIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
 def clz_Torappu_RuneData_SelectorStart(builder):
-    builder.StartObject(15)
+    builder.StartObject(16)
 
 def clz_Torappu_RuneData_SelectorAddProfessionMask(builder, professionMask):
     builder.PrependInt32Slot(0, professionMask, 0)
@@ -8596,74 +8913,77 @@ def clz_Torappu_RuneData_SelectorAddBuildableMask(builder, buildableMask):
 def clz_Torappu_RuneData_SelectorAddPlayerSideMask(builder, playerSideMask):
     builder.PrependUint8Slot(2, playerSideMask, 0)
 
+def clz_Torappu_RuneData_SelectorAddSideType(builder, sideType):
+    builder.PrependInt32Slot(3, sideType, 0)
+
 def clz_Torappu_RuneData_SelectorAddCharIdFilter(builder, charIdFilter):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(charIdFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(charIdFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartCharIdFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddEnemyIdFilter(builder, enemyIdFilter):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(enemyIdFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(enemyIdFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartEnemyIdFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddEnemyIdExcludeFilter(builder, enemyIdExcludeFilter):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(enemyIdExcludeFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(enemyIdExcludeFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartEnemyIdExcludeFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddEnemyLevelTypeFilter(builder, enemyLevelTypeFilter):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(enemyLevelTypeFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(enemyLevelTypeFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartEnemyLevelTypeFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddEnemyActionHiddenGroupFilter(builder, enemyActionHiddenGroupFilter):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(enemyActionHiddenGroupFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(enemyActionHiddenGroupFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartEnemyActionHiddenGroupFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddSkillIdFilter(builder, skillIdFilter):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(skillIdFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(skillIdFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartSkillIdFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddTileKeyFilter(builder, tileKeyFilter):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(tileKeyFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(tileKeyFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartTileKeyFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddGroupTagFilter(builder, groupTagFilter):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(groupTagFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(groupTagFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartGroupTagFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddFilterTagFilter(builder, filterTagFilter):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(filterTagFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(filterTagFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartFilterTagFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddFilterTagExcludeFilter(builder, filterTagExcludeFilter):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(filterTagExcludeFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(filterTagExcludeFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartFilterTagExcludeFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddSubProfessionExcludeFilter(builder, subProfessionExcludeFilter):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(subProfessionExcludeFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(subProfessionExcludeFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartSubProfessionExcludeFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_RuneData_SelectorAddMapTagFilter(builder, mapTagFilter):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(mapTagFilter), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(mapTagFilter), 0)
 
 def clz_Torappu_RuneData_SelectorStartMapTagFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
@@ -46498,42 +46818,49 @@ class clz_Torappu_ActMultiV3ConstData(object):
         return None
 
     # clz_Torappu_ActMultiV3ConstData
-    def MaxPhotoPerType(self):
+    def TrainPartnerNameCardSkinTmpl(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(140))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActMultiV3ConstData
-    def CheckFriendStateTime(self):
+    def MaxPhotoPerType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(142))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_ActMultiV3ConstData
-    def PhotoCharacterDefaultAct(self):
+    def CheckFriendStateTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(144))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_ActMultiV3ConstData
-    def TrainingStageConfirmDesc(self):
+    def PhotoCharacterDefaultAct(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(146))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_ActMultiV3ConstData
-    def JoinRoomLongTimeThreshold(self):
+    def TrainingStageConfirmDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(148))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActMultiV3ConstData
+    def JoinRoomLongTimeThreshold(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(150))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float64Flags, o + self._tab.Pos)
         return 0.0
 
 def clz_Torappu_ActMultiV3ConstDataStart(builder):
-    builder.StartObject(73)
+    builder.StartObject(74)
 
 def clz_Torappu_ActMultiV3ConstDataAddMilestoneId(builder, milestoneId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneId), 0)
@@ -46748,20 +47075,23 @@ def clz_Torappu_ActMultiV3ConstDataStartTrainPartnerTitleListVector(builder, num
 def clz_Torappu_ActMultiV3ConstDataAddTrainPartnerNameCardSkinId(builder, trainPartnerNameCardSkinId):
     builder.PrependUOffsetTRelativeSlot(67, flatbuffers.number_types.UOffsetTFlags.py_type(trainPartnerNameCardSkinId), 0)
 
+def clz_Torappu_ActMultiV3ConstDataAddTrainPartnerNameCardSkinTmpl(builder, trainPartnerNameCardSkinTmpl):
+    builder.PrependInt32Slot(68, trainPartnerNameCardSkinTmpl, 0)
+
 def clz_Torappu_ActMultiV3ConstDataAddMaxPhotoPerType(builder, maxPhotoPerType):
-    builder.PrependInt32Slot(68, maxPhotoPerType, 0)
+    builder.PrependInt32Slot(69, maxPhotoPerType, 0)
 
 def clz_Torappu_ActMultiV3ConstDataAddCheckFriendStateTime(builder, checkFriendStateTime):
-    builder.PrependInt32Slot(69, checkFriendStateTime, 0)
+    builder.PrependInt32Slot(70, checkFriendStateTime, 0)
 
 def clz_Torappu_ActMultiV3ConstDataAddPhotoCharacterDefaultAct(builder, photoCharacterDefaultAct):
-    builder.PrependUOffsetTRelativeSlot(70, flatbuffers.number_types.UOffsetTFlags.py_type(photoCharacterDefaultAct), 0)
+    builder.PrependUOffsetTRelativeSlot(71, flatbuffers.number_types.UOffsetTFlags.py_type(photoCharacterDefaultAct), 0)
 
 def clz_Torappu_ActMultiV3ConstDataAddTrainingStageConfirmDesc(builder, trainingStageConfirmDesc):
-    builder.PrependUOffsetTRelativeSlot(71, flatbuffers.number_types.UOffsetTFlags.py_type(trainingStageConfirmDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(72, flatbuffers.number_types.UOffsetTFlags.py_type(trainingStageConfirmDesc), 0)
 
 def clz_Torappu_ActMultiV3ConstDataAddJoinRoomLongTimeThreshold(builder, joinRoomLongTimeThreshold):
-    builder.PrependFloat64Slot(72, joinRoomLongTimeThreshold, 0.0)
+    builder.PrependFloat64Slot(73, joinRoomLongTimeThreshold, 0.0)
 
 def clz_Torappu_ActMultiV3ConstDataEnd(builder):
     return builder.EndObject()
@@ -47461,6 +47791,3340 @@ def dict__string__clz_Torappu_ActMultiV3DataAddValue(builder, value):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
 
 def dict__string__clz_Torappu_ActMultiV3DataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActMainSSZoneAdditionData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActMainSSZoneAdditionData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActMainSSZoneAdditionData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActMainSSZoneAdditionData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActMainSSZoneAdditionData
+    def UnlockTip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_ActMainSSZoneAdditionDataStart(builder):
+    builder.StartObject(1)
+
+def clz_Torappu_ActMainSSZoneAdditionDataAddUnlockTip(builder, unlockTip):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(unlockTip), 0)
+
+def clz_Torappu_ActMainSSZoneAdditionDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActMainSSZoneAdditionData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActMainSSZoneAdditionData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActMainSSZoneAdditionData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActMainSSZoneAdditionData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActMainSSZoneAdditionData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActMainSSZoneAdditionData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActMainSSZoneAdditionData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActMainSSZoneAdditionDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActMainSSZoneAdditionDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActMainSSZoneAdditionDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActMainSSZoneAdditionDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActMainSSData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActMainSSData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActMainSSData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActMainSSData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActMainSSData
+    def ZoneAdditionDataMap(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActMainSSZoneAdditionData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActMainSSData
+    def ZoneAdditionDataMapLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActMainSSData
+    def ZoneAdditionDataMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+def clz_Torappu_ActMainSSDataStart(builder):
+    builder.StartObject(1)
+
+def clz_Torappu_ActMainSSDataAddZoneAdditionDataMap(builder, zoneAdditionDataMap):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(zoneAdditionDataMap), 0)
+
+def clz_Torappu_ActMainSSDataStartZoneAdditionDataMapVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActMainSSDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActMainSSData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActMainSSData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActMainSSData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActMainSSData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActMainSSData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActMainSSData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActMainSSData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActMainSSDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActMainSSDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActMainSSDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActMainSSDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelMilestoneItemData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelMilestoneItemData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelMilestoneItemData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelMilestoneItemData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelMilestoneItemData
+    def MilestoneId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelMilestoneItemData
+    def OrderId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelMilestoneItemData
+    def TokenNum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelMilestoneItemData
+    def Reward(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ItemBundle()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelMilestoneItemData
+    def AvailTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_ActivityEnemyDuelMilestoneItemDataStart(builder):
+    builder.StartObject(5)
+
+def clz_Torappu_ActivityEnemyDuelMilestoneItemDataAddMilestoneId(builder, milestoneId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneId), 0)
+
+def clz_Torappu_ActivityEnemyDuelMilestoneItemDataAddOrderId(builder, orderId):
+    builder.PrependInt32Slot(1, orderId, 0)
+
+def clz_Torappu_ActivityEnemyDuelMilestoneItemDataAddTokenNum(builder, tokenNum):
+    builder.PrependInt32Slot(2, tokenNum, 0)
+
+def clz_Torappu_ActivityEnemyDuelMilestoneItemDataAddReward(builder, reward):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(reward), 0)
+
+def clz_Torappu_ActivityEnemyDuelMilestoneItemDataAddAvailTime(builder, availTime):
+    builder.PrependInt64Slot(4, availTime, 0)
+
+def clz_Torappu_ActivityEnemyDuelMilestoneItemDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelModeData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelModeData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelModeData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def IsMultiPlayer(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def IsRoom(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def StageIds(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def StageIdsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def StageIdsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def PageId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def InnerSortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeShortName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeEnName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def MaxPlayer(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def PreposedMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def StartTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def EndTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def EntryPicId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def TitlePics(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def TitlePicsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def TitlePicsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeTarget(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeRecordDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ExtraTag(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeAvatarPicId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeAvatarName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def ModeAvatarText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelModeData
+    def HasUnlockToast(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_ActivityEnemyDuelModeDataStart(builder):
+    builder.StartObject(24)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeId(builder, modeId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(modeId), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddIsMultiPlayer(builder, isMultiPlayer):
+    builder.PrependBoolSlot(1, isMultiPlayer, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddIsRoom(builder, isRoom):
+    builder.PrependBoolSlot(2, isRoom, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeType(builder, modeType):
+    builder.PrependInt32Slot(3, modeType, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddStageIds(builder, stageIds):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(stageIds), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataStartStageIdsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddPageId(builder, pageId):
+    builder.PrependInt32Slot(5, pageId, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddInnerSortId(builder, innerSortId):
+    builder.PrependInt32Slot(6, innerSortId, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeName(builder, modeName):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(modeName), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeShortName(builder, modeShortName):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(modeShortName), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeEnName(builder, modeEnName):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(modeEnName), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddMaxPlayer(builder, maxPlayer):
+    builder.PrependInt32Slot(10, maxPlayer, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddPreposedMode(builder, preposedMode):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(preposedMode), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddStartTs(builder, startTs):
+    builder.PrependInt64Slot(12, startTs, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddEndTs(builder, endTs):
+    builder.PrependInt64Slot(13, endTs, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddEntryPicId(builder, entryPicId):
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(entryPicId), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddTitlePics(builder, titlePics):
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(titlePics), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataStartTitlePicsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeTarget(builder, modeTarget):
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(modeTarget), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeDesc(builder, modeDesc):
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(modeDesc), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeRecordDesc(builder, modeRecordDesc):
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(modeRecordDesc), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddExtraTag(builder, extraTag):
+    builder.PrependBoolSlot(19, extraTag, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeAvatarPicId(builder, modeAvatarPicId):
+    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(modeAvatarPicId), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeAvatarName(builder, modeAvatarName):
+    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(modeAvatarName), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddModeAvatarText(builder, modeAvatarText):
+    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(modeAvatarText), 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataAddHasUnlockToast(builder, hasUnlockToast):
+    builder.PrependBoolSlot(23, hasUnlockToast, 0)
+
+def clz_Torappu_ActivityEnemyDuelModeDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActivityEnemyDuelModeData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActivityEnemyDuelModeData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActivityEnemyDuelModeData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActivityEnemyDuelModeData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelModeData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelModeData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelModeData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActivityEnemyDuelModeDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelModeDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelModeDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelModeDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelRoundData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelRoundData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelRoundData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def RoundId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def ModeId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def Round(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def EnemyPredefined(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def RoundScore(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def EnemyScore(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def EnemyScoreRandom(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def EnemySideMinLeft(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def EnemySideMaxLeft(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def EnemySideMinRight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def EnemySideMaxRight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def EnemyPoolLeft(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def EnemyPoolRight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def CanSkip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_ActivityEnemyDuelRoundData
+    def CanAllIn(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_ActivityEnemyDuelRoundDataStart(builder):
+    builder.StartObject(15)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddRoundId(builder, roundId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(roundId), 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddModeId(builder, modeId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(modeId), 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddRound(builder, round):
+    builder.PrependInt32Slot(2, round, 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddEnemyPredefined(builder, enemyPredefined):
+    builder.PrependBoolSlot(3, enemyPredefined, 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddRoundScore(builder, roundScore):
+    builder.PrependInt32Slot(4, roundScore, 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddEnemyScore(builder, enemyScore):
+    builder.PrependFloat32Slot(5, enemyScore, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddEnemyScoreRandom(builder, enemyScoreRandom):
+    builder.PrependFloat32Slot(6, enemyScoreRandom, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddEnemySideMinLeft(builder, enemySideMinLeft):
+    builder.PrependInt32Slot(7, enemySideMinLeft, 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddEnemySideMaxLeft(builder, enemySideMaxLeft):
+    builder.PrependInt32Slot(8, enemySideMaxLeft, 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddEnemySideMinRight(builder, enemySideMinRight):
+    builder.PrependInt32Slot(9, enemySideMinRight, 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddEnemySideMaxRight(builder, enemySideMaxRight):
+    builder.PrependInt32Slot(10, enemySideMaxRight, 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddEnemyPoolLeft(builder, enemyPoolLeft):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(enemyPoolLeft), 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddEnemyPoolRight(builder, enemyPoolRight):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(enemyPoolRight), 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddCanSkip(builder, canSkip):
+    builder.PrependBoolSlot(13, canSkip, 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataAddCanAllIn(builder, canAllIn):
+    builder.PrependBoolSlot(14, canAllIn, 0)
+
+def clz_Torappu_ActivityEnemyDuelRoundDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActivityEnemyDuelRoundData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActivityEnemyDuelRoundData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActivityEnemyDuelRoundData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActivityEnemyDuelRoundData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelRoundData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelRoundData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelRoundData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActivityEnemyDuelRoundDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelRoundDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelRoundDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelRoundDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelPoolData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelPoolData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelPoolData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelPoolData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelPoolData
+    def EnemyId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelPoolData
+    def PoolNormal(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelPoolData
+    def PoolSmallEnemy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelPoolData
+    def PoolBoss(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def clz_Torappu_ActivityEnemyDuelPoolDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_ActivityEnemyDuelPoolDataAddEnemyId(builder, enemyId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(enemyId), 0)
+
+def clz_Torappu_ActivityEnemyDuelPoolDataAddPoolNormal(builder, poolNormal):
+    builder.PrependFloat32Slot(1, poolNormal, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelPoolDataAddPoolSmallEnemy(builder, poolSmallEnemy):
+    builder.PrependFloat32Slot(2, poolSmallEnemy, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelPoolDataAddPoolBoss(builder, poolBoss):
+    builder.PrependFloat32Slot(3, poolBoss, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelPoolDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActivityEnemyDuelPoolData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActivityEnemyDuelPoolData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActivityEnemyDuelPoolData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActivityEnemyDuelPoolData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelPoolData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelPoolData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelPoolData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActivityEnemyDuelPoolDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelPoolDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelPoolDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelPoolDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelNpcData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelNpcData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelNpcData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelNpcData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelNpcData
+    def NpcId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelNpcData
+    def AvatarId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelNpcData
+    def Name(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelNpcData
+    def Priority(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelNpcData
+    def SpecialStrategy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelNpcData
+    def NpcProb(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelNpcData
+    def DefaultEnemyScore(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelNpcData
+    def AllinProb(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def clz_Torappu_ActivityEnemyDuelNpcDataStart(builder):
+    builder.StartObject(8)
+
+def clz_Torappu_ActivityEnemyDuelNpcDataAddNpcId(builder, npcId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(npcId), 0)
+
+def clz_Torappu_ActivityEnemyDuelNpcDataAddAvatarId(builder, avatarId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(avatarId), 0)
+
+def clz_Torappu_ActivityEnemyDuelNpcDataAddName(builder, name):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+
+def clz_Torappu_ActivityEnemyDuelNpcDataAddPriority(builder, priority):
+    builder.PrependFloat32Slot(3, priority, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelNpcDataAddSpecialStrategy(builder, specialStrategy):
+    builder.PrependInt32Slot(4, specialStrategy, 0)
+
+def clz_Torappu_ActivityEnemyDuelNpcDataAddNpcProb(builder, npcProb):
+    builder.PrependFloat32Slot(5, npcProb, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelNpcDataAddDefaultEnemyScore(builder, defaultEnemyScore):
+    builder.PrependFloat32Slot(6, defaultEnemyScore, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelNpcDataAddAllinProb(builder, allinProb):
+    builder.PrependFloat32Slot(7, allinProb, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelNpcDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActivityEnemyDuelNpcData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActivityEnemyDuelNpcData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActivityEnemyDuelNpcData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActivityEnemyDuelNpcData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelNpcData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelNpcData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelNpcData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActivityEnemyDuelNpcDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelNpcDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelNpcDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelNpcDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelNpcSelectorData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelNpcSelectorData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelNpcSelectorData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelNpcSelectorData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelNpcSelectorData
+    def EnemyId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelNpcSelectorData
+    def Score(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def clz_Torappu_ActivityEnemyDuelNpcSelectorDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_ActivityEnemyDuelNpcSelectorDataAddEnemyId(builder, enemyId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(enemyId), 0)
+
+def clz_Torappu_ActivityEnemyDuelNpcSelectorDataAddScore(builder, score):
+    builder.PrependFloat32Slot(1, score, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelNpcSelectorDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelNpcSelectorGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData
+    def NpcId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData
+    def Data(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ActivityEnemyDuelNpcSelectorData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData
+    def DataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData
+    def DataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def clz_Torappu_ActivityEnemyDuelNpcSelectorGroupDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_ActivityEnemyDuelNpcSelectorGroupDataAddNpcId(builder, npcId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(npcId), 0)
+
+def clz_Torappu_ActivityEnemyDuelNpcSelectorGroupDataAddData(builder, data):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
+
+def clz_Torappu_ActivityEnemyDuelNpcSelectorGroupDataStartDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelNpcSelectorGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelEnemyData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelEnemyData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelEnemyData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelEnemyData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelEnemyData
+    def EnemyId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelEnemyData
+    def OriginalEnemyId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_ActivityEnemyDuelEnemyDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_ActivityEnemyDuelEnemyDataAddEnemyId(builder, enemyId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(enemyId), 0)
+
+def clz_Torappu_ActivityEnemyDuelEnemyDataAddOriginalEnemyId(builder, originalEnemyId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(originalEnemyId), 0)
+
+def clz_Torappu_ActivityEnemyDuelEnemyDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActivityEnemyDuelEnemyData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActivityEnemyDuelEnemyData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActivityEnemyDuelEnemyData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActivityEnemyDuelEnemyData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelEnemyData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelEnemyData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelEnemyData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActivityEnemyDuelEnemyDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelEnemyDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelEnemyDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelEnemyDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelExtraScoreData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelExtraScoreData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelExtraScoreData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelExtraScoreData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelExtraScoreData
+    def RankMin(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelExtraScoreData
+    def RankMax(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelExtraScoreData
+    def TokenNum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreDataAddRankMin(builder, rankMin):
+    builder.PrependInt32Slot(0, rankMin, 0)
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreDataAddRankMax(builder, rankMax):
+    builder.PrependInt32Slot(1, rankMax, 0)
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreDataAddTokenNum(builder, tokenNum):
+    builder.PrependInt32Slot(2, tokenNum, 0)
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelExtraScoreGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelExtraScoreGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelExtraScoreGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelExtraScoreGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelExtraScoreGroupData
+    def ModeId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelExtraScoreGroupData
+    def Data(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ActivityEnemyDuelExtraScoreData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelExtraScoreGroupData
+    def DataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelExtraScoreGroupData
+    def DataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreGroupDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreGroupDataAddModeId(builder, modeId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(modeId), 0)
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreGroupDataAddData(builder, data):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreGroupDataStartDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelExtraScoreGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelExtraScoreGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelAnnounceData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelAnnounceData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelAnnounceData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelAnnounceData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelAnnounceData
+    def StartTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelAnnounceData
+    def EndTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelAnnounceData
+    def AnnounceText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelAnnounceData
+    def ShowNew(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_ActivityEnemyDuelAnnounceDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_ActivityEnemyDuelAnnounceDataAddStartTs(builder, startTs):
+    builder.PrependInt64Slot(0, startTs, 0)
+
+def clz_Torappu_ActivityEnemyDuelAnnounceDataAddEndTs(builder, endTs):
+    builder.PrependInt64Slot(1, endTs, 0)
+
+def clz_Torappu_ActivityEnemyDuelAnnounceDataAddAnnounceText(builder, announceText):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(announceText), 0)
+
+def clz_Torappu_ActivityEnemyDuelAnnounceDataAddShowNew(builder, showNew):
+    builder.PrependBoolSlot(3, showNew, 0)
+
+def clz_Torappu_ActivityEnemyDuelAnnounceDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelSingleCommentData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelSingleCommentData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelSingleCommentData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def CommentId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Priority(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Template(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Param(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def ParamLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def ParamIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def CommentText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_ActivityEnemyDuelSingleCommentDataStart(builder):
+    builder.StartObject(5)
+
+def clz_Torappu_ActivityEnemyDuelSingleCommentDataAddCommentId(builder, commentId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(commentId), 0)
+
+def clz_Torappu_ActivityEnemyDuelSingleCommentDataAddPriority(builder, priority):
+    builder.PrependInt32Slot(1, priority, 0)
+
+def clz_Torappu_ActivityEnemyDuelSingleCommentDataAddTemplate(builder, template):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(template), 0)
+
+def clz_Torappu_ActivityEnemyDuelSingleCommentDataAddParam(builder, param):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(param), 0)
+
+def clz_Torappu_ActivityEnemyDuelSingleCommentDataStartParamVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelSingleCommentDataAddCommentText(builder, commentText):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(commentText), 0)
+
+def clz_Torappu_ActivityEnemyDuelSingleCommentDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelSingleCommentData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def Value(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def ValueLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData
+    def ValueIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentDataStartValueVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelConstData_PingCond(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelConstData_PingCond()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelConstData_PingCond(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelConstData_PingCond
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelConstData_PingCond
+    def Cond(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData_PingCond
+    def Txt(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_ActivityEnemyDuelConstData_PingCondStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_ActivityEnemyDuelConstData_PingCondAddCond(builder, cond):
+    builder.PrependInt32Slot(0, cond, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstData_PingCondAddTxt(builder, txt):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(txt), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstData_PingCondEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelConstData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelConstData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelConstData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MaxLoadingTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MaxRetryTimeInBattle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MaxMatchTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MaxRoomTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MaxRetryTimeInTeamRoom(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def RoomReserveTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MinRoomNum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def RoomFinishWaitingTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def RoomMasterRestartWaitingTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def PingConds(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ActivityEnemyDuelConstData_PingCond()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def PingCondsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def PingCondsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ChatCd(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ChatTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def DailyMissionParam(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def DailyMissionReward(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ItemBundle()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def DailyMissionName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def DailyMissionDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MaxOperatorDelay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MaxPlaySpeed(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def DelayTimeNeedTip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def NetBlockTimeNeedTip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def StageTimeMax(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def NpcCorrectProb(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def WinStreakRoundNum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def SettlementPicNum(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def TimeBeforeSelectAfterRoundBegin(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def NpcMaxCorrectCountInStand(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def BattlePhaseTimeMax(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def BattleFinishToSettleTimeMax(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MinBetCd(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def DefaultEmoticonItemId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def DefaultEmoticonPicId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationRoundNumber(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationInitialScore(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationMaxScore(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationSelectTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationSelectTimeLast(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationSkipParam(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationBetParam(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationAllinParam(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationTopRank(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(82))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationRankTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(84))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeSoloOperationRankTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(86))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationRewardMultiplier(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(88))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationRewardMultiplierAllin(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(90))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationHotRoundNumber(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(92))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeSoloOperationSelectTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(94))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandRoundNumber(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(96))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandShieldTurn(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(98))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandSelectTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(100))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandSelectTimeLast(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(102))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandAllinParam(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(104))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandTopRank(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(106))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandRankTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(108))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandHotRoundNumber(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(110))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MilestoneName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(112))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MilestoneItemId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(114))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MilestoneItemName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(116))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MilestoneItemText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(118))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MilestoneTrackId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(120))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def EntryVideoId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def EntryTabText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MatchTabText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(126))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeOperationId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(128))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeStandId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(130))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def MultiPreposedModeId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(132))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def EntryMusicName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(134))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeCondLockText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(136))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def ModeTimeLockText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(138))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstData
+    def TitlePicRotateTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(140))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def clz_Torappu_ActivityEnemyDuelConstDataStart(builder):
+    builder.StartObject(69)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMaxLoadingTime(builder, maxLoadingTime):
+    builder.PrependFloat32Slot(0, maxLoadingTime, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMaxRetryTimeInBattle(builder, maxRetryTimeInBattle):
+    builder.PrependFloat32Slot(1, maxRetryTimeInBattle, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMaxMatchTime(builder, maxMatchTime):
+    builder.PrependFloat32Slot(2, maxMatchTime, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMaxRoomTime(builder, maxRoomTime):
+    builder.PrependFloat32Slot(3, maxRoomTime, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMaxRetryTimeInTeamRoom(builder, maxRetryTimeInTeamRoom):
+    builder.PrependFloat32Slot(4, maxRetryTimeInTeamRoom, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddRoomReserveTime(builder, roomReserveTime):
+    builder.PrependFloat32Slot(5, roomReserveTime, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMinRoomNum(builder, minRoomNum):
+    builder.PrependInt32Slot(6, minRoomNum, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddRoomFinishWaitingTime(builder, roomFinishWaitingTime):
+    builder.PrependInt32Slot(7, roomFinishWaitingTime, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddRoomMasterRestartWaitingTime(builder, roomMasterRestartWaitingTime):
+    builder.PrependInt32Slot(8, roomMasterRestartWaitingTime, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddPingConds(builder, pingConds):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(pingConds), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataStartPingCondsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddChatCd(builder, chatCd):
+    builder.PrependFloat32Slot(10, chatCd, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddChatTime(builder, chatTime):
+    builder.PrependFloat32Slot(11, chatTime, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddDailyMissionParam(builder, dailyMissionParam):
+    builder.PrependInt32Slot(12, dailyMissionParam, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddDailyMissionReward(builder, dailyMissionReward):
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(dailyMissionReward), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddDailyMissionName(builder, dailyMissionName):
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(dailyMissionName), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddDailyMissionDesc(builder, dailyMissionDesc):
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(dailyMissionDesc), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMaxOperatorDelay(builder, maxOperatorDelay):
+    builder.PrependFloat32Slot(16, maxOperatorDelay, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMaxPlaySpeed(builder, maxPlaySpeed):
+    builder.PrependFloat32Slot(17, maxPlaySpeed, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddDelayTimeNeedTip(builder, delayTimeNeedTip):
+    builder.PrependFloat32Slot(18, delayTimeNeedTip, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddNetBlockTimeNeedTip(builder, netBlockTimeNeedTip):
+    builder.PrependFloat32Slot(19, netBlockTimeNeedTip, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddStageTimeMax(builder, stageTimeMax):
+    builder.PrependFloat32Slot(20, stageTimeMax, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddNpcCorrectProb(builder, npcCorrectProb):
+    builder.PrependFloat32Slot(21, npcCorrectProb, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddWinStreakRoundNum(builder, winStreakRoundNum):
+    builder.PrependInt32Slot(22, winStreakRoundNum, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddSettlementPicNum(builder, settlementPicNum):
+    builder.PrependInt32Slot(23, settlementPicNum, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddTimeBeforeSelectAfterRoundBegin(builder, timeBeforeSelectAfterRoundBegin):
+    builder.PrependInt32Slot(24, timeBeforeSelectAfterRoundBegin, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddNpcMaxCorrectCountInStand(builder, npcMaxCorrectCountInStand):
+    builder.PrependInt32Slot(25, npcMaxCorrectCountInStand, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddBattlePhaseTimeMax(builder, battlePhaseTimeMax):
+    builder.PrependInt32Slot(26, battlePhaseTimeMax, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddBattleFinishToSettleTimeMax(builder, battleFinishToSettleTimeMax):
+    builder.PrependInt32Slot(27, battleFinishToSettleTimeMax, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMinBetCd(builder, minBetCd):
+    builder.PrependFloat32Slot(28, minBetCd, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddDefaultEmoticonItemId(builder, defaultEmoticonItemId):
+    builder.PrependUOffsetTRelativeSlot(29, flatbuffers.number_types.UOffsetTFlags.py_type(defaultEmoticonItemId), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddDefaultEmoticonPicId(builder, defaultEmoticonPicId):
+    builder.PrependUOffsetTRelativeSlot(30, flatbuffers.number_types.UOffsetTFlags.py_type(defaultEmoticonPicId), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationRoundNumber(builder, modeOperationRoundNumber):
+    builder.PrependInt32Slot(31, modeOperationRoundNumber, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationInitialScore(builder, modeOperationInitialScore):
+    builder.PrependInt32Slot(32, modeOperationInitialScore, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationMaxScore(builder, modeOperationMaxScore):
+    builder.PrependInt32Slot(33, modeOperationMaxScore, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationSelectTime(builder, modeOperationSelectTime):
+    builder.PrependInt32Slot(34, modeOperationSelectTime, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationSelectTimeLast(builder, modeOperationSelectTimeLast):
+    builder.PrependInt32Slot(35, modeOperationSelectTimeLast, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationSkipParam(builder, modeOperationSkipParam):
+    builder.PrependFloat32Slot(36, modeOperationSkipParam, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationBetParam(builder, modeOperationBetParam):
+    builder.PrependFloat32Slot(37, modeOperationBetParam, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationAllinParam(builder, modeOperationAllinParam):
+    builder.PrependFloat32Slot(38, modeOperationAllinParam, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationTopRank(builder, modeOperationTopRank):
+    builder.PrependInt32Slot(39, modeOperationTopRank, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationRankTime(builder, modeOperationRankTime):
+    builder.PrependInt32Slot(40, modeOperationRankTime, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeSoloOperationRankTime(builder, modeSoloOperationRankTime):
+    builder.PrependInt32Slot(41, modeSoloOperationRankTime, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationRewardMultiplier(builder, modeOperationRewardMultiplier):
+    builder.PrependInt32Slot(42, modeOperationRewardMultiplier, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationRewardMultiplierAllin(builder, modeOperationRewardMultiplierAllin):
+    builder.PrependInt32Slot(43, modeOperationRewardMultiplierAllin, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationHotRoundNumber(builder, modeOperationHotRoundNumber):
+    builder.PrependInt32Slot(44, modeOperationHotRoundNumber, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeSoloOperationSelectTime(builder, modeSoloOperationSelectTime):
+    builder.PrependInt32Slot(45, modeSoloOperationSelectTime, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandRoundNumber(builder, modeStandRoundNumber):
+    builder.PrependInt32Slot(46, modeStandRoundNumber, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandShieldTurn(builder, modeStandShieldTurn):
+    builder.PrependInt32Slot(47, modeStandShieldTurn, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandSelectTime(builder, modeStandSelectTime):
+    builder.PrependInt32Slot(48, modeStandSelectTime, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandSelectTimeLast(builder, modeStandSelectTimeLast):
+    builder.PrependInt32Slot(49, modeStandSelectTimeLast, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandAllinParam(builder, modeStandAllinParam):
+    builder.PrependFloat32Slot(50, modeStandAllinParam, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandTopRank(builder, modeStandTopRank):
+    builder.PrependInt32Slot(51, modeStandTopRank, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandRankTime(builder, modeStandRankTime):
+    builder.PrependInt32Slot(52, modeStandRankTime, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandHotRoundNumber(builder, modeStandHotRoundNumber):
+    builder.PrependInt32Slot(53, modeStandHotRoundNumber, 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneName(builder, milestoneName):
+    builder.PrependUOffsetTRelativeSlot(54, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneName), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneItemId(builder, milestoneItemId):
+    builder.PrependUOffsetTRelativeSlot(55, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneItemId), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneItemName(builder, milestoneItemName):
+    builder.PrependUOffsetTRelativeSlot(56, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneItemName), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneItemText(builder, milestoneItemText):
+    builder.PrependUOffsetTRelativeSlot(57, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneItemText), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMilestoneTrackId(builder, milestoneTrackId):
+    builder.PrependUOffsetTRelativeSlot(58, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneTrackId), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddEntryVideoId(builder, entryVideoId):
+    builder.PrependUOffsetTRelativeSlot(59, flatbuffers.number_types.UOffsetTFlags.py_type(entryVideoId), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddEntryTabText(builder, entryTabText):
+    builder.PrependUOffsetTRelativeSlot(60, flatbuffers.number_types.UOffsetTFlags.py_type(entryTabText), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMatchTabText(builder, matchTabText):
+    builder.PrependUOffsetTRelativeSlot(61, flatbuffers.number_types.UOffsetTFlags.py_type(matchTabText), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeOperationId(builder, modeOperationId):
+    builder.PrependUOffsetTRelativeSlot(62, flatbuffers.number_types.UOffsetTFlags.py_type(modeOperationId), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeStandId(builder, modeStandId):
+    builder.PrependUOffsetTRelativeSlot(63, flatbuffers.number_types.UOffsetTFlags.py_type(modeStandId), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddMultiPreposedModeId(builder, multiPreposedModeId):
+    builder.PrependUOffsetTRelativeSlot(64, flatbuffers.number_types.UOffsetTFlags.py_type(multiPreposedModeId), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddEntryMusicName(builder, entryMusicName):
+    builder.PrependUOffsetTRelativeSlot(65, flatbuffers.number_types.UOffsetTFlags.py_type(entryMusicName), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeCondLockText(builder, modeCondLockText):
+    builder.PrependUOffsetTRelativeSlot(66, flatbuffers.number_types.UOffsetTFlags.py_type(modeCondLockText), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddModeTimeLockText(builder, modeTimeLockText):
+    builder.PrependUOffsetTRelativeSlot(67, flatbuffers.number_types.UOffsetTFlags.py_type(modeTimeLockText), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataAddTitlePicRotateTime(builder, titlePicRotateTime):
+    builder.PrependFloat32Slot(68, titlePicRotateTime, 0.0)
+
+def clz_Torappu_ActivityEnemyDuelConstDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelConstToastData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelConstToastData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelConstToastData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def CreateRoomAliveFailed(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def JoinRoomAliveFailed(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def RoomIdFormatError(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def EmptyRoomId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def NoRoom(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def ContinuousClicks(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def MatchAliveFailed(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def ServerOverloaded(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def MatchTimeout(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def UnlockMultiMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def UnlockRoomMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def AddFriendInRoom(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def RoomIdCopySuccess(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelConstToastData
+    def EntryModeLock(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataStart(builder):
+    builder.StartObject(14)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddCreateRoomAliveFailed(builder, createRoomAliveFailed):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(createRoomAliveFailed), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddJoinRoomAliveFailed(builder, joinRoomAliveFailed):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(joinRoomAliveFailed), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddRoomIdFormatError(builder, roomIdFormatError):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(roomIdFormatError), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddEmptyRoomId(builder, emptyRoomId):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(emptyRoomId), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddNoRoom(builder, noRoom):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(noRoom), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddContinuousClicks(builder, continuousClicks):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(continuousClicks), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddMatchAliveFailed(builder, matchAliveFailed):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(matchAliveFailed), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddServerOverloaded(builder, serverOverloaded):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(serverOverloaded), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddMatchTimeout(builder, matchTimeout):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(matchTimeout), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddUnlockMultiMode(builder, unlockMultiMode):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(unlockMultiMode), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddUnlockRoomMode(builder, unlockRoomMode):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(unlockRoomMode), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddAddFriendInRoom(builder, addFriendInRoom):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(addFriendInRoom), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddRoomIdCopySuccess(builder, roomIdCopySuccess):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(roomIdCopySuccess), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataAddEntryModeLock(builder, entryModeLock):
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(entryModeLock), 0)
+
+def clz_Torappu_ActivityEnemyDuelConstToastDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelTipsData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelTipsData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelTipsData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelTipsData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelTipsData
+    def Id(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelTipsData
+    def Txt(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelTipsData
+    def Weight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelTipsData
+    def ModeIds(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ActivityEnemyDuelTipsData
+    def ModeIdsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelTipsData
+    def ModeIdsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+def clz_Torappu_ActivityEnemyDuelTipsDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_ActivityEnemyDuelTipsDataAddId(builder, id):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
+
+def clz_Torappu_ActivityEnemyDuelTipsDataAddTxt(builder, txt):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(txt), 0)
+
+def clz_Torappu_ActivityEnemyDuelTipsDataAddWeight(builder, weight):
+    builder.PrependInt32Slot(2, weight, 0)
+
+def clz_Torappu_ActivityEnemyDuelTipsDataAddModeIds(builder, modeIds):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(modeIds), 0)
+
+def clz_Torappu_ActivityEnemyDuelTipsDataStartModeIdsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelTipsDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_ActivityEnemyDuelData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityEnemyDuelData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityEnemyDuelData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityEnemyDuelData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def MilestoneList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ActivityEnemyDuelMilestoneItemData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def MilestoneListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def MilestoneListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def ModeData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActivityEnemyDuelModeData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def ModeDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def ModeDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def RoundData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActivityEnemyDuelRoundData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def RoundDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def RoundDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def PoolData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActivityEnemyDuelPoolData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def PoolDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def PoolDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def NpcData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActivityEnemyDuelNpcData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def NpcDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def NpcDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def NpcSelectorData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActivityEnemyDuelNpcSelectorGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def NpcSelectorDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def NpcSelectorDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def EnemyData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActivityEnemyDuelEnemyData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def EnemyDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def EnemyDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def ExtraScoreData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActivityEnemyDuelExtraScoreGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def ExtraScoreDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def ExtraScoreDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def BasicScores(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def BasicScoresAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def BasicScoresLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def BasicScoresIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def AnnounceData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ActivityEnemyDuelAnnounceData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def AnnounceDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def AnnounceDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def CommentData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__list_dict__string__clz_Torappu_ActivityEnemyDuelSingleCommentData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def CommentDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def CommentDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def ConstData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelConstData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def ConstToastData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelConstToastData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def TipsData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ActivityEnemyDuelTipsData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def TipsDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def TipsDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        return o == 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def EnabledEmoticonThemeIdList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def EnabledEmoticonThemeIdListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityEnemyDuelData
+    def EnabledEmoticonThemeIdListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        return o == 0
+
+def clz_Torappu_ActivityEnemyDuelDataStart(builder):
+    builder.StartObject(15)
+
+def clz_Torappu_ActivityEnemyDuelDataAddMilestoneList(builder, milestoneList):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(milestoneList), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartMilestoneListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddModeData(builder, modeData):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(modeData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartModeDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddRoundData(builder, roundData):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(roundData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartRoundDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddPoolData(builder, poolData):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(poolData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartPoolDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddNpcData(builder, npcData):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(npcData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartNpcDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddNpcSelectorData(builder, npcSelectorData):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(npcSelectorData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartNpcSelectorDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddEnemyData(builder, enemyData):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(enemyData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartEnemyDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddExtraScoreData(builder, extraScoreData):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(extraScoreData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartExtraScoreDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddBasicScores(builder, basicScores):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(basicScores), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartBasicScoresVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddAnnounceData(builder, announceData):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(announceData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartAnnounceDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddCommentData(builder, commentData):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(commentData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartCommentDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddConstData(builder, constData):
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataAddConstToastData(builder, constToastData):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(constToastData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataAddTipsData(builder, tipsData):
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(tipsData), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartTipsDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataAddEnabledEmoticonThemeIdList(builder, enabledEmoticonThemeIdList):
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(enabledEmoticonThemeIdList), 0)
+
+def clz_Torappu_ActivityEnemyDuelDataStartEnabledEmoticonThemeIdListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityEnemyDuelDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_ActivityEnemyDuelData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_ActivityEnemyDuelData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_ActivityEnemyDuelData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_ActivityEnemyDuelData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_ActivityEnemyDuelData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_ActivityEnemyDuelData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_ActivityEnemyDuelDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_ActivityEnemyDuelDataEnd(builder):
     return builder.EndObject()
 
 
@@ -48347,8 +52011,56 @@ class clz_Torappu_ActivityTable_ActivityDetailTable(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         return o == 0
 
+    # clz_Torappu_ActivityTable_ActivityDetailTable
+    def TypeMainss(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActMainSSData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityTable_ActivityDetailTable
+    def TypeMainssLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityTable_ActivityDetailTable
+    def TypeMainssIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        return o == 0
+
+    # clz_Torappu_ActivityTable_ActivityDetailTable
+    def EnemyDuel(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_ActivityEnemyDuelData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityTable_ActivityDetailTable
+    def EnemyDuelLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityTable_ActivityDetailTable
+    def EnemyDuelIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
+        return o == 0
+
 def clz_Torappu_ActivityTable_ActivityDetailTableStart(builder):
-    builder.StartObject(36)
+    builder.StartObject(38)
 
 def clz_Torappu_ActivityTable_ActivityDetailTableAddDefault(builder, default):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(default), 0)
@@ -48564,6 +52276,18 @@ def clz_Torappu_ActivityTable_ActivityDetailTableAddMultiplayV3(builder, multipl
     builder.PrependUOffsetTRelativeSlot(35, flatbuffers.number_types.UOffsetTFlags.py_type(multiplayV3), 0)
 
 def clz_Torappu_ActivityTable_ActivityDetailTableStartMultiplayV3Vector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityTable_ActivityDetailTableAddTypeMainss(builder, typeMainss):
+    builder.PrependUOffsetTRelativeSlot(36, flatbuffers.number_types.UOffsetTFlags.py_type(typeMainss), 0)
+
+def clz_Torappu_ActivityTable_ActivityDetailTableStartTypeMainssVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_ActivityTable_ActivityDetailTableAddEnemyDuel(builder, enemyDuel):
+    builder.PrependUOffsetTRelativeSlot(37, flatbuffers.number_types.UOffsetTFlags.py_type(enemyDuel), 0)
+
+def clz_Torappu_ActivityTable_ActivityDetailTableStartEnemyDuelVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTable_ActivityDetailTableEnd(builder):
@@ -49159,6 +52883,65 @@ def clz_Torappu_ActivityThemeData_TimeNodeEnd(builder):
 
 
 
+class clz_Torappu_ActivityThemeData_PicGroup(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_ActivityThemeData_PicGroup()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_ActivityThemeData_PicGroup(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_ActivityThemeData_PicGroup
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_ActivityThemeData_PicGroup
+    def SortIndex(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_ActivityThemeData_PicGroup
+    def PicId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ActivityThemeData_PicGroup
+    def AvailCheck(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_CommonAvailCheck()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def clz_Torappu_ActivityThemeData_PicGroupStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_ActivityThemeData_PicGroupAddSortIndex(builder, sortIndex):
+    builder.PrependInt32Slot(0, sortIndex, 0)
+
+def clz_Torappu_ActivityThemeData_PicGroupAddPicId(builder, picId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(picId), 0)
+
+def clz_Torappu_ActivityThemeData_PicGroupAddAvailCheck(builder, availCheck):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(availCheck), 0)
+
+def clz_Torappu_ActivityThemeData_PicGroupEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_ActivityThemeData(object):
     __slots__ = ['_tab']
 
@@ -49244,14 +53027,38 @@ class clz_Torappu_ActivityThemeData(object):
         return o == 0
 
     # clz_Torappu_ActivityThemeData
-    def StartTs(self):
+    def PicGroups(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ActivityThemeData_PicGroup()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityThemeData
+    def PicGroupsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityThemeData
+    def PicGroupsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        return o == 0
+
+    # clz_Torappu_ActivityThemeData
+    def StartTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
 def clz_Torappu_ActivityThemeDataStart(builder):
-    builder.StartObject(8)
+    builder.StartObject(9)
 
 def clz_Torappu_ActivityThemeDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -49277,8 +53084,14 @@ def clz_Torappu_ActivityThemeDataAddTimeNodes(builder, timeNodes):
 def clz_Torappu_ActivityThemeDataStartTimeNodesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_ActivityThemeDataAddPicGroups(builder, picGroups):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(picGroups), 0)
+
+def clz_Torappu_ActivityThemeDataStartPicGroupsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_ActivityThemeDataAddStartTs(builder, startTs):
-    builder.PrependInt64Slot(7, startTs, 0)
+    builder.PrependInt64Slot(8, startTs, 0)
 
 def clz_Torappu_ActivityThemeDataEnd(builder):
     return builder.EndObject()
@@ -61153,8 +64966,15 @@ class clz_Torappu_FifthAnnivExploreMissionData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_FifthAnnivExploreMissionData
+    def CountEndTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_FifthAnnivExploreMissionDataStart(builder):
-    builder.StartObject(19)
+    builder.StartObject(20)
 
 def clz_Torappu_FifthAnnivExploreMissionDataAddProgressUpLimit(builder, progressUpLimit):
     builder.PrependInt32Slot(0, progressUpLimit, 0)
@@ -61224,6 +65044,9 @@ def clz_Torappu_FifthAnnivExploreMissionDataAddFoldId(builder, foldId):
 
 def clz_Torappu_FifthAnnivExploreMissionDataAddHaveSubMissionToUnlock(builder, haveSubMissionToUnlock):
     builder.PrependBoolSlot(18, haveSubMissionToUnlock, 0)
+
+def clz_Torappu_FifthAnnivExploreMissionDataAddCountEndTs(builder, countEndTs):
+    builder.PrependInt64Slot(19, countEndTs, 0)
 
 def clz_Torappu_FifthAnnivExploreMissionDataEnd(builder):
     return builder.EndObject()
@@ -62731,8 +66554,32 @@ class clz_Torappu_ActivityTable(object):
         return o == 0
 
     # clz_Torappu_ActivityTable
-    def MissionData(self, j):
+    def ActTimeTrackPoint(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__long()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_ActivityTable
+    def ActTimeTrackPointLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ActivityTable
+    def ActTimeTrackPointIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_ActivityTable
+    def MissionData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -62744,19 +66591,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def MissionDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def MissionDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def MissionGroup(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -62768,19 +66615,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def MissionGroupLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def MissionGroupIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def ReplicateMissions(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -62792,19 +66639,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ReplicateMissionsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def ReplicateMissionsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def Activity(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_ActivityTable_ActivityDetailTable()
@@ -62814,7 +66661,7 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ExtraData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_ActivityTable_ActivityExtraData()
@@ -62824,7 +66671,7 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ActivityItems(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -62836,19 +66683,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ActivityItemsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def ActivityItemsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def SyncPoints(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -62860,19 +66707,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def SyncPointsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def SyncPointsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def DynActs(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -62884,19 +66731,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def DynActsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def DynActsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def StageRewardsData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -62908,19 +66755,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def StageRewardsDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def StageRewardsDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def ActThemes(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -62932,19 +66779,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ActThemesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def ActThemesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def ActFunData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_AprilFoolTable()
@@ -62954,7 +66801,7 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def CarData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CartData()
@@ -62964,7 +66811,7 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def SiracusaData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_SiracusaData()
@@ -62974,7 +66821,7 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def FireworkData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_FireworkData()
@@ -62984,7 +66831,7 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def KvSwitchData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -62996,19 +66843,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def KvSwitchDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def KvSwitchDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def DynEntrySwitchData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63020,19 +66867,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def DynEntrySwitchDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def DynEntrySwitchDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def HiddenStageData(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63044,19 +66891,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def HiddenStageDataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def HiddenStageDataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def MissionArchives(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63068,19 +66915,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def MissionArchivesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def MissionArchivesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def FifthAnnivExploreData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_FifthAnnivExploreData()
@@ -63090,7 +66937,7 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def StringRes(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63102,19 +66949,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def StringResLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def StringResIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def ActivityTraps(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63126,19 +66973,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ActivityTrapsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def ActivityTrapsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(50))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def ActivityTrapMissions(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63150,19 +66997,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ActivityTrapMissionsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def ActivityTrapMissionsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def TrapRuneDataDict(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63174,19 +67021,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def TrapRuneDataDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def TrapRuneDataDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def ActivityTemplateMissionStyles(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63198,19 +67045,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ActivityTemplateMissionStylesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def ActivityTemplateMissionStylesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(56))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def ActivityCrossDayTrackTypeDataDict(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63222,19 +67069,19 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ActivityCrossDayTrackTypeDataDictLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def ActivityCrossDayTrackTypeDataDictIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
         return o == 0
 
     # clz_Torappu_ActivityTable
     def ActivityCrossDayTrackTypeMap(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -63246,18 +67093,18 @@ class clz_Torappu_ActivityTable(object):
 
     # clz_Torappu_ActivityTable
     def ActivityCrossDayTrackTypeMapLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_ActivityTable
     def ActivityCrossDayTrackTypeMapIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         return o == 0
 
 def clz_Torappu_ActivityTableStart(builder):
-    builder.StartObject(29)
+    builder.StartObject(30)
 
 def clz_Torappu_ActivityTableAddBasicInfo(builder, basicInfo):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(basicInfo), 0)
@@ -63277,137 +67124,143 @@ def clz_Torappu_ActivityTableAddZoneToActivity(builder, zoneToActivity):
 def clz_Torappu_ActivityTableStartZoneToActivityVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_ActivityTableAddActTimeTrackPoint(builder, actTimeTrackPoint):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(actTimeTrackPoint), 0)
+
+def clz_Torappu_ActivityTableStartActTimeTrackPointVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_ActivityTableAddMissionData(builder, missionData):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(missionData), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(missionData), 0)
 
 def clz_Torappu_ActivityTableStartMissionDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddMissionGroup(builder, missionGroup):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(missionGroup), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(missionGroup), 0)
 
 def clz_Torappu_ActivityTableStartMissionGroupVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddReplicateMissions(builder, replicateMissions):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(replicateMissions), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(replicateMissions), 0)
 
 def clz_Torappu_ActivityTableStartReplicateMissionsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddActivity(builder, activity):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(activity), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(activity), 0)
 
 def clz_Torappu_ActivityTableAddExtraData(builder, extraData):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(extraData), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(extraData), 0)
 
 def clz_Torappu_ActivityTableAddActivityItems(builder, activityItems):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(activityItems), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(activityItems), 0)
 
 def clz_Torappu_ActivityTableStartActivityItemsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddSyncPoints(builder, syncPoints):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(syncPoints), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(syncPoints), 0)
 
 def clz_Torappu_ActivityTableStartSyncPointsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddDynActs(builder, dynActs):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(dynActs), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(dynActs), 0)
 
 def clz_Torappu_ActivityTableStartDynActsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddStageRewardsData(builder, stageRewardsData):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(stageRewardsData), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(stageRewardsData), 0)
 
 def clz_Torappu_ActivityTableStartStageRewardsDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddActThemes(builder, actThemes):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(actThemes), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(actThemes), 0)
 
 def clz_Torappu_ActivityTableStartActThemesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddActFunData(builder, actFunData):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(actFunData), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(actFunData), 0)
 
 def clz_Torappu_ActivityTableAddCarData(builder, carData):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(carData), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(carData), 0)
 
 def clz_Torappu_ActivityTableAddSiracusaData(builder, siracusaData):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(siracusaData), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(siracusaData), 0)
 
 def clz_Torappu_ActivityTableAddFireworkData(builder, fireworkData):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(fireworkData), 0)
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(fireworkData), 0)
 
 def clz_Torappu_ActivityTableAddKvSwitchData(builder, kvSwitchData):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(kvSwitchData), 0)
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(kvSwitchData), 0)
 
 def clz_Torappu_ActivityTableStartKvSwitchDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddDynEntrySwitchData(builder, dynEntrySwitchData):
-    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(dynEntrySwitchData), 0)
+    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(dynEntrySwitchData), 0)
 
 def clz_Torappu_ActivityTableStartDynEntrySwitchDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddHiddenStageData(builder, hiddenStageData):
-    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(hiddenStageData), 0)
+    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(hiddenStageData), 0)
 
 def clz_Torappu_ActivityTableStartHiddenStageDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddMissionArchives(builder, missionArchives):
-    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(missionArchives), 0)
+    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(missionArchives), 0)
 
 def clz_Torappu_ActivityTableStartMissionArchivesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddFifthAnnivExploreData(builder, fifthAnnivExploreData):
-    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(fifthAnnivExploreData), 0)
+    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(fifthAnnivExploreData), 0)
 
 def clz_Torappu_ActivityTableAddStringRes(builder, stringRes):
-    builder.PrependUOffsetTRelativeSlot(22, flatbuffers.number_types.UOffsetTFlags.py_type(stringRes), 0)
+    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(stringRes), 0)
 
 def clz_Torappu_ActivityTableStartStringResVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddActivityTraps(builder, activityTraps):
-    builder.PrependUOffsetTRelativeSlot(23, flatbuffers.number_types.UOffsetTFlags.py_type(activityTraps), 0)
+    builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(activityTraps), 0)
 
 def clz_Torappu_ActivityTableStartActivityTrapsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddActivityTrapMissions(builder, activityTrapMissions):
-    builder.PrependUOffsetTRelativeSlot(24, flatbuffers.number_types.UOffsetTFlags.py_type(activityTrapMissions), 0)
+    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(activityTrapMissions), 0)
 
 def clz_Torappu_ActivityTableStartActivityTrapMissionsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddTrapRuneDataDict(builder, trapRuneDataDict):
-    builder.PrependUOffsetTRelativeSlot(25, flatbuffers.number_types.UOffsetTFlags.py_type(trapRuneDataDict), 0)
+    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(trapRuneDataDict), 0)
 
 def clz_Torappu_ActivityTableStartTrapRuneDataDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddActivityTemplateMissionStyles(builder, activityTemplateMissionStyles):
-    builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(activityTemplateMissionStyles), 0)
+    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(activityTemplateMissionStyles), 0)
 
 def clz_Torappu_ActivityTableStartActivityTemplateMissionStylesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddActivityCrossDayTrackTypeDataDict(builder, activityCrossDayTrackTypeDataDict):
-    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(activityCrossDayTrackTypeDataDict), 0)
+    builder.PrependUOffsetTRelativeSlot(28, flatbuffers.number_types.UOffsetTFlags.py_type(activityCrossDayTrackTypeDataDict), 0)
 
 def clz_Torappu_ActivityTableStartActivityCrossDayTrackTypeDataDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_ActivityTableAddActivityCrossDayTrackTypeMap(builder, activityCrossDayTrackTypeMap):
-    builder.PrependUOffsetTRelativeSlot(28, flatbuffers.number_types.UOffsetTFlags.py_type(activityCrossDayTrackTypeMap), 0)
+    builder.PrependUOffsetTRelativeSlot(29, flatbuffers.number_types.UOffsetTFlags.py_type(activityCrossDayTrackTypeMap), 0)
 
 def clz_Torappu_ActivityTableStartActivityCrossDayTrackTypeMapVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)

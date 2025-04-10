@@ -16,6 +16,7 @@ class enum__Torappu_MissionType(object):
     ACTIVITY = 6
     OPENSERVER = 7
     TOWERSEASON = 8
+    RETRO = 9
 
 
 class enum__Torappu_MissionItemBgType(object):
@@ -373,8 +374,15 @@ class clz_Torappu_MissionData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_MissionData
+    def CountEndTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_MissionDataStart(builder):
-    builder.StartObject(18)
+    builder.StartObject(19)
 
 def clz_Torappu_MissionDataAddId(builder, id):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
@@ -441,6 +449,9 @@ def clz_Torappu_MissionDataAddFoldId(builder, foldId):
 
 def clz_Torappu_MissionDataAddHaveSubMissionToUnlock(builder, haveSubMissionToUnlock):
     builder.PrependBoolSlot(17, haveSubMissionToUnlock, 0)
+
+def clz_Torappu_MissionDataAddCountEndTs(builder, countEndTs):
+    builder.PrependInt64Slot(18, countEndTs, 0)
 
 def clz_Torappu_MissionDataEnd(builder):
     return builder.EndObject()

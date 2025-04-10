@@ -18,6 +18,8 @@ class enum__Torappu_ZoneType(object):
     BRANCHLINE = 8
     ROGUELIKE = 9
     CLIMB_TOWER = 10
+    MAINLINE_ACTIVITY = 11
+    MAINLINE_RETRO = 12
 
 
 class enum__Torappu_WeeklyType(object):
@@ -227,21 +229,49 @@ class clz_Torappu_ZoneData(object):
         return None
 
     # clz_Torappu_ZoneData
-    def CanPreview(self):
+    def AntiSpoilerId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ZoneData
+    def CanPreview(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_ZoneData
     def HasAdditionalPanel(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_ZoneData
+    def SixStarMilestoneGroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ZoneData
+    def BindMainlineZoneId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_ZoneData
+    def BindMainlineRetroZoneId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_ZoneDataStart(builder):
-    builder.StartObject(12)
+    builder.StartObject(16)
 
 def clz_Torappu_ZoneDataAddZoneId(builder, zoneId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(zoneId), 0)
@@ -273,11 +303,23 @@ def clz_Torappu_ZoneDataAddZoneNameThird(builder, zoneNameThird):
 def clz_Torappu_ZoneDataAddLockedText(builder, lockedText):
     builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(lockedText), 0)
 
+def clz_Torappu_ZoneDataAddAntiSpoilerId(builder, antiSpoilerId):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(antiSpoilerId), 0)
+
 def clz_Torappu_ZoneDataAddCanPreview(builder, canPreview):
-    builder.PrependBoolSlot(10, canPreview, 0)
+    builder.PrependBoolSlot(11, canPreview, 0)
 
 def clz_Torappu_ZoneDataAddHasAdditionalPanel(builder, hasAdditionalPanel):
-    builder.PrependBoolSlot(11, hasAdditionalPanel, 0)
+    builder.PrependBoolSlot(12, hasAdditionalPanel, 0)
+
+def clz_Torappu_ZoneDataAddSixStarMilestoneGroupId(builder, sixStarMilestoneGroupId):
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(sixStarMilestoneGroupId), 0)
+
+def clz_Torappu_ZoneDataAddBindMainlineZoneId(builder, bindMainlineZoneId):
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(bindMainlineZoneId), 0)
+
+def clz_Torappu_ZoneDataAddBindMainlineRetroZoneId(builder, bindMainlineRetroZoneId):
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(bindMainlineRetroZoneId), 0)
 
 def clz_Torappu_ZoneDataEnd(builder):
     return builder.EndObject()
@@ -607,7 +649,7 @@ class clz_Torappu_MainlineZoneData(object):
         return None
 
     # clz_Torappu_MainlineZoneData
-    def MainlneBgName(self):
+    def GameMusicId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
@@ -703,8 +745,8 @@ def clz_Torappu_MainlineZoneDataAddStartStageId(builder, startStageId):
 def clz_Torappu_MainlineZoneDataAddEndStageId(builder, endStageId):
     builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(endStageId), 0)
 
-def clz_Torappu_MainlineZoneDataAddMainlneBgName(builder, mainlneBgName):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(mainlneBgName), 0)
+def clz_Torappu_MainlineZoneDataAddGameMusicId(builder, gameMusicId):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(gameMusicId), 0)
 
 def clz_Torappu_MainlineZoneDataAddRecapId(builder, recapId):
     builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(recapId), 0)
@@ -1702,8 +1744,28 @@ class clz_Torappu_ZoneTable(object):
         return o == 0
 
     # clz_Torappu_ZoneTable
-    def ZoneMetaData(self):
+    def MainlineZoneIdList(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_ZoneTable
+    def MainlineZoneIdListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_ZoneTable
+    def MainlineZoneIdListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        return o == 0
+
+    # clz_Torappu_ZoneTable
+    def ZoneMetaData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_ZoneMetaData()
@@ -1712,7 +1774,7 @@ class clz_Torappu_ZoneTable(object):
         return None
 
 def clz_Torappu_ZoneTableStart(builder):
-    builder.StartObject(7)
+    builder.StartObject(8)
 
 def clz_Torappu_ZoneTableAddZones(builder, zones):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(zones), 0)
@@ -1750,8 +1812,14 @@ def clz_Torappu_ZoneTableAddZoneRecordRewardData(builder, zoneRecordRewardData):
 def clz_Torappu_ZoneTableStartZoneRecordRewardDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_ZoneTableAddMainlineZoneIdList(builder, mainlineZoneIdList):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(mainlineZoneIdList), 0)
+
+def clz_Torappu_ZoneTableStartMainlineZoneIdListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_ZoneTableAddZoneMetaData(builder, zoneMetaData):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(zoneMetaData), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(zoneMetaData), 0)
 
 def clz_Torappu_ZoneTableEnd(builder):
     return builder.EndObject()

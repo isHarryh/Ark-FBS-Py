@@ -70,7 +70,8 @@ class enum__Torappu_LevelData_Difficulty(object):
     NORMAL = 1
     FOUR_STAR = 2
     EASY = 4
-    ALL = 7
+    SIX_STAR = 8
+    ALL = 15
 
 
 class enum__Torappu_ProfessionCategory(object):
@@ -1111,6 +1112,72 @@ def clz_Torappu_LegacyInLevelRuneDataStartBlackboardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LegacyInLevelRuneDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__list_clz_Torappu_LegacyInLevelRuneData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__list_clz_Torappu_LegacyInLevelRuneData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__list_clz_Torappu_LegacyInLevelRuneData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__list_clz_Torappu_LegacyInLevelRuneData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__list_clz_Torappu_LegacyInLevelRuneData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__list_clz_Torappu_LegacyInLevelRuneData
+    def Value(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_LegacyInLevelRuneData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # dict__string__list_clz_Torappu_LegacyInLevelRuneData
+    def ValueLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # dict__string__list_clz_Torappu_LegacyInLevelRuneData
+    def ValueIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def dict__string__list_clz_Torappu_LegacyInLevelRuneDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__list_clz_Torappu_LegacyInLevelRuneDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__list_clz_Torappu_LegacyInLevelRuneDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__list_clz_Torappu_LegacyInLevelRuneDataStartValueVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def dict__string__list_clz_Torappu_LegacyInLevelRuneDataEnd(builder):
     return builder.EndObject()
 
 
@@ -4753,8 +4820,32 @@ class clz_Torappu_LevelData(object):
         return o == 0
 
     # clz_Torappu_LevelData
-    def GlobalBuffs(self, j):
+    def OptionalRunes(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__list_clz_Torappu_LegacyInLevelRuneData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_LevelData
+    def OptionalRunesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_LevelData
+    def OptionalRunesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        return o == 0
+
+    # clz_Torappu_LevelData
+    def GlobalBuffs(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4766,19 +4857,19 @@ class clz_Torappu_LevelData(object):
 
     # clz_Torappu_LevelData
     def GlobalBuffsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData
     def GlobalBuffsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         return o == 0
 
     # clz_Torappu_LevelData
     def Routes(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4790,19 +4881,19 @@ class clz_Torappu_LevelData(object):
 
     # clz_Torappu_LevelData
     def RoutesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData
     def RoutesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         return o == 0
 
     # clz_Torappu_LevelData
     def ExtraRoutes(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4814,19 +4905,19 @@ class clz_Torappu_LevelData(object):
 
     # clz_Torappu_LevelData
     def ExtraRoutesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData
     def ExtraRoutesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         return o == 0
 
     # clz_Torappu_LevelData
     def Enemies(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4838,19 +4929,19 @@ class clz_Torappu_LevelData(object):
 
     # clz_Torappu_LevelData
     def EnemiesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData
     def EnemiesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         return o == 0
 
     # clz_Torappu_LevelData
     def EnemyDbRefs(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4862,19 +4953,19 @@ class clz_Torappu_LevelData(object):
 
     # clz_Torappu_LevelData
     def EnemyDbRefsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData
     def EnemyDbRefsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         return o == 0
 
     # clz_Torappu_LevelData
     def Waves(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4886,19 +4977,19 @@ class clz_Torappu_LevelData(object):
 
     # clz_Torappu_LevelData
     def WavesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData
     def WavesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         return o == 0
 
     # clz_Torappu_LevelData
     def Branches(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4910,28 +5001,18 @@ class clz_Torappu_LevelData(object):
 
     # clz_Torappu_LevelData
     def BranchesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData
     def BranchesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
     # clz_Torappu_LevelData
     def Predefines(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = clz_Torappu_LevelData_PredefinedData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # clz_Torappu_LevelData
-    def HardPredefines(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
@@ -4941,8 +5022,18 @@ class clz_Torappu_LevelData(object):
         return None
 
     # clz_Torappu_LevelData
-    def ExcludeCharIdList(self, j):
+    def HardPredefines(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_LevelData_PredefinedData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_LevelData
+    def ExcludeCharIdList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -4950,39 +5041,39 @@ class clz_Torappu_LevelData(object):
 
     # clz_Torappu_LevelData
     def ExcludeCharIdListLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData
     def ExcludeCharIdListIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
         return o == 0
 
     # clz_Torappu_LevelData
     def RandomSeed(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_LevelData
     def OperaConfig(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_LevelData
     def CameraPlugin(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
 def clz_Torappu_LevelDataStart(builder):
-    builder.StartObject(21)
+    builder.StartObject(22)
 
 def clz_Torappu_LevelDataAddOptions(builder, options):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(options), 0)
@@ -5014,68 +5105,74 @@ def clz_Torappu_LevelDataAddRunes(builder, runes):
 def clz_Torappu_LevelDataStartRunesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_LevelDataAddOptionalRunes(builder, optionalRunes):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(optionalRunes), 0)
+
+def clz_Torappu_LevelDataStartOptionalRunesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
 def clz_Torappu_LevelDataAddGlobalBuffs(builder, globalBuffs):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(globalBuffs), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(globalBuffs), 0)
 
 def clz_Torappu_LevelDataStartGlobalBuffsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LevelDataAddRoutes(builder, routes):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(routes), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(routes), 0)
 
 def clz_Torappu_LevelDataStartRoutesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LevelDataAddExtraRoutes(builder, extraRoutes):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(extraRoutes), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(extraRoutes), 0)
 
 def clz_Torappu_LevelDataStartExtraRoutesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LevelDataAddEnemies(builder, enemies):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(enemies), 0)
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(enemies), 0)
 
 def clz_Torappu_LevelDataStartEnemiesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LevelDataAddEnemyDbRefs(builder, enemyDbRefs):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(enemyDbRefs), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(enemyDbRefs), 0)
 
 def clz_Torappu_LevelDataStartEnemyDbRefsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LevelDataAddWaves(builder, waves):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(waves), 0)
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(waves), 0)
 
 def clz_Torappu_LevelDataStartWavesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LevelDataAddBranches(builder, branches):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(branches), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(branches), 0)
 
 def clz_Torappu_LevelDataStartBranchesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LevelDataAddPredefines(builder, predefines):
-    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(predefines), 0)
+    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(predefines), 0)
 
 def clz_Torappu_LevelDataAddHardPredefines(builder, hardPredefines):
-    builder.PrependUOffsetTRelativeSlot(16, flatbuffers.number_types.UOffsetTFlags.py_type(hardPredefines), 0)
+    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(hardPredefines), 0)
 
 def clz_Torappu_LevelDataAddExcludeCharIdList(builder, excludeCharIdList):
-    builder.PrependUOffsetTRelativeSlot(17, flatbuffers.number_types.UOffsetTFlags.py_type(excludeCharIdList), 0)
+    builder.PrependUOffsetTRelativeSlot(18, flatbuffers.number_types.UOffsetTFlags.py_type(excludeCharIdList), 0)
 
 def clz_Torappu_LevelDataStartExcludeCharIdListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_LevelDataAddRandomSeed(builder, randomSeed):
-    builder.PrependInt32Slot(18, randomSeed, 0)
+    builder.PrependInt32Slot(19, randomSeed, 0)
 
 def clz_Torappu_LevelDataAddOperaConfig(builder, operaConfig):
-    builder.PrependUOffsetTRelativeSlot(19, flatbuffers.number_types.UOffsetTFlags.py_type(operaConfig), 0)
+    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(operaConfig), 0)
 
 def clz_Torappu_LevelDataAddCameraPlugin(builder, cameraPlugin):
-    builder.PrependUOffsetTRelativeSlot(20, flatbuffers.number_types.UOffsetTFlags.py_type(cameraPlugin), 0)
+    builder.PrependUOffsetTRelativeSlot(21, flatbuffers.number_types.UOffsetTFlags.py_type(cameraPlugin), 0)
 
 def clz_Torappu_LevelDataEnd(builder):
     return builder.EndObject()

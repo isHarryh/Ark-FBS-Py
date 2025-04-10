@@ -6,6 +6,15 @@ import flatbuffers
 from flatbuffers.compat import import_numpy
 np = import_numpy()
 
+class enum__Torappu_Audio_MixerDesc_Category(object):
+    CUSTOM = 0
+    FX_UI = 1
+    FX_BATTLE = 2
+    MUSIC = 3
+    VOICE = 4
+    MASTER = 5
+
+
 class enum__Torappu_BattleVoiceOption_BattleVoiceType(object):
     BATTLE_START = 0
     ENCOUNTER_ENEMY = 1
@@ -258,6 +267,62 @@ def clz_Torappu_Audio_Middleware_Data_SoundFXBank_SoundFXEnd(builder):
 
 
 
+class clz_Torappu_Audio_MixerDesc(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_Audio_MixerDesc()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_Audio_MixerDesc(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_Audio_MixerDesc
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_Audio_MixerDesc
+    def Category(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_Audio_MixerDesc
+    def CustomGroup(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_Audio_MixerDesc
+    def Important(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_Audio_MixerDescStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_Audio_MixerDescAddCategory(builder, category):
+    builder.PrependInt32Slot(0, category, 0)
+
+def clz_Torappu_Audio_MixerDescAddCustomGroup(builder, customGroup):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(customGroup), 0)
+
+def clz_Torappu_Audio_MixerDescAddImportant(builder, important):
+    builder.PrependBoolSlot(2, important, 0)
+
+def clz_Torappu_Audio_MixerDescEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_Audio_Middleware_Data_SoundFXBank(object):
     __slots__ = ['_tab']
 
@@ -335,8 +400,18 @@ class clz_Torappu_Audio_Middleware_Data_SoundFXBank(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_Audio_Middleware_Data_SoundFXBank
+    def MixerDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Audio_MixerDesc()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
 def clz_Torappu_Audio_Middleware_Data_SoundFXBankStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(7)
 
 def clz_Torappu_Audio_Middleware_Data_SoundFXBankAddSounds(builder, sounds):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(sounds), 0)
@@ -358,6 +433,9 @@ def clz_Torappu_Audio_Middleware_Data_SoundFXBankAddLoop(builder, loop):
 
 def clz_Torappu_Audio_Middleware_Data_SoundFXBankAddName(builder, name):
     builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+
+def clz_Torappu_Audio_Middleware_Data_SoundFXBankAddMixerDesc(builder, mixerDesc):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(mixerDesc), 0)
 
 def clz_Torappu_Audio_Middleware_Data_SoundFXBankEnd(builder):
     return builder.EndObject()
