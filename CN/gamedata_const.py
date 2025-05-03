@@ -1611,21 +1611,21 @@ class clz_Torappu_GameDataConsts(object):
         return None
 
     # clz_Torappu_GameDataConsts
-    def DefaultMinContinuousBattleTimes(self):
+    def DefaultMinMultipleBattleTimes(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(216))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
-    def DefaultMaxContinuousBattleTimes(self):
+    def DefaultMaxMultipleBattleTimes(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(218))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_GameDataConsts
-    def ContinuousActionOpen(self):
+    def MultipleActionOpen(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(220))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
@@ -2105,14 +2105,14 @@ def clz_Torappu_GameDataConstsAddVideoPlayerWebBusType(builder, videoPlayerWebBu
 def clz_Torappu_GameDataConstsAddGachaLogBusType(builder, gachaLogBusType):
     builder.PrependUOffsetTRelativeSlot(105, flatbuffers.number_types.UOffsetTFlags.py_type(gachaLogBusType), 0)
 
-def clz_Torappu_GameDataConstsAddDefaultMinContinuousBattleTimes(builder, defaultMinContinuousBattleTimes):
-    builder.PrependInt32Slot(106, defaultMinContinuousBattleTimes, 0)
+def clz_Torappu_GameDataConstsAddDefaultMinMultipleBattleTimes(builder, defaultMinMultipleBattleTimes):
+    builder.PrependInt32Slot(106, defaultMinMultipleBattleTimes, 0)
 
-def clz_Torappu_GameDataConstsAddDefaultMaxContinuousBattleTimes(builder, defaultMaxContinuousBattleTimes):
-    builder.PrependInt32Slot(107, defaultMaxContinuousBattleTimes, 0)
+def clz_Torappu_GameDataConstsAddDefaultMaxMultipleBattleTimes(builder, defaultMaxMultipleBattleTimes):
+    builder.PrependInt32Slot(107, defaultMaxMultipleBattleTimes, 0)
 
-def clz_Torappu_GameDataConstsAddContinuousActionOpen(builder, continuousActionOpen):
-    builder.PrependBoolSlot(108, continuousActionOpen, 0)
+def clz_Torappu_GameDataConstsAddMultipleActionOpen(builder, multipleActionOpen):
+    builder.PrependBoolSlot(108, multipleActionOpen, 0)
 
 def clz_Torappu_GameDataConstsAddSubProfessionDamageTypePairs(builder, subProfessionDamageTypePairs):
     builder.PrependUOffsetTRelativeSlot(109, flatbuffers.number_types.UOffsetTFlags.py_type(subProfessionDamageTypePairs), 0)

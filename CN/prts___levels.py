@@ -51,9 +51,9 @@ class enum__Torappu_MotionMask(object):
 
 class enum__Torappu_PlayerSideMask(object):
     ALL = 0
-    SIDE_A = 1
-    SIDE_B = 2
-    NONE = 3
+    SIDE_A = 2
+    SIDE_B = 4
+    NONE = 255
 
 
 class enum__Torappu_SharedConsts_Direction(object):
@@ -145,7 +145,8 @@ class enum__Torappu_LevelData_WaveData_FragmentData_ActionData_ActionType(object
     WITHDRAW_PREDEFINED = 10
     DIALOG = 11
     SHOW_ALL_HIDDEN_CARDS = 12
-    E_NUM = 13
+    EMPTY = 13
+    E_NUM = 14
 
 
 class enum__Torappu_LevelData_WaveData_FragmentData_ActionData_RandomType(object):
@@ -1770,8 +1771,15 @@ class clz_Torappu_AttributesData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesData
+    def PalsyImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(52))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDataStart(builder):
-    builder.StartObject(24)
+    builder.StartObject(25)
 
 def clz_Torappu_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -1844,6 +1852,9 @@ def clz_Torappu_AttributesDataAddDisarmedCombatImmune(builder, disarmedCombatImm
 
 def clz_Torappu_AttributesDataAddFearedImmune(builder, fearedImmune):
     builder.PrependBoolSlot(23, fearedImmune, 0)
+
+def clz_Torappu_AttributesDataAddPalsyImmune(builder, palsyImmune):
+    builder.PrependBoolSlot(24, palsyImmune, 0)
 
 def clz_Torappu_AttributesDataEnd(builder):
     return builder.EndObject()
@@ -2752,8 +2763,18 @@ class clz_Torappu_EnemyDatabase_AttributesData(object):
             return obj
         return None
 
+    # clz_Torappu_EnemyDatabase_AttributesData
+    def PalsyImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Undefinable_1_System_Boolean_()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
 def clz_Torappu_EnemyDatabase_AttributesDataStart(builder):
-    builder.StartObject(27)
+    builder.StartObject(28)
 
 def clz_Torappu_EnemyDatabase_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(maxHp), 0)
@@ -2835,6 +2856,9 @@ def clz_Torappu_EnemyDatabase_AttributesDataAddDisarmedCombatImmune(builder, dis
 
 def clz_Torappu_EnemyDatabase_AttributesDataAddFearedImmune(builder, fearedImmune):
     builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(fearedImmune), 0)
+
+def clz_Torappu_EnemyDatabase_AttributesDataAddPalsyImmune(builder, palsyImmune):
+    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(palsyImmune), 0)
 
 def clz_Torappu_EnemyDatabase_AttributesDataEnd(builder):
     return builder.EndObject()
@@ -4123,8 +4147,15 @@ class clz_Torappu_LevelData_PredefinedData_PredefinedCharacter(object):
         return o == 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
-    def Inst(self):
+    def ShowSpIllust(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
+    def Inst(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharacterInst_Metadata()
@@ -4134,35 +4165,35 @@ class clz_Torappu_LevelData_PredefinedData_PredefinedCharacter(object):
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
     def SkillIndex(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
-    def MainSkillLvl(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
-    def SkinId(self):
+    def MainSkillLvl(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
-    def TmplId(self):
+    def SkinId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
-    def OverrideSkillBlackboard(self, j):
+    def TmplId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
+    def OverrideSkillBlackboard(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4174,18 +4205,18 @@ class clz_Torappu_LevelData_PredefinedData_PredefinedCharacter(object):
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
     def OverrideSkillBlackboardLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCharacter
     def OverrideSkillBlackboardIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         return o == 0
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterStart(builder):
-    builder.StartObject(11)
+    builder.StartObject(12)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterAddPosition(builder, position):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(position), 0)
@@ -4205,23 +4236,26 @@ def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterAddUniEquipIds(build
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterStartUniEquipIdsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterAddShowSpIllust(builder, showSpIllust):
+    builder.PrependBoolSlot(5, showSpIllust, 0)
+
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterAddInst(builder, inst):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(inst), 0)
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(inst), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterAddSkillIndex(builder, skillIndex):
-    builder.PrependInt32Slot(6, skillIndex, 0)
+    builder.PrependInt32Slot(7, skillIndex, 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterAddMainSkillLvl(builder, mainSkillLvl):
-    builder.PrependInt32Slot(7, mainSkillLvl, 0)
+    builder.PrependInt32Slot(8, mainSkillLvl, 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterAddSkinId(builder, skinId):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(skinId), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(skinId), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterAddTmplId(builder, tmplId):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(tmplId), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(tmplId), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterAddOverrideSkillBlackboard(builder, overrideSkillBlackboard):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(overrideSkillBlackboard), 0)
+    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(overrideSkillBlackboard), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCharacterStartOverrideSkillBlackboardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
@@ -4288,8 +4322,15 @@ class clz_Torappu_LevelData_PredefinedData_PredefinedCard(object):
         return o == 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCard
-    def Inst(self):
+    def ShowSpIllust(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_LevelData_PredefinedData_PredefinedCard
+    def Inst(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharacterInst_Metadata()
@@ -4299,35 +4340,35 @@ class clz_Torappu_LevelData_PredefinedData_PredefinedCard(object):
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCard
     def SkillIndex(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_LevelData_PredefinedData_PredefinedCard
-    def MainSkillLvl(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCard
-    def SkinId(self):
+    def MainSkillLvl(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCard
-    def TmplId(self):
+    def SkinId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCard
-    def OverrideSkillBlackboard(self, j):
+    def TmplId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_LevelData_PredefinedData_PredefinedCard
+    def OverrideSkillBlackboard(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4339,18 +4380,18 @@ class clz_Torappu_LevelData_PredefinedData_PredefinedCard(object):
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCard
     def OverrideSkillBlackboardLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedCard
     def OverrideSkillBlackboardIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         return o == 0
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardStart(builder):
-    builder.StartObject(9)
+    builder.StartObject(10)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardAddHidden(builder, hidden):
     builder.PrependBoolSlot(0, hidden, 0)
@@ -4364,23 +4405,26 @@ def clz_Torappu_LevelData_PredefinedData_PredefinedCardAddUniEquipIds(builder, u
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardStartUniEquipIdsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_LevelData_PredefinedData_PredefinedCardAddShowSpIllust(builder, showSpIllust):
+    builder.PrependBoolSlot(3, showSpIllust, 0)
+
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardAddInst(builder, inst):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(inst), 0)
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(inst), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardAddSkillIndex(builder, skillIndex):
-    builder.PrependInt32Slot(4, skillIndex, 0)
+    builder.PrependInt32Slot(5, skillIndex, 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardAddMainSkillLvl(builder, mainSkillLvl):
-    builder.PrependInt32Slot(5, mainSkillLvl, 0)
+    builder.PrependInt32Slot(6, mainSkillLvl, 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardAddSkinId(builder, skinId):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(skinId), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(skinId), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardAddTmplId(builder, tmplId):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(tmplId), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(tmplId), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardAddOverrideSkillBlackboard(builder, overrideSkillBlackboard):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(overrideSkillBlackboard), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(overrideSkillBlackboard), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedCardStartOverrideSkillBlackboardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
@@ -4454,8 +4498,15 @@ class clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard(object):
         return o == 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
-    def Inst(self):
+    def ShowSpIllust(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
+    def Inst(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_Torappu_CharacterInst_Metadata()
@@ -4465,35 +4516,35 @@ class clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard(object):
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
     def SkillIndex(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
-
-    # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
-    def MainSkillLvl(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
-    def SkinId(self):
+    def MainSkillLvl(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
-    def TmplId(self):
+    def SkinId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
-    def OverrideSkillBlackboard(self, j):
+    def TmplId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
+    def OverrideSkillBlackboard(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -4505,18 +4556,18 @@ class clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard(object):
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
     def OverrideSkillBlackboardLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData_PredefinedData_PredefinedTokenCard
     def OverrideSkillBlackboardIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         return o == 0
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardStart(builder):
-    builder.StartObject(10)
+    builder.StartObject(11)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardAddInitialCnt(builder, initialCnt):
     builder.PrependInt32Slot(0, initialCnt, 0)
@@ -4533,23 +4584,26 @@ def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardAddUniEquipIds(build
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardStartUniEquipIdsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
+def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardAddShowSpIllust(builder, showSpIllust):
+    builder.PrependBoolSlot(4, showSpIllust, 0)
+
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardAddInst(builder, inst):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(inst), 0)
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(inst), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardAddSkillIndex(builder, skillIndex):
-    builder.PrependInt32Slot(5, skillIndex, 0)
+    builder.PrependInt32Slot(6, skillIndex, 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardAddMainSkillLvl(builder, mainSkillLvl):
-    builder.PrependInt32Slot(6, mainSkillLvl, 0)
+    builder.PrependInt32Slot(7, mainSkillLvl, 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardAddSkinId(builder, skinId):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(skinId), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(skinId), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardAddTmplId(builder, tmplId):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(tmplId), 0)
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(tmplId), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardAddOverrideSkillBlackboard(builder, overrideSkillBlackboard):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(overrideSkillBlackboard), 0)
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(overrideSkillBlackboard), 0)
 
 def clz_Torappu_LevelData_PredefinedData_PredefinedTokenCardStartOverrideSkillBlackboardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)

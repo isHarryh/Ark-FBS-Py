@@ -507,8 +507,18 @@ class clz_Torappu_EnemyDatabase_AttributesData(object):
             return obj
         return None
 
+    # clz_Torappu_EnemyDatabase_AttributesData
+    def PalsyImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_Undefinable_1_System_Boolean_()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
 def clz_Torappu_EnemyDatabase_AttributesDataStart(builder):
-    builder.StartObject(27)
+    builder.StartObject(28)
 
 def clz_Torappu_EnemyDatabase_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(maxHp), 0)
@@ -590,6 +600,9 @@ def clz_Torappu_EnemyDatabase_AttributesDataAddDisarmedCombatImmune(builder, dis
 
 def clz_Torappu_EnemyDatabase_AttributesDataAddFearedImmune(builder, fearedImmune):
     builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(fearedImmune), 0)
+
+def clz_Torappu_EnemyDatabase_AttributesDataAddPalsyImmune(builder, palsyImmune):
+    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(palsyImmune), 0)
 
 def clz_Torappu_EnemyDatabase_AttributesDataEnd(builder):
     return builder.EndObject()

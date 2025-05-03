@@ -3771,6 +3771,277 @@ def clz_Torappu_NewbieCheckInPackageDataEnd(builder):
 
 
 
+class clz_Torappu_LongTermCheckInGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_LongTermCheckInGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_LongTermCheckInGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_LongTermCheckInGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def StartTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def Level(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def Days(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def BkgImgId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def TitleImgId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def TipText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def BottomText(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def RewardList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_ItemBundle()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def RewardListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_LongTermCheckInGroupData
+    def RewardListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        return o == 0
+
+def clz_Torappu_LongTermCheckInGroupDataStart(builder):
+    builder.StartObject(10)
+
+def clz_Torappu_LongTermCheckInGroupDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+
+def clz_Torappu_LongTermCheckInGroupDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_LongTermCheckInGroupDataAddStartTs(builder, startTs):
+    builder.PrependInt64Slot(2, startTs, 0)
+
+def clz_Torappu_LongTermCheckInGroupDataAddLevel(builder, level):
+    builder.PrependInt32Slot(3, level, 0)
+
+def clz_Torappu_LongTermCheckInGroupDataAddDays(builder, days):
+    builder.PrependInt32Slot(4, days, 0)
+
+def clz_Torappu_LongTermCheckInGroupDataAddBkgImgId(builder, bkgImgId):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(bkgImgId), 0)
+
+def clz_Torappu_LongTermCheckInGroupDataAddTitleImgId(builder, titleImgId):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(titleImgId), 0)
+
+def clz_Torappu_LongTermCheckInGroupDataAddTipText(builder, tipText):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(tipText), 0)
+
+def clz_Torappu_LongTermCheckInGroupDataAddBottomText(builder, bottomText):
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(bottomText), 0)
+
+def clz_Torappu_LongTermCheckInGroupDataAddRewardList(builder, rewardList):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(rewardList), 0)
+
+def clz_Torappu_LongTermCheckInGroupDataStartRewardListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_LongTermCheckInGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_LongTermCheckInConstData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_LongTermCheckInConstData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_LongTermCheckInConstData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_LongTermCheckInConstData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_LongTermCheckInConstData
+    def StartTs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_LongTermCheckInConstData
+    def DetailTitle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_LongTermCheckInConstData
+    def DetailDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def clz_Torappu_LongTermCheckInConstDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_LongTermCheckInConstDataAddStartTs(builder, startTs):
+    builder.PrependInt64Slot(0, startTs, 0)
+
+def clz_Torappu_LongTermCheckInConstDataAddDetailTitle(builder, detailTitle):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(detailTitle), 0)
+
+def clz_Torappu_LongTermCheckInConstDataAddDetailDesc(builder, detailDesc):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(detailDesc), 0)
+
+def clz_Torappu_LongTermCheckInConstDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_LongTermCheckInData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_LongTermCheckInData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_LongTermCheckInData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_LongTermCheckInData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_LongTermCheckInData
+    def GroupList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_LongTermCheckInGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_LongTermCheckInData
+    def GroupListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_LongTermCheckInData
+    def GroupListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+    # clz_Torappu_LongTermCheckInData
+    def ConstData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_LongTermCheckInConstData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def clz_Torappu_LongTermCheckInDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_LongTermCheckInDataAddGroupList(builder, groupList):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupList), 0)
+
+def clz_Torappu_LongTermCheckInDataStartGroupListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_LongTermCheckInDataAddConstData(builder, constData):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
+
+def clz_Torappu_LongTermCheckInDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_OpenServerSchedule(object):
     __slots__ = ['_tab']
 
@@ -3891,8 +4162,18 @@ class clz_Torappu_OpenServerSchedule(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         return o == 0
 
+    # clz_Torappu_OpenServerSchedule
+    def LongTermCheckInData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_LongTermCheckInData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
 def clz_Torappu_OpenServerScheduleStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(7)
 
 def clz_Torappu_OpenServerScheduleAddSchedule(builder, schedule):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(schedule), 0)
@@ -3920,6 +4201,9 @@ def clz_Torappu_OpenServerScheduleAddNewbieCheckInPackageList(builder, newbieChe
 
 def clz_Torappu_OpenServerScheduleStartNewbieCheckInPackageListVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_OpenServerScheduleAddLongTermCheckInData(builder, longTermCheckInData):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(longTermCheckInData), 0)
 
 def clz_Torappu_OpenServerScheduleEnd(builder):
     return builder.EndObject()

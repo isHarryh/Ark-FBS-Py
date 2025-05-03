@@ -1444,7 +1444,7 @@ class clz_Torappu_StageData(object):
         return False
 
     # clz_Torappu_StageData
-    def CanContinuousBattle(self):
+    def CanMultipleBattle(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(102))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
@@ -1743,8 +1743,8 @@ def clz_Torappu_StageDataAddCanUseBattlePerformance(builder, canUseBattlePerform
 def clz_Torappu_StageDataAddCanUseFirework(builder, canUseFirework):
     builder.PrependBoolSlot(48, canUseFirework, 0)
 
-def clz_Torappu_StageDataAddCanContinuousBattle(builder, canContinuousBattle):
-    builder.PrependBoolSlot(49, canContinuousBattle, 0)
+def clz_Torappu_StageDataAddCanMultipleBattle(builder, canMultipleBattle):
+    builder.PrependBoolSlot(49, canMultipleBattle, 0)
 
 def clz_Torappu_StageDataAddStartButtonOverrideId(builder, startButtonOverrideId):
     builder.PrependUOffsetTRelativeSlot(50, flatbuffers.number_types.UOffsetTFlags.py_type(startButtonOverrideId), 0)

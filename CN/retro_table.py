@@ -178,7 +178,9 @@ class enum__Torappu_ActivityType(object):
     MULTIPLAY_V3 = 50
     TYPE_MAINSS = 51
     ENEMY_DUEL = 52
-    ENUM = 53
+    VEC_BREAK_V2 = 53
+    TYPE_ACT42SIDE = 54
+    ENUM = 55
 
 
 class enum__Torappu_StageType(object):
@@ -326,9 +328,9 @@ class enum__Torappu_BuildableType(object):
 
 class enum__Torappu_PlayerSideMask(object):
     ALL = 0
-    SIDE_A = 1
-    SIDE_B = 2
-    NONE = 3
+    SIDE_A = 2
+    SIDE_B = 4
+    NONE = 255
 
 
 class enum__Torappu_Battle_SideType(object):
@@ -1089,7 +1091,7 @@ class clz_Torappu_RetroStageOverrideInfo(object):
         return 0
 
     # clz_Torappu_RetroStageOverrideInfo
-    def CanContinuousBattle(self):
+    def CanMultipleBattle(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
@@ -1122,8 +1124,8 @@ def clz_Torappu_RetroStageOverrideInfoAddPassFavor(builder, passFavor):
 def clz_Torappu_RetroStageOverrideInfoAddCompleteFavor(builder, completeFavor):
     builder.PrependInt32Slot(7, completeFavor, 0)
 
-def clz_Torappu_RetroStageOverrideInfoAddCanContinuousBattle(builder, canContinuousBattle):
-    builder.PrependBoolSlot(8, canContinuousBattle, 0)
+def clz_Torappu_RetroStageOverrideInfoAddCanMultipleBattle(builder, canMultipleBattle):
+    builder.PrependBoolSlot(8, canMultipleBattle, 0)
 
 def clz_Torappu_RetroStageOverrideInfoEnd(builder):
     return builder.EndObject()
@@ -2321,7 +2323,7 @@ class clz_Torappu_StageData(object):
         return False
 
     # clz_Torappu_StageData
-    def CanContinuousBattle(self):
+    def CanMultipleBattle(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(102))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
@@ -2620,8 +2622,8 @@ def clz_Torappu_StageDataAddCanUseBattlePerformance(builder, canUseBattlePerform
 def clz_Torappu_StageDataAddCanUseFirework(builder, canUseFirework):
     builder.PrependBoolSlot(48, canUseFirework, 0)
 
-def clz_Torappu_StageDataAddCanContinuousBattle(builder, canContinuousBattle):
-    builder.PrependBoolSlot(49, canContinuousBattle, 0)
+def clz_Torappu_StageDataAddCanMultipleBattle(builder, canMultipleBattle):
+    builder.PrependBoolSlot(49, canMultipleBattle, 0)
 
 def clz_Torappu_StageDataAddStartButtonOverrideId(builder, startButtonOverrideId):
     builder.PrependUOffsetTRelativeSlot(50, flatbuffers.number_types.UOffsetTFlags.py_type(startButtonOverrideId), 0)

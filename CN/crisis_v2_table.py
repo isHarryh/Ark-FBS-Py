@@ -39,9 +39,9 @@ class enum__Torappu_BuildableType(object):
 
 class enum__Torappu_PlayerSideMask(object):
     ALL = 0
-    SIDE_A = 1
-    SIDE_B = 2
-    NONE = 3
+    SIDE_A = 2
+    SIDE_B = 4
+    NONE = 255
 
 
 class enum__Torappu_Battle_SideType(object):
