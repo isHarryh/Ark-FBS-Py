@@ -180,7 +180,8 @@ class enum__Torappu_AbnormalFlag(object):
     DEFENSE_BUFF_ADD_IF_CANCELABLE_BUFF = 38
     PALSY = 39
     PALSYING = 40
-    E_NUM = 41
+    ATTRACTED = 41
+    E_NUM = 42
 
 
 class enum__Torappu_AbnormalCombo(object):
@@ -225,7 +226,8 @@ class enum__Torappu_AttributeType(object):
     EP_RESISTANCE = 32
     DAMAGE_HITRATE_PHYSICAL = 33
     DAMAGE_HITRATE_MAGICAL = 34
-    E_NUM = 35
+    EP_BREAK_RECOVER_SPEED = 35
+    E_NUM = 36
 
 
 class enum__Torappu_AttributeModifierData_AttributeModifier_FormulaItemType(object):
@@ -869,8 +871,15 @@ class clz_Torappu_AttributesData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesData
+    def AttractImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDataStart(builder):
-    builder.StartObject(25)
+    builder.StartObject(26)
 
 def clz_Torappu_AttributesDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -946,6 +955,9 @@ def clz_Torappu_AttributesDataAddFearedImmune(builder, fearedImmune):
 
 def clz_Torappu_AttributesDataAddPalsyImmune(builder, palsyImmune):
     builder.PrependBoolSlot(24, palsyImmune, 0)
+
+def clz_Torappu_AttributesDataAddAttractImmune(builder, attractImmune):
+    builder.PrependBoolSlot(25, attractImmune, 0)
 
 def clz_Torappu_AttributesDataEnd(builder):
     return builder.EndObject()
@@ -2210,8 +2222,15 @@ class clz_Torappu_AttributesDeltaData(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_AttributesDeltaData
+    def AttractImmune(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(54))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_AttributesDeltaDataStart(builder):
-    builder.StartObject(25)
+    builder.StartObject(26)
 
 def clz_Torappu_AttributesDeltaDataAddMaxHp(builder, maxHp):
     builder.PrependInt32Slot(0, maxHp, 0)
@@ -2287,6 +2306,9 @@ def clz_Torappu_AttributesDeltaDataAddFearedImmune(builder, fearedImmune):
 
 def clz_Torappu_AttributesDeltaDataAddPalsyImmune(builder, palsyImmune):
     builder.PrependBoolSlot(24, palsyImmune, 0)
+
+def clz_Torappu_AttributesDeltaDataAddAttractImmune(builder, attractImmune):
+    builder.PrependBoolSlot(25, attractImmune, 0)
 
 def clz_Torappu_AttributesDeltaDataEnd(builder):
     return builder.EndObject()

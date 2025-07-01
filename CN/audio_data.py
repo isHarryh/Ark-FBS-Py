@@ -43,6 +43,7 @@ class enum__Torappu_VoiceLangType(object):
     ITA = 7
     GER = 8
     RUS = 9
+    FRE = 10
 
 
 class clz_Torappu_Audio_Middleware_Data_BGMBank(object):

@@ -48,7 +48,8 @@ class enum__Torappu_AbnormalFlag(object):
     DEFENSE_BUFF_ADD_IF_CANCELABLE_BUFF = 38
     PALSY = 39
     PALSYING = 40
-    E_NUM = 41
+    ATTRACTED = 41
+    E_NUM = 42
 
 
 class enum__Torappu_AbnormalCombo(object):
@@ -93,7 +94,8 @@ class enum__Torappu_AttributeType(object):
     EP_RESISTANCE = 32
     DAMAGE_HITRATE_PHYSICAL = 33
     DAMAGE_HITRATE_MAGICAL = 34
-    E_NUM = 35
+    EP_BREAK_RECOVER_SPEED = 35
+    E_NUM = 36
 
 
 class enum__Torappu_AttributeModifierData_AttributeModifier_FormulaItemType(object):

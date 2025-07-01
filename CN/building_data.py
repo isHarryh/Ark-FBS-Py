@@ -3350,8 +3350,42 @@ class clz_Torappu_BuildingData_BuildingBuff(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_BuildingData_BuildingBuff
+    def Efficiency(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_BuildingData_BuildingBuff
+    def TargetGroupSortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_BuildingData_BuildingBuff
+    def Targets(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_BuildingData_BuildingBuff
+    def TargetsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_BuildingData_BuildingBuff
+    def TargetsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        return o == 0
+
 def clz_Torappu_BuildingData_BuildingBuffStart(builder):
-    builder.StartObject(10)
+    builder.StartObject(13)
 
 def clz_Torappu_BuildingData_BuildingBuffAddBuffId(builder, buffId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(buffId), 0)
@@ -3382,6 +3416,18 @@ def clz_Torappu_BuildingData_BuildingBuffAddRoomType(builder, roomType):
 
 def clz_Torappu_BuildingData_BuildingBuffAddDescription(builder, description):
     builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(description), 0)
+
+def clz_Torappu_BuildingData_BuildingBuffAddEfficiency(builder, efficiency):
+    builder.PrependInt32Slot(10, efficiency, 0)
+
+def clz_Torappu_BuildingData_BuildingBuffAddTargetGroupSortId(builder, targetGroupSortId):
+    builder.PrependInt32Slot(11, targetGroupSortId, 0)
+
+def clz_Torappu_BuildingData_BuildingBuffAddTargets(builder, targets):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(targets), 0)
+
+def clz_Torappu_BuildingData_BuildingBuffStartTargetsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_BuildingData_BuildingBuffEnd(builder):
     return builder.EndObject()
@@ -7399,6 +7445,242 @@ def clz_Torappu_BuildingData_MusicDataEnd(builder):
 
 
 
+class clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo
+    def Targets(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo
+    def TargetsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo
+    def TargetsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfoStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfoAddTargets(builder, targets):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(targets), 0)
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfoStartTargetsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfoAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfoEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfoStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfoAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfoAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfoEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_BuildingData_BuildingRoomTypeBuffSortData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData
+    def HasEfficiencySort(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData
+    def DefaultGroupSortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData
+    def EfficiencyTargetDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData_buffGroupInfo()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData
+    def EfficiencyTargetDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData
+    def EfficiencyTargetDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataAddHasEfficiencySort(builder, hasEfficiencySort):
+    builder.PrependBoolSlot(0, hasEfficiencySort, 0)
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataAddDefaultGroupSortId(builder, defaultGroupSortId):
+    builder.PrependInt32Slot(1, defaultGroupSortId, 0)
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataAddEfficiencyTargetDict(builder, efficiencyTargetDict):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(efficiencyTargetDict), 0)
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataStartEfficiencyTargetDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_BuildingData(object):
     __slots__ = ['_tab']
 
@@ -8461,8 +8743,56 @@ class clz_Torappu_BuildingData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(160))
         return o == 0
 
+    # clz_Torappu_BuildingData
+    def CategoryNames(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(162))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__string()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_BuildingData
+    def CategoryNamesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(162))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_BuildingData
+    def CategoryNamesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(162))
+        return o == 0
+
+    # clz_Torappu_BuildingData
+    def BuffSortData(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(164))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_BuildingData_BuildingRoomTypeBuffSortData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_BuildingData
+    def BuffSortDataLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(164))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_BuildingData
+    def BuffSortDataIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(164))
+        return o == 0
+
 def clz_Torappu_BuildingDataStart(builder):
-    builder.StartObject(79)
+    builder.StartObject(81)
 
 def clz_Torappu_BuildingDataAddControlSlotId(builder, controlSlotId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(controlSlotId), 0)
@@ -8777,6 +9107,18 @@ def clz_Torappu_BuildingDataAddEmojis(builder, emojis):
     builder.PrependUOffsetTRelativeSlot(78, flatbuffers.number_types.UOffsetTFlags.py_type(emojis), 0)
 
 def clz_Torappu_BuildingDataStartEmojisVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_BuildingDataAddCategoryNames(builder, categoryNames):
+    builder.PrependUOffsetTRelativeSlot(79, flatbuffers.number_types.UOffsetTFlags.py_type(categoryNames), 0)
+
+def clz_Torappu_BuildingDataStartCategoryNamesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_BuildingDataAddBuffSortData(builder, buffSortData):
+    builder.PrependUOffsetTRelativeSlot(80, flatbuffers.number_types.UOffsetTFlags.py_type(buffSortData), 0)
+
+def clz_Torappu_BuildingDataStartBuffSortDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_BuildingDataEnd(builder):

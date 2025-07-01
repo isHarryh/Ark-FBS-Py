@@ -9882,8 +9882,15 @@ class clz_Torappu_ActivityCollectionData_Consts(object):
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_ActivityCollectionData_Consts
+    def IsSimpleMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_ActivityCollectionData_ConstsStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(6)
 
 def clz_Torappu_ActivityCollectionData_ConstsAddShowJumpBtn(builder, showJumpBtn):
     builder.PrependBoolSlot(0, showJumpBtn, 0)
@@ -9899,6 +9906,9 @@ def clz_Torappu_ActivityCollectionData_ConstsAddJumpBtnParam2(builder, jumpBtnPa
 
 def clz_Torappu_ActivityCollectionData_ConstsAddDailyTaskStartTime(builder, dailyTaskStartTime):
     builder.PrependInt64Slot(4, dailyTaskStartTime, 0)
+
+def clz_Torappu_ActivityCollectionData_ConstsAddIsSimpleMode(builder, isSimpleMode):
+    builder.PrependBoolSlot(5, isSimpleMode, 0)
 
 def clz_Torappu_ActivityCollectionData_ConstsEnd(builder):
     return builder.EndObject()
