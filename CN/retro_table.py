@@ -92,6 +92,7 @@ class enum__Torappu_ItemType(object):
     EMOTICON_SET = 82
     EXCLUSIVE_TKT_GACHA = 83
     EXCLUSIVE_TKT_GACHA_10 = 84
+    SO_CHAR_EXP = 85
 
 
 class enum__Torappu_StageDropType(object):
@@ -290,6 +291,8 @@ class enum__Torappu_ActArchiveType(object):
     QUEST = 23
     FRAGMENT = 24
     DISASTER = 25
+    COPPER = 26
+    WRATH = 27
 
 
 class enum__Torappu_Act17sideData_ArchiveItemUnlockCondition(object):

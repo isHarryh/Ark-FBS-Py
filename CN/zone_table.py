@@ -138,6 +138,7 @@ class enum__Torappu_ItemType(object):
     EMOTICON_SET = 82
     EXCLUSIVE_TKT_GACHA = 83
     EXCLUSIVE_TKT_GACHA_10 = 84
+    SO_CHAR_EXP = 85
 
 
 class clz_Torappu_ZoneData(object):

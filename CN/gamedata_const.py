@@ -92,6 +92,7 @@ class enum__Torappu_ItemType(object):
     EMOTICON_SET = 82
     EXCLUSIVE_TKT_GACHA = 83
     EXCLUSIVE_TKT_GACHA_10 = 84
+    SO_CHAR_EXP = 85
 
 
 class enum__Torappu_SubProfessionAttackType(object):
@@ -1724,8 +1725,15 @@ class clz_Torappu_GameDataConsts(object):
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
+    # clz_Torappu_GameDataConsts
+    def IsSoCharEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(240))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_GameDataConstsStart(builder):
-    builder.StartObject(118)
+    builder.StartObject(119)
 
 def clz_Torappu_GameDataConstsAddMaxPlayerLevel(builder, maxPlayerLevel):
     builder.PrependInt32Slot(0, maxPlayerLevel, 0)
@@ -2146,6 +2154,9 @@ def clz_Torappu_GameDataConstsAddBirthdaySettingShowStageId(builder, birthdaySet
 
 def clz_Torappu_GameDataConstsAddIsBirthdayFuncEnabled(builder, isBirthdayFuncEnabled):
     builder.PrependBoolSlot(117, isBirthdayFuncEnabled, 0)
+
+def clz_Torappu_GameDataConstsAddIsSoCharEnabled(builder, isSoCharEnabled):
+    builder.PrependBoolSlot(118, isSoCharEnabled, 0)
 
 def clz_Torappu_GameDataConstsEnd(builder):
     return builder.EndObject()

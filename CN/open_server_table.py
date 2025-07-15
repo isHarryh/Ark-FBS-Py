@@ -17,6 +17,8 @@ class enum__Torappu_MissionType(object):
     OPENSERVER = 7
     TOWERSEASON = 8
     RETRO = 9
+    SPECIAL_OPERATOR = 10
+    SPECIAL_OPERATOR_WEEKLY = 11
 
 
 class enum__Torappu_ItemType(object):
@@ -105,6 +107,7 @@ class enum__Torappu_ItemType(object):
     EMOTICON_SET = 82
     EXCLUSIVE_TKT_GACHA = 83
     EXCLUSIVE_TKT_GACHA_10 = 84
+    SO_CHAR_EXP = 85
 
 
 class enum__Torappu_MissionItemBgType(object):

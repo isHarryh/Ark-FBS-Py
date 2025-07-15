@@ -145,6 +145,7 @@ class enum__Torappu_ItemType(object):
     EMOTICON_SET = 82
     EXCLUSIVE_TKT_GACHA = 83
     EXCLUSIVE_TKT_GACHA_10 = 84
+    SO_CHAR_EXP = 85
 
 
 class enum__Torappu_StageDropType(object):
@@ -2102,8 +2103,15 @@ class clz_Torappu_MapThemeData(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_MapThemeData
+    def EmissionColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_MapThemeDataStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(6)
 
 def clz_Torappu_MapThemeDataAddThemeId(builder, themeId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(themeId), 0)
@@ -2119,6 +2127,9 @@ def clz_Torappu_MapThemeDataAddThemeType(builder, themeType):
 
 def clz_Torappu_MapThemeDataAddTrapTintColor(builder, trapTintColor):
     builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(trapTintColor), 0)
+
+def clz_Torappu_MapThemeDataAddEmissionColor(builder, emissionColor):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(emissionColor), 0)
 
 def clz_Torappu_MapThemeDataEnd(builder):
     return builder.EndObject()

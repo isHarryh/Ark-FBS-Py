@@ -142,6 +142,7 @@ class enum__Torappu_ItemType(object):
     EMOTICON_SET = 82
     EXCLUSIVE_TKT_GACHA = 83
     EXCLUSIVE_TKT_GACHA_10 = 84
+    SO_CHAR_EXP = 85
 
 
 class enum__Torappu_EmojiSceneType(object):
@@ -150,6 +151,54 @@ class enum__Torappu_EmojiSceneType(object):
     ACTMULTIV3_PICK = 2
     ACTMULTIV3_BATTLE = 3
     ENEMYDUEL_BATTLE = 4
+
+
+class enum__Torappu_UIGuideTarget(object):
+    NONE = 0
+    BUILDING_CONTROL = 1
+    BUILDING_DORM = 2
+    BUILDING_HIRE = 3
+    BUILDING_MANUFACT = 4
+    BUILDING_MEETING = 5
+    BUILDING_TRADING = 6
+    CHAR_INFO = 7
+    FRIEND = 8
+    RECRUIT = 9
+    SHOP = 10
+    SQUAD_NORMAL = 11
+    SQUAD_BATTLE = 12
+    STAGE_MAINLINE = 13
+    BUILDING_POWER = 14
+    MISSION = 15
+    CHAR_SKILL_SELECT = 16
+    BUILDING_WORKSHOP = 17
+    STAGE_CAMPAIGN = 18
+    CHAR_EVOLVE = 19
+    HANDBOOK = 20
+    BUILDING_FURN_SHOP = 21
+    BUILDING_TRAINING = 22
+    STAGE_ACTIVITY = 23
+    CRISIS_STAGE = 24
+    ROGUELIKE_CHARSELECT = 25
+    ROGUELIKE_BP = 26
+    CLIMB_TOWER_ENTRY = 27
+    CLIMB_TOWER_LAYER = 28
+    ROGUELIKE_DUNGEON = 31
+    RL03_TOTEM = 32
+    GROCERY = 33
+    TUNING = 34
+    CRISIS_V2 = 35
+    MISSION_ARCHIVE = 36
+    FIFTH_ANNIV_EXPLORE = 37
+    CARVING = 38
+    VEC_BREAK = 39
+    FIREWORK = 40
+    BUILDING_STATION_MANAGE = 41
+    ACT_MULTI_V3 = 42
+    ENEMY_DUEL = 43
+    VEC_BREAK_V2 = 44
+    GUN_TASK = 45
+    SPECIAL_OPERATOR = 46
 
 
 class clz_Torappu_PlayerAvatarPerData(object):
@@ -3086,6 +3135,213 @@ def dict__string__clz_Torappu_StoryVariantDataEnd(builder):
 
 
 
+class clz_Torappu_GuidebookConfigData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_GuidebookConfigData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_GuidebookConfigData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_GuidebookConfigData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_GuidebookConfigData
+    def ConfigId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_GuidebookConfigData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_GuidebookConfigData
+    def PageIdList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_GuidebookConfigData
+    def PageIdListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_GuidebookConfigData
+    def PageIdListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+def clz_Torappu_GuidebookConfigDataStart(builder):
+    builder.StartObject(3)
+
+def clz_Torappu_GuidebookConfigDataAddConfigId(builder, configId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(configId), 0)
+
+def clz_Torappu_GuidebookConfigDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_GuidebookConfigDataAddPageIdList(builder, pageIdList):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(pageIdList), 0)
+
+def clz_Torappu_GuidebookConfigDataStartPageIdListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_GuidebookConfigDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_GuidebookGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_GuidebookGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_GuidebookGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_GuidebookGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_GuidebookGroupData
+    def GroupId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_GuidebookGroupData
+    def GuideTarget(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_GuidebookGroupData
+    def SubSignal(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_GuidebookGroupData
+    def ConfigList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = clz_Torappu_GuidebookConfigData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_GuidebookGroupData
+    def ConfigListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_GuidebookGroupData
+    def ConfigListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+def clz_Torappu_GuidebookGroupDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_GuidebookGroupDataAddGroupId(builder, groupId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(groupId), 0)
+
+def clz_Torappu_GuidebookGroupDataAddGuideTarget(builder, guideTarget):
+    builder.PrependInt32Slot(1, guideTarget, 0)
+
+def clz_Torappu_GuidebookGroupDataAddSubSignal(builder, subSignal):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(subSignal), 0)
+
+def clz_Torappu_GuidebookGroupDataAddConfigList(builder, configList):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(configList), 0)
+
+def clz_Torappu_GuidebookGroupDataStartConfigListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_GuidebookGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_GuidebookGroupData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_GuidebookGroupData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_GuidebookGroupData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_GuidebookGroupData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_GuidebookGroupData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_GuidebookGroupData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_GuidebookGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_GuidebookGroupDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_GuidebookGroupDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_GuidebookGroupDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_GuidebookGroupDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_DisplayMetaData(object):
     __slots__ = ['_tab']
 
@@ -3188,8 +3444,32 @@ class clz_Torappu_DisplayMetaData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         return o == 0
 
+    # clz_Torappu_DisplayMetaData
+    def GuidebookGroupDatas(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_GuidebookGroupData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_DisplayMetaData
+    def GuidebookGroupDatasLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_DisplayMetaData
+    def GuidebookGroupDatasIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        return o == 0
+
 def clz_Torappu_DisplayMetaDataStart(builder):
-    builder.StartObject(7)
+    builder.StartObject(8)
 
 def clz_Torappu_DisplayMetaDataAddPlayerAvatarData(builder, playerAvatarData):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(playerAvatarData), 0)
@@ -3213,6 +3493,12 @@ def clz_Torappu_DisplayMetaDataAddStoryVariantData(builder, storyVariantData):
     builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(storyVariantData), 0)
 
 def clz_Torappu_DisplayMetaDataStartStoryVariantDataVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_DisplayMetaDataAddGuidebookGroupDatas(builder, guidebookGroupDatas):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(guidebookGroupDatas), 0)
+
+def clz_Torappu_DisplayMetaDataStartGuidebookGroupDatasVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_DisplayMetaDataEnd(builder):
