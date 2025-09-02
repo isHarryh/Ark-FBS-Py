@@ -93,6 +93,7 @@ class enum__Torappu_ItemType(object):
     EXCLUSIVE_TKT_GACHA = 83
     EXCLUSIVE_TKT_GACHA_10 = 84
     SO_CHAR_EXP = 85
+    GIFTPACKAGE_TKT = 86
 
 
 class enum__Torappu_StageDropType(object):
@@ -181,7 +182,8 @@ class enum__Torappu_ActivityType(object):
     ENEMY_DUEL = 52
     VEC_BREAK_V2 = 53
     TYPE_ACT42SIDE = 54
-    ENUM = 55
+    TYPE_ACT44SIDE = 55
+    ENUM = 56
 
 
 class enum__Torappu_StageType(object):
@@ -343,6 +345,13 @@ class enum__Torappu_Battle_SideType(object):
     BOTH_ALLY_AND_ENEMY = 3
     NEUTRAL = 4
     ALL = 7
+
+
+class enum__Torappu_TileData_HeightTypeMask(object):
+    NONE = 0
+    LOWLAND = 1
+    HIGHLAND = 2
+    ALL = 3
 
 
 class enum__Torappu_Act17sideData_ChapterIconType(object):
@@ -5080,8 +5089,15 @@ class clz_Torappu_RuneData_Selector(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
+    # clz_Torappu_RuneData_Selector
+    def HeightTypeMask(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_RuneData_SelectorStart(builder):
-    builder.StartObject(16)
+    builder.StartObject(17)
 
 def clz_Torappu_RuneData_SelectorAddProfessionMask(builder, professionMask):
     builder.PrependInt32Slot(0, professionMask, 0)
@@ -5166,6 +5182,9 @@ def clz_Torappu_RuneData_SelectorAddMapTagFilter(builder, mapTagFilter):
 
 def clz_Torappu_RuneData_SelectorStartMapTagFilterVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_RuneData_SelectorAddHeightTypeMask(builder, heightTypeMask):
+    builder.PrependInt32Slot(16, heightTypeMask, 0)
 
 def clz_Torappu_RuneData_SelectorEnd(builder):
     return builder.EndObject()

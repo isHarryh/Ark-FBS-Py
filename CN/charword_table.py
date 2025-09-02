@@ -74,6 +74,7 @@ class enum__Torappu_VoiceLangType(object):
     GER = 8
     RUS = 9
     FRE = 10
+    SPA = 11
 
 
 class enum__Torappu_VoiceLangGroupType(object):
