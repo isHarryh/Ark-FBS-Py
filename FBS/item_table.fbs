@@ -104,6 +104,10 @@ enum enum__Torappu_ItemType : int {
     EXCLUSIVE_TKT_GACHA_10 = 84,
     SO_CHAR_EXP = 85,
     GIFTPACKAGE_TKT = 86,
+    VOUCHER_SKIN_V2 = 87,
+    RANDOM_VOUCHER_SKIN = 88,
+    ACT1VHALFIDLE_ITEM = 89,
+    PLOT_ITEM = 90,
 }
 
 enum enum__Torappu_OccPer : int {
@@ -119,6 +123,7 @@ enum enum__Torappu_OccPer : int {
 table clz_Torappu_ItemData_StageDropInfo {
     stageId: string; 
     occPer: enum__Torappu_OccPer; 
+    sortId: int; 
 }
 
 enum enum__Torappu_BuildingData_RoomType : int {
