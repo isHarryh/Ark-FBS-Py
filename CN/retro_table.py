@@ -94,6 +94,10 @@ class enum__Torappu_ItemType(object):
     EXCLUSIVE_TKT_GACHA_10 = 84
     SO_CHAR_EXP = 85
     GIFTPACKAGE_TKT = 86
+    VOUCHER_SKIN_V2 = 87
+    RANDOM_VOUCHER_SKIN = 88
+    ACT1VHALFIDLE_ITEM = 89
+    PLOT_ITEM = 90
 
 
 class enum__Torappu_StageDropType(object):
@@ -109,6 +113,7 @@ class enum__Torappu_StageDropType(object):
     CHARM_DROP = 9
     OVERRIDE_DROP = 10
     ITEM_RETURN = 11
+    CONDITION_DROP = 12
 
 
 class enum__Torappu_OccPer(object):
@@ -183,7 +188,11 @@ class enum__Torappu_ActivityType(object):
     VEC_BREAK_V2 = 53
     TYPE_ACT42SIDE = 54
     TYPE_ACT44SIDE = 55
-    ENUM = 56
+    HALFIDLE_VERIFY1 = 56
+    TYPE_ACT45SIDE = 57
+    TEAM_QUEST = 58
+    RECRUIT_ONLY = 59
+    ENUM = 60
 
 
 class enum__Torappu_StageType(object):
@@ -1930,8 +1939,22 @@ class clz_Torappu_StageData_SpecialStoryInfo(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
+    # clz_Torappu_StageData_SpecialStoryInfo
+    def KeyItemId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_StageData_SpecialStoryInfo
+    def UnlockDesc(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_StageData_SpecialStoryInfoStart(builder):
-    builder.StartObject(4)
+    builder.StartObject(6)
 
 def clz_Torappu_StageData_SpecialStoryInfoAddStageId(builder, stageId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(stageId), 0)
@@ -1947,6 +1970,12 @@ def clz_Torappu_StageData_SpecialStoryInfoAddProgressInfo(builder, progressInfo)
 
 def clz_Torappu_StageData_SpecialStoryInfoAddImageId(builder, imageId):
     builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(imageId), 0)
+
+def clz_Torappu_StageData_SpecialStoryInfoAddKeyItemId(builder, keyItemId):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(keyItemId), 0)
+
+def clz_Torappu_StageData_SpecialStoryInfoAddUnlockDesc(builder, unlockDesc):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(unlockDesc), 0)
 
 def clz_Torappu_StageData_SpecialStoryInfoEnd(builder):
     return builder.EndObject()

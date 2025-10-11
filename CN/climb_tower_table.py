@@ -99,6 +99,10 @@ class enum__Torappu_ItemType(object):
     EXCLUSIVE_TKT_GACHA_10 = 84
     SO_CHAR_EXP = 85
     GIFTPACKAGE_TKT = 86
+    VOUCHER_SKIN_V2 = 87
+    RANDOM_VOUCHER_SKIN = 88
+    ACT1VHALFIDLE_ITEM = 89
+    PLOT_ITEM = 90
 
 
 class enum__Torappu_ClimbTowerLevelType(object):
@@ -120,6 +124,7 @@ class enum__Torappu_StageDropType(object):
     CHARM_DROP = 9
     OVERRIDE_DROP = 10
     ITEM_RETURN = 11
+    CONDITION_DROP = 12
 
 
 class enum__Torappu_OccPer(object):

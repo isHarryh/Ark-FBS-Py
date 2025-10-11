@@ -105,7 +105,8 @@ class enum__Torappu_CheckpointType(object):
     ALERT = 7
     PATROL_MOVE = 8
     WAIT_BOSSRUSH_WAVE = 9
-    INVALID = 10
+    MAP_OFFSET_MOVE = 10
+    INVALID = 11
 
 
 class enum__Torappu_SourceApplyWay(object):
@@ -318,22 +319,29 @@ class clz_Torappu_LevelData_Options(object):
         return False
 
     # clz_Torappu_LevelData_Options
-    def MaxPlayTime(self):
+    def DisplayRestTime(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_LevelData_Options
+    def MaxPlayTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_LevelData_Options
     def FunctionDisableMask(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_LevelData_Options
     def ConfigBlackBoard(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -345,18 +353,18 @@ class clz_Torappu_LevelData_Options(object):
 
     # clz_Torappu_LevelData_Options
     def ConfigBlackBoardLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_LevelData_Options
     def ConfigBlackBoardIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         return o == 0
 
 def clz_Torappu_LevelData_OptionsStart(builder):
-    builder.StartObject(13)
+    builder.StartObject(14)
 
 def clz_Torappu_LevelData_OptionsAddCharacterLimit(builder, characterLimit):
     builder.PrependInt32Slot(0, characterLimit, 0)
@@ -388,14 +396,17 @@ def clz_Torappu_LevelData_OptionsAddIsHardTrainingLevel(builder, isHardTrainingL
 def clz_Torappu_LevelData_OptionsAddIsPredefinedCardsSelectable(builder, isPredefinedCardsSelectable):
     builder.PrependBoolSlot(9, isPredefinedCardsSelectable, 0)
 
+def clz_Torappu_LevelData_OptionsAddDisplayRestTime(builder, displayRestTime):
+    builder.PrependBoolSlot(10, displayRestTime, 0)
+
 def clz_Torappu_LevelData_OptionsAddMaxPlayTime(builder, maxPlayTime):
-    builder.PrependFloat32Slot(10, maxPlayTime, 0.0)
+    builder.PrependFloat32Slot(11, maxPlayTime, 0.0)
 
 def clz_Torappu_LevelData_OptionsAddFunctionDisableMask(builder, functionDisableMask):
-    builder.PrependInt32Slot(11, functionDisableMask, 0)
+    builder.PrependInt32Slot(12, functionDisableMask, 0)
 
 def clz_Torappu_LevelData_OptionsAddConfigBlackBoard(builder, configBlackBoard):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(configBlackBoard), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(configBlackBoard), 0)
 
 def clz_Torappu_LevelData_OptionsStartConfigBlackBoardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)

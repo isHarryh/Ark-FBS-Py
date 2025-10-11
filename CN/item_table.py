@@ -111,6 +111,10 @@ class enum__Torappu_ItemType(object):
     EXCLUSIVE_TKT_GACHA_10 = 84
     SO_CHAR_EXP = 85
     GIFTPACKAGE_TKT = 86
+    VOUCHER_SKIN_V2 = 87
+    RANDOM_VOUCHER_SKIN = 88
+    ACT1VHALFIDLE_ITEM = 89
+    PLOT_ITEM = 90
 
 
 class enum__Torappu_OccPer(object):
@@ -188,14 +192,24 @@ class clz_Torappu_ItemData_StageDropInfo(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_ItemData_StageDropInfo
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
 def clz_Torappu_ItemData_StageDropInfoStart(builder):
-    builder.StartObject(2)
+    builder.StartObject(3)
 
 def clz_Torappu_ItemData_StageDropInfoAddStageId(builder, stageId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(stageId), 0)
 
 def clz_Torappu_ItemData_StageDropInfoAddOccPer(builder, occPer):
     builder.PrependInt32Slot(1, occPer, 0)
+
+def clz_Torappu_ItemData_StageDropInfoAddSortId(builder, sortId):
+    builder.PrependInt32Slot(2, sortId, 0)
 
 def clz_Torappu_ItemData_StageDropInfoEnd(builder):
     return builder.EndObject()

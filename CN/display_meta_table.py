@@ -149,6 +149,10 @@ class enum__Torappu_ItemType(object):
     EXCLUSIVE_TKT_GACHA_10 = 84
     SO_CHAR_EXP = 85
     GIFTPACKAGE_TKT = 86
+    VOUCHER_SKIN_V2 = 87
+    RANDOM_VOUCHER_SKIN = 88
+    ACT1VHALFIDLE_ITEM = 89
+    PLOT_ITEM = 90
 
 
 class enum__Torappu_EmojiSceneType(object):
@@ -206,6 +210,7 @@ class enum__Torappu_UIGuideTarget(object):
     GUN_TASK = 45
     SPECIAL_OPERATOR = 46
     INFORMANT = 47
+    ACT1VHALFIDLE = 48
 
 
 class clz_Torappu_PlayerAvatarPerData(object):
