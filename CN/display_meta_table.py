@@ -161,6 +161,8 @@ class enum__Torappu_EmojiSceneType(object):
     ACTMULTIV3_PICK = 2
     ACTMULTIV3_BATTLE = 3
     ENEMYDUEL_BATTLE = 4
+    AUTOCHESS_ROOM = 5
+    AUTOCHESS_BATTLE = 6
 
 
 class enum__Torappu_UIGuideTarget(object):
@@ -211,6 +213,8 @@ class enum__Torappu_UIGuideTarget(object):
     SPECIAL_OPERATOR = 46
     INFORMANT = 47
     ACT1VHALFIDLE = 48
+    MONOPOLY = 49
+    AUTO_CHESS = 50
 
 
 class clz_Torappu_PlayerAvatarPerData(object):

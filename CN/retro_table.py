@@ -192,7 +192,9 @@ class enum__Torappu_ActivityType(object):
     TYPE_ACT45SIDE = 57
     TEAM_QUEST = 58
     RECRUIT_ONLY = 59
-    ENUM = 60
+    TYPE_ACT46SIDE = 60
+    AUTOCHESS_SEASON = 61
+    ENUM = 62
 
 
 class enum__Torappu_StageType(object):
@@ -1303,8 +1305,15 @@ class clz_Torappu_RetroActData(object):
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
+    # clz_Torappu_RetroActData
+    def TrapDomainId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
 def clz_Torappu_RetroActDataStart(builder):
-    builder.StartObject(10)
+    builder.StartObject(11)
 
 def clz_Torappu_RetroActDataAddRetroId(builder, retroId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(retroId), 0)
@@ -1338,6 +1347,9 @@ def clz_Torappu_RetroActDataAddCustomActId(builder, customActId):
 
 def clz_Torappu_RetroActDataAddCustomActType(builder, customActType):
     builder.PrependInt32Slot(9, customActType, 0)
+
+def clz_Torappu_RetroActDataAddTrapDomainId(builder, trapDomainId):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(trapDomainId), 0)
 
 def clz_Torappu_RetroActDataEnd(builder):
     return builder.EndObject()
@@ -2517,8 +2529,15 @@ class clz_Torappu_StageData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
         return o == 0
 
+    # clz_Torappu_StageData
+    def UseSpecialSizeMapPreview(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_StageDataStart(builder):
-    builder.StartObject(60)
+    builder.StartObject(61)
 
 def clz_Torappu_StageDataAddStageType(builder, stageType):
     builder.PrependInt32Slot(0, stageType, 0)
@@ -2717,6 +2736,9 @@ def clz_Torappu_StageDataAddAdvancedRuneIdList2(builder, advancedRuneIdList2):
 
 def clz_Torappu_StageDataStartAdvancedRuneIdList2Vector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_StageDataAddUseSpecialSizeMapPreview(builder, useSpecialSizeMapPreview):
+    builder.PrependBoolSlot(60, useSpecialSizeMapPreview, 0)
 
 def clz_Torappu_StageDataEnd(builder):
     return builder.EndObject()

@@ -1624,8 +1624,15 @@ class clz_Torappu_StageData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(122))
         return o == 0
 
+    # clz_Torappu_StageData
+    def UseSpecialSizeMapPreview(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(124))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
 def clz_Torappu_StageDataStart(builder):
-    builder.StartObject(60)
+    builder.StartObject(61)
 
 def clz_Torappu_StageDataAddStageType(builder, stageType):
     builder.PrependInt32Slot(0, stageType, 0)
@@ -1824,6 +1831,9 @@ def clz_Torappu_StageDataAddAdvancedRuneIdList2(builder, advancedRuneIdList2):
 
 def clz_Torappu_StageDataStartAdvancedRuneIdList2Vector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_StageDataAddUseSpecialSizeMapPreview(builder, useSpecialSizeMapPreview):
+    builder.PrependBoolSlot(60, useSpecialSizeMapPreview, 0)
 
 def clz_Torappu_StageDataEnd(builder):
     return builder.EndObject()
