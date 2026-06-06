@@ -6,131 +6,6 @@ import flatbuffers
 from flatbuffers.compat import import_numpy
 np = import_numpy()
 
-class clz_Torappu_Battle_BakedFrameData(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = clz_Torappu_Battle_BakedFrameData()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsclz_Torappu_Battle_BakedFrameData(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # clz_Torappu_Battle_BakedFrameData
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # clz_Torappu_Battle_BakedFrameData
-    def Position(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def PositionAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float32Flags, o)
-        return 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def PositionLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def PositionIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def Rotation(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def RotationAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float32Flags, o)
-        return 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def RotationLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def RotationIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def Scale(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def ScaleAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float32Flags, o)
-        return 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def ScaleLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # clz_Torappu_Battle_BakedFrameData
-    def ScaleIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        return o == 0
-
-def clz_Torappu_Battle_BakedFrameDataStart(builder):
-    builder.StartObject(3)
-
-def clz_Torappu_Battle_BakedFrameDataAddPosition(builder, position):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(position), 0)
-
-def clz_Torappu_Battle_BakedFrameDataStartPositionVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_Battle_BakedFrameDataAddRotation(builder, rotation):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(rotation), 0)
-
-def clz_Torappu_Battle_BakedFrameDataStartRotationVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_Battle_BakedFrameDataAddScale(builder, scale):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(scale), 0)
-
-def clz_Torappu_Battle_BakedFrameDataStartScaleVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def clz_Torappu_Battle_BakedFrameDataEnd(builder):
-    return builder.EndObject()
-
-
-
 class clz_Torappu_Battle_BakedMountPointData(object):
     __slots__ = ['_tab']
 
@@ -150,56 +25,59 @@ class clz_Torappu_Battle_BakedMountPointData(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # clz_Torappu_Battle_BakedMountPointData
-    def IsConstant(self):
+    def BakedStepInterval(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_Battle_BakedMountPointData
-    def BakedStepInterval(self):
+    def FrameCount(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_Battle_BakedMountPointData
-    def Frames(self, j):
+    def TrsData(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = clz_Torappu_Battle_BakedFrameData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return 0
 
     # clz_Torappu_Battle_BakedMountPointData
-    def FramesLength(self):
+    def TrsDataAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float32Flags, o)
+        return 0
+
+    # clz_Torappu_Battle_BakedMountPointData
+    def TrsDataLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_Battle_BakedMountPointData
-    def FramesIsNone(self):
+    def TrsDataIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         return o == 0
 
 def clz_Torappu_Battle_BakedMountPointDataStart(builder):
     builder.StartObject(3)
 
-def clz_Torappu_Battle_BakedMountPointDataAddIsConstant(builder, isConstant):
-    builder.PrependBoolSlot(0, isConstant, 0)
-
 def clz_Torappu_Battle_BakedMountPointDataAddBakedStepInterval(builder, bakedStepInterval):
-    builder.PrependInt32Slot(1, bakedStepInterval, 0)
+    builder.PrependInt32Slot(0, bakedStepInterval, 0)
 
-def clz_Torappu_Battle_BakedMountPointDataAddFrames(builder, frames):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(frames), 0)
+def clz_Torappu_Battle_BakedMountPointDataAddFrameCount(builder, frameCount):
+    builder.PrependInt32Slot(1, frameCount, 0)
 
-def clz_Torappu_Battle_BakedMountPointDataStartFramesVector(builder, numElems):
+def clz_Torappu_Battle_BakedMountPointDataAddTrsData(builder, trsData):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(trsData), 0)
+
+def clz_Torappu_Battle_BakedMountPointDataStartTrsDataVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_Battle_BakedMountPointDataEnd(builder):
