@@ -156,6 +156,7 @@ class enum__Torappu_ItemType(object):
     PLOT_ITEM = 90
     MAGAZINE_LEAF = 91
     STICKER = 92
+    ARKHUB = 93
 
 
 class enum__Torappu_EmojiSceneType(object):
@@ -166,6 +167,8 @@ class enum__Torappu_EmojiSceneType(object):
     ENEMYDUEL_BATTLE = 4
     AUTOCHESS_ROOM = 5
     AUTOCHESS_BATTLE = 6
+    BUILDING_ACTION = 7
+    ARKHUB_ROOM = 8
 
 
 class enum__Torappu_UIGuideTarget(object):
@@ -221,6 +224,9 @@ class enum__Torappu_UIGuideTarget(object):
     ART_GALLERY = 51
     ART_MAGAZINE = 52
     ACT_FOOTBALL = 53
+    PIXEL_MAP = 54
+    ARK_HUB = 55
+    ARK_ODC = 56
 
 
 class enum__Torappu_KeyCodeType(object):
@@ -236,7 +242,8 @@ class enum__Torappu_KeySettingGroup(object):
 class enum__Torappu_KeyEffectGroup(object):
     BATTLE = 0
     OUT_BATTLE = 1
-    ALL = 2
+    ARKVENT = 2
+    ALL = 3
 
 
 class enum__Torappu_ActivityType(object):
@@ -302,8 +309,10 @@ class enum__Torappu_ActivityType(object):
     RECRUIT_ONLY = 59
     TYPE_ACT46SIDE = 60
     AUTOCHESS_SEASON = 61
-    ACT_FOOTBALL = 62
-    ENUM = 63
+    ARK_HUB = 62
+    ACT_FOOTBALL = 63
+    TYPE_ACT53SIDE = 64
+    ENUM = 65
 
 
 class enum__Torappu_CollectType(object):
@@ -3959,6 +3968,154 @@ def dict__string__list_stringEnd(builder):
 
 
 
+class clz_Torappu_EmoticonData_EmoticonThemeTypeData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_EmoticonData_EmoticonThemeTypeData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_EmoticonData_EmoticonThemeTypeData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def ItemId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def SortId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def IsBasic(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def IsDyn(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def PicSceneList(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return 0
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def PicSceneListAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
+        return 0
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def PicSceneListLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def PicSceneListIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataStart(builder):
+    builder.StartObject(5)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddItemId(builder, itemId):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(itemId), 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddSortId(builder, sortId):
+    builder.PrependInt32Slot(1, sortId, 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddIsBasic(builder, isBasic):
+    builder.PrependBoolSlot(2, isBasic, 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddIsDyn(builder, isDyn):
+    builder.PrependBoolSlot(3, isDyn, 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddPicSceneList(builder, picSceneList):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(picSceneList), 0)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataStartPicSceneListVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_EmoticonData_EmoticonThemeTypeDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_EmoticonData_EmoticonThemeTypeData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_EmoticonData(object):
     __slots__ = ['_tab']
 
@@ -4025,8 +4182,56 @@ class clz_Torappu_EmoticonData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeTypeDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_EmoticonData_EmoticonThemeTypeData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeTypeDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeTypeDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeReverseDict(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__list_string()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeReverseDictLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_EmoticonData
+    def EmoticonThemeReverseDictIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
 def clz_Torappu_EmoticonDataStart(builder):
-    builder.StartObject(2)
+    builder.StartObject(4)
 
 def clz_Torappu_EmoticonDataAddEmojiDataDict(builder, emojiDataDict):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(emojiDataDict), 0)
@@ -4038,6 +4243,18 @@ def clz_Torappu_EmoticonDataAddEmoticonThemeDataDict(builder, emoticonThemeDataD
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(emoticonThemeDataDict), 0)
 
 def clz_Torappu_EmoticonDataStartEmoticonThemeDataDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_EmoticonDataAddEmoticonThemeTypeDict(builder, emoticonThemeTypeDict):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(emoticonThemeTypeDict), 0)
+
+def clz_Torappu_EmoticonDataStartEmoticonThemeTypeDictVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_EmoticonDataAddEmoticonThemeReverseDict(builder, emoticonThemeReverseDict):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(emoticonThemeReverseDict), 0)
+
+def clz_Torappu_EmoticonDataStartEmoticonThemeReverseDictVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_EmoticonDataEnd(builder):
@@ -4711,11 +4928,31 @@ class clz_Torappu_KeySettingGroupData(object):
         return False
 
     # clz_Torappu_KeySettingGroupData
-    def RelatedActType(self):
+    def RelatedActTypes(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
         return 0
+
+    # clz_Torappu_KeySettingGroupData
+    def RelatedActTypesAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int32Flags, o)
+        return 0
+
+    # clz_Torappu_KeySettingGroupData
+    def RelatedActTypesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_KeySettingGroupData
+    def RelatedActTypesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        return o == 0
 
     # clz_Torappu_KeySettingGroupData
     def GameModeTag(self):
@@ -4780,8 +5017,11 @@ def clz_Torappu_KeySettingGroupDataAddKeyEffectGroup(builder, keyEffectGroup):
 def clz_Torappu_KeySettingGroupDataAddIsHidden(builder, isHidden):
     builder.PrependBoolSlot(4, isHidden, 0)
 
-def clz_Torappu_KeySettingGroupDataAddRelatedActType(builder, relatedActType):
-    builder.PrependInt32Slot(5, relatedActType, 0)
+def clz_Torappu_KeySettingGroupDataAddRelatedActTypes(builder, relatedActTypes):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(relatedActTypes), 0)
+
+def clz_Torappu_KeySettingGroupDataStartRelatedActTypesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_KeySettingGroupDataAddGameModeTag(builder, gameModeTag):
     builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(gameModeTag), 0)
@@ -5990,8 +6230,15 @@ class clz_Torappu_MagazineLeafItemData(object):
         return None
 
     # clz_Torappu_MagazineLeafItemData
-    def SkinDefaultPos(self):
+    def TemplateColor2(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_MagazineLeafItemData
+    def SkinDefaultPos(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = clz_UnityEngine_Vector2()
@@ -6001,14 +6248,14 @@ class clz_Torappu_MagazineLeafItemData(object):
 
     # clz_Torappu_MagazineLeafItemData
     def SkinDefaultScale(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_MagazineLeafItemData
     def LeafDecorMaxNumMap(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -6020,18 +6267,18 @@ class clz_Torappu_MagazineLeafItemData(object):
 
     # clz_Torappu_MagazineLeafItemData
     def LeafDecorMaxNumMapLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_MagazineLeafItemData
     def LeafDecorMaxNumMapIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
         return o == 0
 
 def clz_Torappu_MagazineLeafItemDataStart(builder):
-    builder.StartObject(15)
+    builder.StartObject(16)
 
 def clz_Torappu_MagazineLeafItemDataAddLeafId(builder, leafId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(leafId), 0)
@@ -6069,14 +6316,17 @@ def clz_Torappu_MagazineLeafItemDataAddTemplateStartTime(builder, templateStartT
 def clz_Torappu_MagazineLeafItemDataAddTemplateColor(builder, templateColor):
     builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(templateColor), 0)
 
+def clz_Torappu_MagazineLeafItemDataAddTemplateColor2(builder, templateColor2):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(templateColor2), 0)
+
 def clz_Torappu_MagazineLeafItemDataAddSkinDefaultPos(builder, skinDefaultPos):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(skinDefaultPos), 0)
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(skinDefaultPos), 0)
 
 def clz_Torappu_MagazineLeafItemDataAddSkinDefaultScale(builder, skinDefaultScale):
-    builder.PrependFloat32Slot(13, skinDefaultScale, 0.0)
+    builder.PrependFloat32Slot(14, skinDefaultScale, 0.0)
 
 def clz_Torappu_MagazineLeafItemDataAddLeafDecorMaxNumMap(builder, leafDecorMaxNumMap):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(leafDecorMaxNumMap), 0)
+    builder.PrependUOffsetTRelativeSlot(15, flatbuffers.number_types.UOffsetTFlags.py_type(leafDecorMaxNumMap), 0)
 
 def clz_Torappu_MagazineLeafItemDataStartLeafDecorMaxNumMapVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
@@ -7309,6 +7559,242 @@ def clz_Torappu_AVGDialogSettingDataEnd(builder):
 
 
 
+class clz_Torappu_PixelMapParamData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_PixelMapParamData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_PixelMapParamData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_PixelMapParamData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_PixelMapParamData
+    def Width(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_PixelMapParamData
+    def Height(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # clz_Torappu_PixelMapParamData
+    def InitColor(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_PixelMapParamData
+    def HtmlColors(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_PixelMapParamData
+    def HtmlColorsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_PixelMapParamData
+    def HtmlColorsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+def clz_Torappu_PixelMapParamDataStart(builder):
+    builder.StartObject(4)
+
+def clz_Torappu_PixelMapParamDataAddWidth(builder, width):
+    builder.PrependInt32Slot(0, width, 0)
+
+def clz_Torappu_PixelMapParamDataAddHeight(builder, height):
+    builder.PrependInt32Slot(1, height, 0)
+
+def clz_Torappu_PixelMapParamDataAddInitColor(builder, initColor):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(initColor), 0)
+
+def clz_Torappu_PixelMapParamDataAddHtmlColors(builder, htmlColors):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(htmlColors), 0)
+
+def clz_Torappu_PixelMapParamDataStartHtmlColorsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_PixelMapParamDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class dict__string__clz_Torappu_PixelMapParamData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = dict__string__clz_Torappu_PixelMapParamData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsdict__string__clz_Torappu_PixelMapParamData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # dict__string__clz_Torappu_PixelMapParamData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # dict__string__clz_Torappu_PixelMapParamData
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # dict__string__clz_Torappu_PixelMapParamData
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_PixelMapParamData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def dict__string__clz_Torappu_PixelMapParamDataStart(builder):
+    builder.StartObject(2)
+
+def dict__string__clz_Torappu_PixelMapParamDataAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def dict__string__clz_Torappu_PixelMapParamDataAddValue(builder, value):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(value), 0)
+
+def dict__string__clz_Torappu_PixelMapParamDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_PixelMapConstData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_PixelMapConstData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_PixelMapConstData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_PixelMapConstData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_PixelMapConstData
+    def UidWaterMark(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def clz_Torappu_PixelMapConstDataStart(builder):
+    builder.StartObject(1)
+
+def clz_Torappu_PixelMapConstDataAddUidWaterMark(builder, uidWaterMark):
+    builder.PrependBoolSlot(0, uidWaterMark, 0)
+
+def clz_Torappu_PixelMapConstDataEnd(builder):
+    return builder.EndObject()
+
+
+
+class clz_Torappu_PixelMapData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = clz_Torappu_PixelMapData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsclz_Torappu_PixelMapData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # clz_Torappu_PixelMapData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # clz_Torappu_PixelMapData
+    def ParamMap(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = dict__string__clz_Torappu_PixelMapParamData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # clz_Torappu_PixelMapData
+    def ParamMapLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_PixelMapData
+    def ParamMapIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+    # clz_Torappu_PixelMapData
+    def ConstData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_PixelMapConstData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def clz_Torappu_PixelMapDataStart(builder):
+    builder.StartObject(2)
+
+def clz_Torappu_PixelMapDataAddParamMap(builder, paramMap):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(paramMap), 0)
+
+def clz_Torappu_PixelMapDataStartParamMapVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_PixelMapDataAddConstData(builder, constData):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(constData), 0)
+
+def clz_Torappu_PixelMapDataEnd(builder):
+    return builder.EndObject()
+
+
+
 class clz_Torappu_DisplayMetaData(object):
     __slots__ = ['_tab']
 
@@ -7509,8 +7995,18 @@ class clz_Torappu_DisplayMetaData(object):
             return obj
         return None
 
+    # clz_Torappu_DisplayMetaData
+    def PixelMapData(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = clz_Torappu_PixelMapData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
 def clz_Torappu_DisplayMetaDataStart(builder):
-    builder.StartObject(14)
+    builder.StartObject(15)
 
 def clz_Torappu_DisplayMetaDataAddPlayerAvatarData(builder, playerAvatarData):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(playerAvatarData), 0)
@@ -7562,6 +8058,9 @@ def clz_Torappu_DisplayMetaDataAddStickerData(builder, stickerData):
 
 def clz_Torappu_DisplayMetaDataAddAvgDialogSettingData(builder, avgDialogSettingData):
     builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(avgDialogSettingData), 0)
+
+def clz_Torappu_DisplayMetaDataAddPixelMapData(builder, pixelMapData):
+    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(pixelMapData), 0)
 
 def clz_Torappu_DisplayMetaDataEnd(builder):
     return builder.EndObject()
