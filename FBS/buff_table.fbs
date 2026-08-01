@@ -44,7 +44,9 @@ enum enum__Torappu_AbnormalFlag : int {
     ATTRACTED = 41,
     FEARED_PRIVATE = 42,
     DOZE = 43,
-    E_NUM = 44,
+    TELEPORTED = 44,
+    GROUND_BOUND = 45,
+    E_NUM = 46,
 }
 
 enum enum__Torappu_AbnormalCombo : int {
@@ -166,6 +168,7 @@ table clz_Torappu_BuffData {
     isStunnable: bool; 
     isFreezable: bool; 
     isLevitatable: bool; 
+    isGroundBoundable: bool; 
     statusResistable: enum__Torappu_BuffData_StatusResistable; 
     templateKey: string; 
     disableOverride: bool; 
