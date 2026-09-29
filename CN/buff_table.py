@@ -706,57 +706,64 @@ class clz_Torappu_BuffData(object):
         return None
 
     # clz_Torappu_BuffData
-    def LifeTime(self):
+    def RemainingTimeKey(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(58))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_BuffData
+    def LifeTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_BuffData
     def TriggerLifeType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(60))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_BuffData
     def TriggerCnt(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(62))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_BuffData
     def TriggerInterval(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(64))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_BuffData
     def WaitFirstTriggerInterval(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(66))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_BuffData
     def FirstTriggerInterval(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(68))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
     # clz_Torappu_BuffData
     def Priority(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(70))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_BuffData
     def PriorityBbkeys(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -764,26 +771,26 @@ class clz_Torappu_BuffData(object):
 
     # clz_Torappu_BuffData
     def PriorityBbkeysLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_BuffData
     def PriorityBbkeysIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(72))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
         return o == 0
 
     # clz_Torappu_BuffData
     def StripBlackboardParamsWithBuffKey(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(74))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # clz_Torappu_BuffData
     def Blackboard(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -795,25 +802,25 @@ class clz_Torappu_BuffData(object):
 
     # clz_Torappu_BuffData
     def BlackboardLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_BuffData
     def BlackboardIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(76))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
         return o == 0
 
     # clz_Torappu_BuffData
     def EnableInitDirectionFromSource(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(78))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(80))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
 def clz_Torappu_BuffDataStart(builder):
-    builder.StartObject(38)
+    builder.StartObject(39)
 
 def clz_Torappu_BuffDataAddAttributes(builder, attributes):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(attributes), 0)
@@ -896,44 +903,47 @@ def clz_Torappu_BuffDataAddTakeSnapshotWhenExtend(builder, takeSnapshotWhenExten
 def clz_Torappu_BuffDataAddDurationKey(builder, durationKey):
     builder.PrependUOffsetTRelativeSlot(26, flatbuffers.number_types.UOffsetTFlags.py_type(durationKey), 0)
 
+def clz_Torappu_BuffDataAddRemainingTimeKey(builder, remainingTimeKey):
+    builder.PrependUOffsetTRelativeSlot(27, flatbuffers.number_types.UOffsetTFlags.py_type(remainingTimeKey), 0)
+
 def clz_Torappu_BuffDataAddLifeTime(builder, lifeTime):
-    builder.PrependFloat32Slot(27, lifeTime, 0.0)
+    builder.PrependFloat32Slot(28, lifeTime, 0.0)
 
 def clz_Torappu_BuffDataAddTriggerLifeType(builder, triggerLifeType):
-    builder.PrependUint8Slot(28, triggerLifeType, 0)
+    builder.PrependUint8Slot(29, triggerLifeType, 0)
 
 def clz_Torappu_BuffDataAddTriggerCnt(builder, triggerCnt):
-    builder.PrependInt32Slot(29, triggerCnt, 0)
+    builder.PrependInt32Slot(30, triggerCnt, 0)
 
 def clz_Torappu_BuffDataAddTriggerInterval(builder, triggerInterval):
-    builder.PrependFloat32Slot(30, triggerInterval, 0.0)
+    builder.PrependFloat32Slot(31, triggerInterval, 0.0)
 
 def clz_Torappu_BuffDataAddWaitFirstTriggerInterval(builder, waitFirstTriggerInterval):
-    builder.PrependBoolSlot(31, waitFirstTriggerInterval, 0)
+    builder.PrependBoolSlot(32, waitFirstTriggerInterval, 0)
 
 def clz_Torappu_BuffDataAddFirstTriggerInterval(builder, firstTriggerInterval):
-    builder.PrependFloat32Slot(32, firstTriggerInterval, 0.0)
+    builder.PrependFloat32Slot(33, firstTriggerInterval, 0.0)
 
 def clz_Torappu_BuffDataAddPriority(builder, priority):
-    builder.PrependInt32Slot(33, priority, 0)
+    builder.PrependInt32Slot(34, priority, 0)
 
 def clz_Torappu_BuffDataAddPriorityBbkeys(builder, priorityBbkeys):
-    builder.PrependUOffsetTRelativeSlot(34, flatbuffers.number_types.UOffsetTFlags.py_type(priorityBbkeys), 0)
+    builder.PrependUOffsetTRelativeSlot(35, flatbuffers.number_types.UOffsetTFlags.py_type(priorityBbkeys), 0)
 
 def clz_Torappu_BuffDataStartPriorityBbkeysVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_BuffDataAddStripBlackboardParamsWithBuffKey(builder, stripBlackboardParamsWithBuffKey):
-    builder.PrependBoolSlot(35, stripBlackboardParamsWithBuffKey, 0)
+    builder.PrependBoolSlot(36, stripBlackboardParamsWithBuffKey, 0)
 
 def clz_Torappu_BuffDataAddBlackboard(builder, blackboard):
-    builder.PrependUOffsetTRelativeSlot(36, flatbuffers.number_types.UOffsetTFlags.py_type(blackboard), 0)
+    builder.PrependUOffsetTRelativeSlot(37, flatbuffers.number_types.UOffsetTFlags.py_type(blackboard), 0)
 
 def clz_Torappu_BuffDataStartBlackboardVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
 def clz_Torappu_BuffDataAddEnableInitDirectionFromSource(builder, enableInitDirectionFromSource):
-    builder.PrependBoolSlot(37, enableInitDirectionFromSource, 0)
+    builder.PrependBoolSlot(38, enableInitDirectionFromSource, 0)
 
 def clz_Torappu_BuffDataEnd(builder):
     return builder.EndObject()
