@@ -145,6 +145,9 @@ class enum__Torappu_ItemType(object):
     STICKER = 92
     ARKHUB = 93
     LINKAGE_TKT_GACHA = 94
+    AUTOCHESS_SKIN = 95
+    AUTOCHESS_MISSION_POINT = 96
+    OPEN_SERVER_CREDIT = 97
 
 
 class enum__Torappu_RoguelikeGameMonthTaskClass(object):
@@ -463,6 +466,7 @@ class enum__Torappu_RoguelikeRewardExDropTagSrcType(object):
     STEP = 8
     GREED = 9
     GOLDEN_AGE = 10
+    ADVENTURER_EXTRA = 11
 
 
 class enum__Torappu_TipData_Category(object):
@@ -690,6 +694,7 @@ class enum__Torappu_RoguelikeScrapType(object):
 class enum__Torappu_RoguelikeMoveScrapRangeType(object):
     RANGE = 0
     FULL_MAP = 1
+    FULL_ROW_COL = 2
 
 
 class enum__Torappu_SharedConsts_Direction(object):
@@ -23625,15 +23630,76 @@ class clz_Torappu_RoguelikeGridZoneModuleConsts(object):
         return None
 
     # clz_Torappu_RoguelikeGridZoneModuleConsts
-    def MaxBannerDifficulty(self):
+    def ShadvrTrapIds(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_RoguelikeGridZoneModuleConsts
+    def ShadvrTrapIdsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_RoguelikeGridZoneModuleConsts
+    def ShadvrTrapIdsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # clz_Torappu_RoguelikeGridZoneModuleConsts
+    def ShadvrFirstDieTrapIds(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # clz_Torappu_RoguelikeGridZoneModuleConsts
+    def ShadvrFirstDieTrapIdsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # clz_Torappu_RoguelikeGridZoneModuleConsts
+    def ShadvrFirstDieTrapIdsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # clz_Torappu_RoguelikeGridZoneModuleConsts
+    def ShadvrAliveEventId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeGridZoneModuleConsts
+    def ShadvrDieEventId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeGridZoneModuleConsts
+    def ShadvrFinalRelicId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeGridZoneModuleConsts
+    def MaxBannerDifficulty(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
     # clz_Torappu_RoguelikeGridZoneModuleConsts
     def FocusViewBossHintStageId(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -23645,18 +23711,18 @@ class clz_Torappu_RoguelikeGridZoneModuleConsts(object):
 
     # clz_Torappu_RoguelikeGridZoneModuleConsts
     def FocusViewBossHintStageIdLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # clz_Torappu_RoguelikeGridZoneModuleConsts
     def FocusViewBossHintStageIdIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         return o == 0
 
 def clz_Torappu_RoguelikeGridZoneModuleConstsStart(builder):
-    builder.StartObject(4)
+    builder.StartObject(9)
 
 def clz_Torappu_RoguelikeGridZoneModuleConstsAddSavageBubble(builder, savageBubble):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(savageBubble), 0)
@@ -23664,11 +23730,32 @@ def clz_Torappu_RoguelikeGridZoneModuleConstsAddSavageBubble(builder, savageBubb
 def clz_Torappu_RoguelikeGridZoneModuleConstsAddSecretZoneDisableBuff(builder, secretZoneDisableBuff):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(secretZoneDisableBuff), 0)
 
+def clz_Torappu_RoguelikeGridZoneModuleConstsAddShadvrTrapIds(builder, shadvrTrapIds):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(shadvrTrapIds), 0)
+
+def clz_Torappu_RoguelikeGridZoneModuleConstsStartShadvrTrapIdsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_RoguelikeGridZoneModuleConstsAddShadvrFirstDieTrapIds(builder, shadvrFirstDieTrapIds):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(shadvrFirstDieTrapIds), 0)
+
+def clz_Torappu_RoguelikeGridZoneModuleConstsStartShadvrFirstDieTrapIdsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def clz_Torappu_RoguelikeGridZoneModuleConstsAddShadvrAliveEventId(builder, shadvrAliveEventId):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(shadvrAliveEventId), 0)
+
+def clz_Torappu_RoguelikeGridZoneModuleConstsAddShadvrDieEventId(builder, shadvrDieEventId):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(shadvrDieEventId), 0)
+
+def clz_Torappu_RoguelikeGridZoneModuleConstsAddShadvrFinalRelicId(builder, shadvrFinalRelicId):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(shadvrFinalRelicId), 0)
+
 def clz_Torappu_RoguelikeGridZoneModuleConstsAddMaxBannerDifficulty(builder, maxBannerDifficulty):
-    builder.PrependInt32Slot(2, maxBannerDifficulty, 0)
+    builder.PrependInt32Slot(7, maxBannerDifficulty, 0)
 
 def clz_Torappu_RoguelikeGridZoneModuleConstsAddFocusViewBossHintStageId(builder, focusViewBossHintStageId):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(focusViewBossHintStageId), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(focusViewBossHintStageId), 0)
 
 def clz_Torappu_RoguelikeGridZoneModuleConstsStartFocusViewBossHintStageIdVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
@@ -24042,28 +24129,35 @@ class clz_Torappu_RoguelikeScrapMoveData(object):
         return False
 
     # clz_Torappu_RoguelikeScrapMoveData
-    def ScrapId(self):
+    def NodeChangeTargetType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
 
     # clz_Torappu_RoguelikeScrapMoveData
-    def ScrapDesc(self):
+    def ScrapId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
     # clz_Torappu_RoguelikeScrapMoveData
-    def SellPrice(self):
+    def ScrapDesc(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # clz_Torappu_RoguelikeScrapMoveData
+    def SellPrice(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return 0
 
 def clz_Torappu_RoguelikeScrapMoveDataStart(builder):
-    builder.StartObject(9)
+    builder.StartObject(10)
 
 def clz_Torappu_RoguelikeScrapMoveDataAddCount(builder, count):
     builder.PrependInt32Slot(0, count, 0)
@@ -24086,14 +24180,17 @@ def clz_Torappu_RoguelikeScrapMoveDataAddStep(builder, step):
 def clz_Torappu_RoguelikeScrapMoveDataAddIsRandomMove(builder, isRandomMove):
     builder.PrependBoolSlot(5, isRandomMove, 0)
 
+def clz_Torappu_RoguelikeScrapMoveDataAddNodeChangeTargetType(builder, nodeChangeTargetType):
+    builder.PrependInt32Slot(6, nodeChangeTargetType, 0)
+
 def clz_Torappu_RoguelikeScrapMoveDataAddScrapId(builder, scrapId):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(scrapId), 0)
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(scrapId), 0)
 
 def clz_Torappu_RoguelikeScrapMoveDataAddScrapDesc(builder, scrapDesc):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(scrapDesc), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(scrapDesc), 0)
 
 def clz_Torappu_RoguelikeScrapMoveDataAddSellPrice(builder, sellPrice):
-    builder.PrependInt32Slot(8, sellPrice, 0)
+    builder.PrependInt32Slot(9, sellPrice, 0)
 
 def clz_Torappu_RoguelikeScrapMoveDataEnd(builder):
     return builder.EndObject()

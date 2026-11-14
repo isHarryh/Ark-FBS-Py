@@ -158,6 +158,9 @@ class enum__Torappu_ItemType(object):
     STICKER = 92
     ARKHUB = 93
     LINKAGE_TKT_GACHA = 94
+    AUTOCHESS_SKIN = 95
+    AUTOCHESS_MISSION_POINT = 96
+    OPEN_SERVER_CREDIT = 97
 
 
 class enum__Torappu_EmojiSceneType(object):
@@ -230,6 +233,10 @@ class enum__Torappu_UIGuideTarget(object):
     ARK_ODC = 56
     ACT54SIDE_CARD = 57
     ACT_VASEBREAKER = 58
+    BUILDING_RECYCLE = 59
+    ACT_ARCADE_V2 = 60
+    OPEN_SERVER_V3 = 61
+    ARK_NEWS = 62
 
 
 class enum__Torappu_KeyCodeType(object):
@@ -317,7 +324,10 @@ class enum__Torappu_ActivityType(object):
     TYPE_ACT53SIDE = 64
     TYPE_ACT54SIDE = 65
     ACT_DP = 66
-    ENUM = 67
+    REWARD_ONLY = 67
+    AUTOCHESS = 68
+    TYPE_ACT55SIDE = 69
+    ENUM = 70
 
 
 class enum__Torappu_CollectType(object):
