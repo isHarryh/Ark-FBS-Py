@@ -70818,7 +70818,7 @@ class clz_Torappu_ArkdexCreatureData(object):
         return 0.0
 
     # clz_Torappu_ArkdexCreatureData
-    def Def_(self):
+    def Def(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(48))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
@@ -70959,7 +70959,7 @@ def clz_Torappu_ArkdexCreatureDataAddHp(builder, hp):
 def clz_Torappu_ArkdexCreatureDataAddAtk(builder, atk):
     builder.PrependFloat32Slot(21, atk, 0.0)
 
-def clz_Torappu_ArkdexCreatureDataAddDef_(builder, def_):
+def clz_Torappu_ArkdexCreatureDataAddDef(builder, def_):
     builder.PrependFloat32Slot(22, def_, 0.0)
 
 def clz_Torappu_ArkdexCreatureDataAddMag(builder, mag):
