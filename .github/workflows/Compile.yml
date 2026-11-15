@@ -13,6 +13,9 @@ concurrency:
 permissions:
   contents: write
 
+env:
+  FLATC_VERSION: "24.12.23" # FlatBuffers release version
+
 jobs:
   cn_compile:
     runs-on: windows-latest
@@ -27,7 +30,7 @@ jobs:
 
     - name: Download flatc binary
       run: |
-        $url = "https://github.com/google/flatbuffers/releases/download/v24.3.25/Windows.flatc.binary.zip"
+        $url = "https://github.com/google/flatbuffers/releases/download/v$env:FLATC_VERSION/Windows.flatc.binary.zip"
         Invoke-WebRequest -Uri $url -OutFile "flatc.zip"
         Expand-Archive -Path "flatc.zip" -DestinationPath "."
 
