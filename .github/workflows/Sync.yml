@@ -1,0 +1,81 @@
+name: Sync
+
+on:
+  schedule:
+    - cron: "0 4 * * *" # 12:00 UTC+8
+  workflow_dispatch:
+
+concurrency:
+  group: CI-Sync
+  cancel-in-progress: false
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Fetch upstream main
+        run: |
+          git remote add upstream https://github.com/MooncellWiki/OpenArknightsFBS.git
+          git fetch upstream main
+
+      - name: Check for upstream changes
+        id: check
+        run: |
+          if git merge-base --is-ancestor upstream/main HEAD; then
+            echo "has_update=false" >> "$GITHUB_OUTPUT"
+            echo "Good! Already up to date."
+          else
+            echo "has_update=true" >> "$GITHUB_OUTPUT"
+            echo "Wow! Upstream has new commits."
+          fi
+
+      - name: Validate changed paths
+        if: steps.check.outputs.has_update == 'true'
+        run: |
+          base="$(git merge-base HEAD upstream/main)"
+          bad_paths=()
+          while IFS= read -r path; do
+            if [ -z "$path" ]; then
+              continue
+            fi
+            case "$path" in
+              FBS/*) ;;
+              *) bad_paths+=("$path") ;;
+            esac
+          done < <(git diff --name-only --no-renames "$base" upstream/main)
+
+          if [ ${#bad_paths[@]} -gt 0 ]; then
+            echo "::error::Upstream changed files outside FBS/: ${bad_paths[*]}"
+            printf '%s\n' "${bad_paths[@]}"
+            exit 1
+          fi
+
+      - name: Sync fork with upstream
+        if: steps.check.outputs.has_update == 'true'
+        run: |
+          if ! gh repo sync "$GITHUB_REPOSITORY" --branch main; then
+            echo "::error::Executing gh repo sync failed. Check for merge conflicts or token permissions."
+            exit 1
+          fi
+
+      - name: Trigger Compile
+        if: steps.check.outputs.has_update == 'true'
+        run: |
+          if ! gh workflow run Compile.yml --ref main; then
+            echo "::error::Failed to dispatch Compile workflow."
+            exit 1
+          fi

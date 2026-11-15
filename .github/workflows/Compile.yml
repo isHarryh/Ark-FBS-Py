@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+concurrency:
+  group: CI-Compile
+  cancel-in-progress: false
 
 permissions:
   contents: write
